@@ -15,13 +15,25 @@ public class DBConnectionTest {
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
-    public void GetConnStringFromAppConfig() throws ClassNotFoundException{
+    public void actualConnectionTest() throws ClassNotFoundException{
 
         Class.forName("com.mysql.jdbc.Driver");
         Assert.assertFalse(thrown.equals(ExpectedException.none()));
 
-        Connection connection = null;
-        connection = DBConnection.getConnection();
+        Connection connection = DBConnection.getConnection();
+        Assert.assertNotNull(connection);
+
+    }
+
+    @Test
+    public void mockedConnectionTest() throws ClassNotFoundException{
+
+        MockDBConnection mockDBConnection = new MockDBConnection();
+
+        Class.forName("com.mysql.jdbc.Driver");
+        Assert.assertFalse(thrown.equals(ExpectedException.none()));
+
+        Connection connection = mockDBConnection.getConnection();
         Assert.assertNotNull(connection);
 
     }
