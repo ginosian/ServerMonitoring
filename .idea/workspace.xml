@@ -2,33 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6efc5664-6fb6-4a61-9b9a-a54fb535fb17" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/db/DBTables.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/dao/LocationDAOImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/Main.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/MockDBConnection.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/dao/MonitorDAOImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/exception/NoConnectionException.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/dao/ServerDAOImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/TestTablesCreation.java" />
-      <change type="DELETED" beforePath="E:\Monitis\ServerMonitoring\src\main\java\db\JDBCStatements.java" afterPath="" />
-      <change type="DELETED" beforePath="E:\Monitis\ServerMonitoring\target\classes\db\JDBCStatements.class" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__c3p0_c3p0_0_9_1_2.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/db/DBConnection.class" afterPath="$PROJECT_DIR$/target/classes/db/DBConnection.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/test-classes/DBConnectionTest.class" afterPath="$PROJECT_DIR$/target/test-classes/DBConnectionTest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/dao/LocationDAO.class" afterPath="$PROJECT_DIR$/target/classes/dao/LocationDAO.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/model/LocationDTO.class" afterPath="$PROJECT_DIR$/target/classes/model/LocationDTO.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/dao/MonitorDAO.class" afterPath="$PROJECT_DIR$/target/classes/dao/MonitorDAO.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/model/MonitorDTO.class" afterPath="$PROJECT_DIR$/target/classes/model/MonitorDTO.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/dao/ServerDAO.class" afterPath="$PROJECT_DIR$/target/classes/dao/ServerDAO.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/model/ServerDTO.class" afterPath="$PROJECT_DIR$/target/classes/model/ServerDTO.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/db/DBConnection.java" afterPath="$PROJECT_DIR$/src/main/java/db/DBConnection.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/DBConnectionTest.java" afterPath="$PROJECT_DIR$/src/test/java/DBConnectionTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/dao/LocationDAO.java" afterPath="$PROJECT_DIR$/src/main/java/dao/LocationDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/model/LocationDTO.java" afterPath="$PROJECT_DIR$/src/main/java/model/LocationDTO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/dao/MonitorDAO.java" afterPath="$PROJECT_DIR$/src/main/java/dao/MonitorDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/model/MonitorDTO.java" afterPath="$PROJECT_DIR$/src/main/java/model/MonitorDTO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/dao/ServerDAO.java" afterPath="$PROJECT_DIR$/src/main/java/dao/ServerDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/model/ServerDTO.java" afterPath="$PROJECT_DIR$/src/main/java/model/ServerDTO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/db.properties" afterPath="$PROJECT_DIR$/src/main/resources/db.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/dao/LocationDAOImpl.java" afterPath="$PROJECT_DIR$/src/main/java/dao/LocationDAOImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Main.java" afterPath="$PROJECT_DIR$/src/main/java/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ServerMonitoring.iml" afterPath="$PROJECT_DIR$/ServerMonitoring.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/ServerMonitoring_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/ServerMonitoring_war_exploded.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/db.properties" afterPath="$PROJECT_DIR$/target/classes/db.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ServerMonitoring.iws" />
@@ -56,10 +40,50 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.40991735">
-              <caret line="17" column="50" selection-start-line="17" selection-start-column="50" selection-end-line="17" selection-end-column="50" />
+            <state vertical-scroll-proportion="0.069421485">
+              <caret line="11" column="51" selection-start-line="11" selection-start-column="51" selection-end-line="11" selection-end-column="51" />
               <folding>
                 <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DBConnection.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/db/DBConnection.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="56" column="9" selection-start-line="56" selection-start-column="9" selection-end-line="56" selection-end-column="9" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="initializer##0;class#DBConnection#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="db.properties" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/db.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="2" column="42" selection-start-line="2" selection-start-column="42" selection-end-line="2" selection-end-column="42" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DBTables.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/db/DBTables.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="43" column="13" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <marker date="1472103674903" expanded="true" signature="1071:1270" placeholder="CREATE TABLE..location..." />
+                <marker date="1472103674903" expanded="true" signature="1969:2172" placeholder="CREATE TABLE..monitor..." />
+                <marker date="1472103674903" expanded="true" signature="2871:3189" placeholder="CREATE TABLE..server..." />
+                <marker date="1472103674903" expanded="true" signature="3899:4182" placeholder="CREATE TABLE..monitor_server..." />
+                <marker date="1472103674903" expanded="true" signature="4958:4990" placeholder="DROP TABLE m..." />
               </folding>
             </state>
           </provider>
@@ -97,7 +121,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/main/java/dao/ServerDAO.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/db/JDBCStatements.java" />
         <option value="$PROJECT_DIR$/src/main/java/db/DBConnectionContract.java" />
         <option value="$PROJECT_DIR$/src/test/java/MockDBConnection.java" />
@@ -109,9 +132,10 @@
         <option value="$PROJECT_DIR$/src/main/java/model/MonitorDTO.java" />
         <option value="$PROJECT_DIR$/src/main/java/model/ServerDTO.java" />
         <option value="$PROJECT_DIR$/src/main/resources/db.properties" />
-        <option value="$PROJECT_DIR$/src/main/java/db/DBConnection.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/db/DBTables.java" />
         <option value="$PROJECT_DIR$/src/test/java/TestTablesCreation.java" />
+        <option value="$PROJECT_DIR$/src/main/java/db/DBConnection.java" />
         <option value="$PROJECT_DIR$/src/main/java/Main.java" />
       </list>
     </option>
@@ -468,27 +492,6 @@
       <patterns />
       <method />
     </configuration>
-    <configuration default="false" name="TestTablesCreation.testMonitorTableCreation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="ServerMonitoring" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestTablesCreation" />
-      <option name="METHOD_NAME" value="testMonitorTableCreation" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
     <configuration default="false" name="TestTablesCreation.testServerTableCreation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="ServerMonitoring" />
@@ -539,6 +542,27 @@
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="TestTablesCreation" />
       <option name="METHOD_NAME" value="testTableDropping" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="DBConnectionTest.actualConnectionTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="ServerMonitoring" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="DBConnectionTest" />
+      <option name="METHOD_NAME" value="actualConnectionTest" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -967,18 +991,18 @@
       <item index="0" class="java.lang.String" itemvalue="Application.Main" />
       <item index="1" class="java.lang.String" itemvalue="Tomcat Server.Tocat" />
       <item index="2" class="java.lang.String" itemvalue="JUnit.TestTablesCreation.testLocationTableCreation" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.TestTablesCreation.testMonitorTableCreation" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.TestTablesCreation.testServerTableCreation" />
-      <item index="5" class="java.lang.String" itemvalue="JUnit.TestTablesCreation.testMonitorServerCrossTableCreation" />
-      <item index="6" class="java.lang.String" itemvalue="JUnit.TestTablesCreation.testTableDropping" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.TestTablesCreation.testServerTableCreation" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.TestTablesCreation.testMonitorServerCrossTableCreation" />
+      <item index="5" class="java.lang.String" itemvalue="JUnit.TestTablesCreation.testTableDropping" />
+      <item index="6" class="java.lang.String" itemvalue="JUnit.DBConnectionTest.actualConnectionTest" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.TestTablesCreation.testTableDropping" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.TestTablesCreation.testMonitorServerCrossTableCreation" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.TestTablesCreation.testServerTableCreation" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.TestTablesCreation.testMonitorTableCreation" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.TestTablesCreation.testLocationTableCreation" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.DBConnectionTest.actualConnectionTest" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.TestTablesCreation.testLocationTableCreation" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.TestTablesCreation.testTableDropping" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.TestTablesCreation.testMonitorServerCrossTableCreation" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.TestTablesCreation.testServerTableCreation" />
       </list>
     </recent_temporary>
   </component>
@@ -993,7 +1017,7 @@
       <option name="number" value="Default" />
       <updated>1471923046784</updated>
       <workItem from="1471923048777" duration="209000" />
-      <workItem from="1471923292002" duration="25964000" />
+      <workItem from="1471923292002" duration="31330000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1471923420419</created>
@@ -1019,11 +1043,17 @@
       <option name="project" value="LOCAL" />
       <updated>1471935783081</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Implement a logic for user to be able to choose with which DB create connection and make queries.&#10;Corrects DTO's for all objects.&#10;Creates a contract and implementation for LocationDAO.&#10;Implements DataBase creation logic with given name.&#10;Implements DataBase dropping logic with given name.&#10;Implements Tables creation logic.&#10;Implements Tables dropping logic.&#10;All above mentioned implementations are tested with positive result.&#10;&#10;Implements Data Objects creating and reading logic which is not tested yet.&#10;&#10;">
+      <created>1472104214336</created>
+      <option name="number" value="00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1472104214336</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26173000" />
+    <option name="totallyTimeSpent" value="31539000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1370" height="744" extended-state="0" />
@@ -1039,12 +1069,13 @@
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" x="92" y="92" width="1170" height="544" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977098" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.328594" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.44549763" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.8720379" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.328594" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24961832" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.328594" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1055,7 +1086,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1073,19 +1103,55 @@
     <MESSAGE value="Initial commit" />
     <MESSAGE value="Project structure setup." />
     <MESSAGE value="Creates unit test for database connection.&#10;Creates database connection.&#10;Test result is positive for database connection." />
-    <option name="LAST_COMMIT_MESSAGE" value="Creates unit test for database connection.&#10;Creates database connection.&#10;Test result is positive for database connection." />
+    <MESSAGE value="Implement a logic for user to be able to choose with which DB create connection and make queries.&#10;Corrects DTO's for all objects.&#10;Creates a contract and implementation for LocationDAO.&#10;Implements DataBase creation logic with given name.&#10;Implements DataBase dropping logic with given name.&#10;Implements Tables creation logic.&#10;Implements Tables dropping logic.&#10;All above mentioned implementations are tested with positive result.&#10;&#10;Implements Data Objects creating and reading logic which is not tested yet.&#10;&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implement a logic for user to be able to choose with which DB create connection and make queries.&#10;Corrects DTO's for all objects.&#10;Creates a contract and implementation for LocationDAO.&#10;Implements DataBase creation logic with given name.&#10;Implements DataBase dropping logic with given name.&#10;Implements Tables creation logic.&#10;Implements Tables dropping logic.&#10;All above mentioned implementations are tested with positive result.&#10;&#10;Implements Data Objects creating and reading logic which is not tested yet.&#10;&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="14" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/db/DBConnection.java</url>
+          <line>42</line>
+          <properties />
+          <option name="timeStamp" value="35" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/db/DBConnection.java</url>
+          <line>43</line>
+          <properties />
+          <option name="timeStamp" value="36" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/db/DBConnection.java</url>
+          <line>44</line>
+          <properties />
+          <option name="timeStamp" value="37" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/db/DBConnection.java</url>
+          <line>61</line>
+          <properties />
+          <option name="timeStamp" value="38" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/db/DBConnection.java</url>
+          <line>64</line>
+          <properties />
+          <option name="timeStamp" value="39" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="40" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="JUnit">
         <watch expression="success" />
       </configuration>
       <configuration name="Application">
+        <watch expression="inputStream" />
+        <watch expression="dataSource" />
+        <watch expression="connection" />
         <watch expression="dbConnection" />
-        <watch expression="dbName" />
+        <watch expression="statement" />
       </configuration>
     </watches-manager>
   </component>
@@ -1118,14 +1184,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.30578512">
-          <caret line="12" column="20" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/exception/NoConnectionException.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1142,11 +1200,11 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3319#3320#0" expanded="true" />
-            <element signature="e#3358#3359#0" expanded="true" />
-            <element signature="e#3421#3422#0" expanded="true" />
-            <element signature="e#3477#3478#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#3319#3320#0" expanded="false" />
+            <element signature="e#3358#3359#0" expanded="false" />
+            <element signature="e#3421#3422#0" expanded="false" />
+            <element signature="e#3477#3478#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1191,24 +1249,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/DBConnectionTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="16" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/db.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.069421485">
-          <caret line="2" column="42" selection-start-line="2" selection-start-column="42" selection-end-line="2" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/MockDBConnection.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1217,10 +1257,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="29" column="21" selection-start-line="29" selection-start-column="21" selection-end-line="29" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/DBConnectionTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="17" column="23" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/TestTablesCreation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.30578512">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="24" column="5" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1229,39 +1285,42 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/db/DBTables.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8330579">
-          <caret line="160" column="17" selection-start-line="160" selection-start-column="17" selection-end-line="160" selection-end-column="17" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="43" column="13" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1472103674903" expanded="true" signature="-1:-1" placeholder="CREATE TABLE..location..." />
-            <marker date="1472103674903" expanded="true" signature="-1:-1" placeholder="CREATE TABLE..location..." />
-            <marker date="1472103674903" expanded="true" signature="-1:-1" placeholder="CREATE TABLE..monitor..." />
-            <marker date="1472103674903" expanded="true" signature="-1:-1" placeholder="CREATE TABLE..server..." />
-            <marker date="1472103674903" expanded="true" signature="-1:-1" placeholder="CREATE TABLE..server..." />
-            <marker date="1472103674903" expanded="true" signature="-1:-1" placeholder="CREATE TABLE..server..." />
-            <marker date="1472103674903" expanded="true" signature="-1:-1" placeholder="CREATE TABLE..monitor..." />
-            <marker date="1472103674903" expanded="true" signature="-1:-1" placeholder="DROP TABLE m..." />
-            <marker date="1472103674903" expanded="true" signature="-1:-1" placeholder="DROP TABLE m..." />
-            <marker date="1472103674903" expanded="true" signature="-1:-1" placeholder="DROP TABLE t..." />
-            <marker date="1472103674903" expanded="true" signature="-1:-1" placeholder="DROP TABLE l..." />
+            <marker date="1472103674903" expanded="true" signature="1071:1270" placeholder="CREATE TABLE..location..." />
+            <marker date="1472103674903" expanded="true" signature="1969:2172" placeholder="CREATE TABLE..monitor..." />
+            <marker date="1472103674903" expanded="true" signature="2871:3189" placeholder="CREATE TABLE..server..." />
+            <marker date="1472103674903" expanded="true" signature="3899:4182" placeholder="CREATE TABLE..monitor_server..." />
+            <marker date="1472103674903" expanded="true" signature="4958:4990" placeholder="DROP TABLE m..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/db/DBConnection.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.9024793">
-          <caret line="83" column="34" selection-start-line="83" selection-start-column="34" selection-end-line="83" selection-end-column="34" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="56" column="9" selection-start-line="56" selection-start-column="9" selection-end-line="56" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="initializer##0;class#DBConnection#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/db.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="2" column="42" selection-start-line="2" selection-start-column="42" selection-end-line="2" selection-end-column="42" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.40991735">
-          <caret line="17" column="50" selection-start-line="17" selection-start-column="50" selection-end-line="17" selection-end-column="50" />
+        <state vertical-scroll-proportion="0.069421485">
+          <caret line="11" column="51" selection-start-line="11" selection-start-column="51" selection-end-line="11" selection-end-column="51" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

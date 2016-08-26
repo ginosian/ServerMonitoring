@@ -10,8 +10,8 @@ public class Main {
 
     public static void main(String[] args) {
         DBConnection.createDB("server_monitoring");
-        Connection connection = DBConnection.getConnection();
 
+        Connection connection = DBConnection.getConnection();
         DBTables.createLocationDBTable(connection);
 
         connection = DBConnection.getConnection();
@@ -23,10 +23,10 @@ public class Main {
         connection = DBConnection.getConnection();
         DBTables.createMonitorServerCrossDBTable(connection);
 
-        connection = DBConnection.getConnection();
-        DBTables.dropDBTable("location", connection);
-
-        connection = DBConnection.getConnectionByDBName("server_monitoring");
-        DBTables.dropDB("server_monitoring", connection);
+//        connection = DBConnection.getConnection();
+//        DBTables.dropDBTable("location", connection);
+//
+//        connection = DBConnection.getConnection();
+//        DBTables.dropDB("server_monitoring", connection);
     }
 }

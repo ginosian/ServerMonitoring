@@ -20,7 +20,7 @@ public class DBConnectionTest {
         Class.forName("com.mysql.jdbc.Driver");
         Assert.assertFalse(thrown.equals(ExpectedException.none()));
 
-        Connection connection = DBConnection.getConnection();
+        Connection connection = DBConnection.setConnection();
         Assert.assertNotNull(connection);
 
     }

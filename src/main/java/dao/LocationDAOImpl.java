@@ -89,8 +89,8 @@ public class LocationDAOImpl implements LocationDAO {
     private Connection getDbConnection(){
         try {
             if(dbConnection == null || dbConnection.isClosed()) {
-                Method requestMethod = mConnectionClass.getMethod("getConnection");
-                dbConnection = (Connection) mConnectionClass.getMethod("getConnection").invoke(requestMethod);
+                Method requestMethod = mConnectionClass.getMethod("setConnection");
+                dbConnection = (Connection) mConnectionClass.getMethod("setConnection").invoke(requestMethod);
                 return dbConnection;
             }
             return dbConnection;
