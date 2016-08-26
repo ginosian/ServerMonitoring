@@ -1,6 +1,7 @@
-import db.DBConnection;
-import db.DBTables;
-import org.junit.*;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import java.sql.Connection;
@@ -20,53 +21,53 @@ public class TestTablesCreation {
 
     @Before
     public void initConnection(){
-        DBConnection.createDB("test_server_monitoring");
-        connection = DBConnection.getConnection();
+//        DBConnection.createDB("test_server_monitoring");
+//        connection = DBConnection.openConnection();
     }
 
     @Test
     public void testLocationTableCreation(){
-        connection = DBConnection.getConnection();
-        Assert.assertNotNull(DBTables.createLocationDBTable(connection));
+//        connection = DBConnection.openConnection();
+//        Assert.assertNotNull(DBTables.createLocationDBTable(connection));
     }
 
     @Test
     public void testMonitorTableCreation(){
-        connection = DBConnection.getConnection();
-        Assert.assertNotNull(DBTables.createMonitorDBTable(connection));
+//        connection = DBConnection.openConnection();
+//        Assert.assertNotNull(DBTables.createMonitorDBTable(connection));
     }
 
     @Test
     public void testServerTableCreation(){
-        connection = DBConnection.getConnection();
-        Assert.assertNotNull(DBTables.createLocationDBTable(connection));
-        connection = DBConnection.getConnection();
-        Assert.assertNotNull(DBTables.createServerDBTable(connection));
+//        connection = DBConnection.openConnection();
+//        Assert.assertNotNull(DBTables.createLocationDBTable(connection));
+//        connection = DBConnection.openConnection();
+//        Assert.assertNotNull(DBTables.createServerDBTable(connection));
     }
 
     @Test
     public void testMonitorServerCrossTableCreation(){
-        connection = DBConnection.getConnection();
-        Assert.assertNotNull(DBTables.createLocationDBTable(connection));
-        connection = DBConnection.getConnection();
-        Assert.assertNotNull(DBTables.createMonitorDBTable(connection));
-        connection = DBConnection.getConnection();
-        Assert.assertNotNull(DBTables.createServerDBTable(connection));
-        connection = DBConnection.getConnection();
-        Assert.assertNotNull(DBTables.createMonitorServerCrossDBTable(connection));
+//        connection = DBConnection.openConnection();
+//        Assert.assertNotNull(DBTables.createLocationDBTable(connection));
+//        connection = DBConnection.openConnection();
+//        Assert.assertNotNull(DBTables.createMonitorDBTable(connection));
+//        connection = DBConnection.openConnection();
+//        Assert.assertNotNull(DBTables.createServerDBTable(connection));
+//        connection = DBConnection.openConnection();
+//        Assert.assertNotNull(DBTables.createMonitorServerCrossDBTable(connection));
     }
 
     @Test
     public void testTableDropping(){
-        connection = DBConnection.getConnection();
-        Assert.assertNotNull(DBTables.createLocationDBTable(connection));
-        connection = DBConnection.getConnection();
-        Assert.assertNotNull(DBTables.dropDBTable("location", connection));
+//        connection = DBConnection.openConnection();
+//        Assert.assertNotNull(DBTables.createLocationDBTable(connection));
+//        connection = DBConnection.openConnection();
+//        Assert.assertNotNull(DBTables.dropDBTable("location", connection));
     }
 
     @After
      public void dropDB(){
-        connection = DBConnection.getConnection();
-        Assert.assertNotNull(DBTables.dropDB("test_server_monitoring", connection));
+//        connection = DBConnection.openConnection();
+//        Assert.assertNotNull(DBTables.dropDB("test_server_monitoring", connection));
     }
 }

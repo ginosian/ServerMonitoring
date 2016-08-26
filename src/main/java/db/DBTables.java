@@ -1,30 +1,44 @@
 package db;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import listener.DBConnectionListener;
+import util.DBUtil;
+
+import java.sql.*;
 
 /**
  * Created by Martha on 8/23/2016.
  */
-public class DBTables {
+public class DBTables implements DBDescription{
 
-    public static Integer createDB(String dbName, Connection dbConnection){
-        Statement statement = null;
+    private ConnectionProvider connectionProvider;
+    private Connection connection;
+    private PreparedStatement preparedStatement;
 
+    public DBTables(ConnectionProvider connectionProvider) {
+        this.connectionProvider = connectionProvider;
+    }
+
+    public Integer createDB(String dbName){
+        Statement statement;
+        int result;
         String createDBSQL = ""
                 + "CREATE DATABASE "
                 + dbName;
         try {
-            statement = dbConnection.createStatement();
-            return statement.executeUpdate(createDBSQL);
+            connectionProvider.setupConnection();
+            connection = connectionProvider.openConnection();
+
+            statement = connection.createStatement();
+            result =  statement.executeUpdate(createDBSQL);
+
+            connectionProvider.mapConnectionToDataSource(dbName);
+
+            return result;
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             try {
-                if (statement != null) statement.close();
-                if (dbConnection != null) dbConnection.close();
+                closeConnections();
             } catch (Exception e){
                 e.printStackTrace();
             }
@@ -32,24 +46,16 @@ public class DBTables {
         return null;
     }
 
-    public static Integer createLocationDBTable(Connection dbConnection){
-        PreparedStatement preparedStatement = null;
-
-        String createTableSQL = ""
-                + " CREATE TABLE location("
-                + " location_id INTEGER PRIMARY KEY AUTO_INCREMENT,"
-                + " location_name VARCHAR(30),"
-                + " addr VARCHAR(30)"
-                + ")";
+    public Integer createLocationDBTable(){
         try {
-            preparedStatement = dbConnection.prepareStatement(createTableSQL);
+            connection = connectionProvider.openConnection();
+            preparedStatement = connection.prepareStatement(CREATE_LOCATION_TABLE_SQL);
             return preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             try {
-                if (preparedStatement != null) preparedStatement.close();
-                if (dbConnection != null) dbConnection.close();
+                closeConnections();
             } catch (Exception e){
                 e.printStackTrace();
             }
@@ -57,25 +63,16 @@ public class DBTables {
         return null;
     }
 
-    public static Integer createMonitorDBTable(Connection dbConnection){
-        PreparedStatement preparedStatement = null;
-
-        String createTableSQL = ""
-                + " CREATE TABLE monitor("
-                + " monitor_id INTEGER PRIMARY KEY AUTO_INCREMENT,"
-                + " monitor_name VARCHAR(30),"
-                + " check_frequency INTEGER"
-                + ")";
-
+    public Integer createMonitorDBTable(){
         try {
-            preparedStatement = dbConnection.prepareStatement(createTableSQL);
+            connection = connectionProvider.openConnection();
+            preparedStatement = connection.prepareStatement(CREATE_MONITOR_TABEL_SQL);
             return preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             try {
-                if (preparedStatement != null) preparedStatement.close();
-                if (dbConnection != null) dbConnection.close();
+               closeConnections();
             } catch (Exception e){
                 e.printStackTrace();
             }
@@ -83,26 +80,16 @@ public class DBTables {
         return null;
     }
 
-    public static Integer createServerDBTable(Connection dbConnection){
-        PreparedStatement preparedStatement = null;
-
-        String createTableSQL = ""
-                + " CREATE TABLE server("
-                + " server_id INTEGER PRIMARY KEY AUTO_INCREMENT,"
-                + " server_name VARCHAR(30),"
-                + " is_default BOOLEAN,"
-                + " location_id INTEGER,"
-                + " FOREIGN KEY (location_id) REFERENCES location(location_id)"
-                + ")";
+    public Integer createServerDBTable(){
         try {
-            preparedStatement = dbConnection.prepareStatement(createTableSQL);
+            connection = connectionProvider.openConnection();
+            preparedStatement = connection.prepareStatement(CREATE_SERVER_TABLE_SQL);
             return preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             try {
-                if (preparedStatement != null) preparedStatement.close();
-                if (dbConnection != null) dbConnection.close();
+                closeConnections();
             } catch (Exception e){
                 e.printStackTrace();
             }
@@ -110,25 +97,16 @@ public class DBTables {
         return null;
     }
 
-    public static Integer createMonitorServerCrossDBTable(Connection dbConnection){
-        PreparedStatement preparedStatement = null;
-
-        String createTableSQL = ""
-                + " CREATE TABLE monitor_server("
-                + " monitor_id INTEGER,"
-                + " server_id INTEGER,"
-                + " FOREIGN KEY (monitor_id) REFERENCES monitor(monitor_id),"
-                + " FOREIGN KEY (server_id) REFERENCES server(server_id)"
-                + ")";
+    public Integer createMonitorServerCrossDBTable(){
         try {
-            preparedStatement = dbConnection.prepareStatement(createTableSQL);
+            connection = connectionProvider.openConnection();
+            preparedStatement = connection.prepareStatement(CREATE_MOITOR_SERVER_TABLE_SQL);
             return preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             try {
-                if (preparedStatement != null) preparedStatement.close();
-                if (dbConnection != null) dbConnection.close();
+                closeConnections();
             } catch (Exception e){
                 e.printStackTrace();
             }
@@ -136,31 +114,28 @@ public class DBTables {
         return null;
     }
 
-    public static Integer dropDBTable(String tableName, Connection dbConnection){
-        PreparedStatement preparedStatement = null;
-
-        String disableForeignKeyChecks = ""
-                + "SET FOREIGN_KEY_CHECKS = 0";
+    public Integer dropDBTable(String tableName){
         String dropTableSQL = ""
                 + "DROP TABLE "
                 + tableName;
-        String enableForeignKeyChecks = ""
-                + "SET FOREIGN_KEY_CHECKS = 1";
-
         try {
-            preparedStatement = dbConnection.prepareStatement(disableForeignKeyChecks);
+            connection = connectionProvider.openConnection();
+
+            preparedStatement = connection.prepareStatement(DBUtil.disableForeignKeyChecks);
             preparedStatement.executeUpdate();
-            preparedStatement = dbConnection.prepareStatement(dropTableSQL);
+
+            preparedStatement = connection.prepareStatement(dropTableSQL);
             preparedStatement.executeUpdate();
-            preparedStatement = dbConnection.prepareStatement(enableForeignKeyChecks);
+
+            preparedStatement = connection.prepareStatement(DBUtil.enableForeignKeyChecks);
             preparedStatement.executeUpdate();
+
             return 1;
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             try {
-                if (preparedStatement != null) preparedStatement.close();
-                if (dbConnection != null) dbConnection.close();
+                closeConnections();
             } catch (Exception e){
                 e.printStackTrace();
             }
@@ -168,25 +143,32 @@ public class DBTables {
         return null;
     }
 
-    public static Integer dropDB(String dbName, Connection dbConnection){
-        PreparedStatement preparedStatement = null;
-
-        String createTableSQL = ""
+    public Integer dropDB(String dbName, DBConnectionListener listener){
+        int result;
+        String dropTableSQL = ""
                 + "DROP DATABASE "
                 + dbName;
         try {
-            preparedStatement = dbConnection.prepareStatement(createTableSQL);
-            return preparedStatement.executeUpdate();
+            connection = connectionProvider.openConnection();
+            preparedStatement = connection.prepareStatement(dropTableSQL);
+            result = preparedStatement.executeUpdate();
+            listener.unMapConnectionFromDataSource();
+            return result;
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             try {
-                if (preparedStatement != null) preparedStatement.close();
-                if (dbConnection != null) dbConnection.close();
+               closeConnections();
             } catch (Exception e){
                 e.printStackTrace();
             }
         }
         return null;
+    }
+
+    private void closeConnections()throws Exception{
+        if(preparedStatement != null) preparedStatement.close();
+        connection = null;
+        connectionProvider.closeConnection();
     }
 }

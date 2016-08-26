@@ -1,9 +1,9 @@
 package dao;
 
 import com.sun.istack.internal.NotNull;
+import db.ConnectionProvider;
 import model.LocationDTO;
 
-import java.lang.reflect.Method;
 import java.sql.*;
 
 /**
@@ -11,34 +11,33 @@ import java.sql.*;
  */
 public class LocationDAOImpl implements LocationDAO {
 
-    private Connection dbConnection;
-    private Class mConnectionClass;
+    private ConnectionProvider connectionProvider;
+    private Connection connection;
+    private PreparedStatement preparedStatement;
+    private ResultSet resultSet;
 
-    public LocationDAOImpl(@NotNull Class aClass) {
-        this.mConnectionClass = aClass;
-        getDbConnection();
+    public LocationDAOImpl(@NotNull ConnectionProvider connectionProvider) {
+        this.connectionProvider = connectionProvider;
     }
-    public LocationDTO createLocation(@NotNull LocationDTO locationDTO) {
-        PreparedStatement preparedStatement = null;
-        Connection connection = null;
 
+    public LocationDTO createLocation(@NotNull LocationDTO locationDTO) {
         try {
-            connection = getDbConnection();
+            connection = connectionProvider.openConnection();
+
             preparedStatement = connection.prepareStatement(LocationDAO.CREATE_LOCATION,
                     Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, locationDTO.getLocation_name());
             preparedStatement.setString(2, locationDTO.getAddr());
 
-            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet = preparedStatement.executeQuery();
             return retrieveData(resultSet);
 
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             try {
-                if(preparedStatement != null) preparedStatement.close();
-                if (dbConnection != null) dbConnection.close();
-            } catch (SQLException e){
+                closeConnections();
+            } catch (Exception e){
                 e.printStackTrace();
             }
         }
@@ -46,23 +45,19 @@ public class LocationDAOImpl implements LocationDAO {
     }
 
     public LocationDTO readLocationById(@NotNull Integer id) {
-        PreparedStatement preparedStatement = null;
-        Connection connection = null;
-
         try {
-            connection = getDbConnection();
+            connection = connectionProvider.openConnection();
+
             preparedStatement = connection.prepareStatement(LocationDAO.READ_LOCATION);
 
             ResultSet resultSet = preparedStatement.executeQuery();
             return retrieveData(resultSet);
-
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             try {
-                if(preparedStatement != null) preparedStatement.close();
-                if (dbConnection != null) dbConnection.close();
-            } catch (SQLException e){
+                closeConnections();
+            } catch (Exception e){
                 e.printStackTrace();
             }
         }
@@ -86,25 +81,11 @@ public class LocationDAOImpl implements LocationDAO {
         return null;
     }
 
-    private Connection getDbConnection(){
-        try {
-            if(dbConnection == null || dbConnection.isClosed()) {
-                Method requestMethod = mConnectionClass.getMethod("setConnection");
-                dbConnection = (Connection) mConnectionClass.getMethod("setConnection").invoke(requestMethod);
-                return dbConnection;
-            }
-            return dbConnection;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
+    private void closeConnections()throws Exception{
+        if(preparedStatement != null) preparedStatement.close();
+        if (resultSet != null) resultSet.close();
+        connection = null;
+        connectionProvider.closeConnection();
     }
 
-    public Class getmConnectionClass() {
-        return mConnectionClass;
-    }
-
-    public void setmConnectionClass(Class mConnectionClass) {
-        this.mConnectionClass = mConnectionClass;
-    }
 }
