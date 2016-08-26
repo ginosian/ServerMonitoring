@@ -5,6 +5,7 @@ import db.ConnectionProvider;
 import model.LocationDTO;
 
 import java.sql.*;
+import java.util.List;
 
 /**
  * Created by marta.ginosyan on 8/24/2016.
@@ -20,7 +21,7 @@ public class LocationDAOImpl implements LocationDAO {
         this.connectionProvider = connectionProvider;
     }
 
-    public LocationDTO createLocation(@NotNull LocationDTO locationDTO) {
+    public Integer createLocation(@NotNull LocationDTO locationDTO) {
         try {
             connection = connectionProvider.openConnection();
 
@@ -29,10 +30,28 @@ public class LocationDAOImpl implements LocationDAO {
             preparedStatement.setString(1, locationDTO.getLocation_name());
             preparedStatement.setString(2, locationDTO.getAddr());
 
-            resultSet = preparedStatement.executeQuery();
-            return retrieveData(resultSet);
-
+            return preparedStatement.executeUpdate();
         } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                closeConnections();
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+    public List<LocationDTO> readLocations() {
+        try {
+            connection = connectionProvider.openConnection();
+
+            preparedStatement = connection.prepareStatement(LocationDAO.READ_LOCATION_BY_ID);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            return null;
+        } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             try {
@@ -48,7 +67,8 @@ public class LocationDAOImpl implements LocationDAO {
         try {
             connection = connectionProvider.openConnection();
 
-            preparedStatement = connection.prepareStatement(LocationDAO.READ_LOCATION);
+            preparedStatement = connection.prepareStatement(LocationDAO.READ_LOCATION_BY_ID);
+            preparedStatement.setString(1, Integer.toString(id));
 
             ResultSet resultSet = preparedStatement.executeQuery();
             return retrieveData(resultSet);

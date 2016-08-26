@@ -1,6 +1,8 @@
+import dao.LocationDAOImpl;
 import db.DBConnection;
 import db.DBTables;
 import listener.DBConnectionListener;
+import model.LocationDTO;
 
 import java.sql.Connection;
 
@@ -13,19 +15,22 @@ public class Main {
         final DBConnection connectionProvider = new DBConnection();
         DBTables dbProvider = new DBTables(connectionProvider);
 
-        dbProvider.createDB("server_monitoring");
-        dbProvider.createLocationDBTable();
-        dbProvider.createMonitorDBTable();
-        dbProvider.createServerDBTable();
-        dbProvider.createMonitorServerCrossDBTable();
         dbProvider.dropDBTable("location");
         dbProvider.dropDB("server_monitoring", new DBConnectionListener() {
             public Connection unMapConnectionFromDataSource() {
                 return connectionProvider.unMapConnectionFromDataSource();
             }
         });
+        dbProvider.createDB("server_monitoring");
+        dbProvider.createLocationDBTable();
+        dbProvider.createMonitorDBTable();
+        dbProvider.createServerDBTable();
+        dbProvider.createMonitorServerCrossDBTable();
 
-//        LocationDAOImpl locationDAO = new LocationDAOImpl(DBConnection.class);
+
+        LocationDAOImpl locationDAO = new LocationDAOImpl(connectionProvider);
+        locationDAO.createLocation(new LocationDTO("ORD", "1269"));
+//        System.out.println(locationDAO.readLocationById());
 //        System.out.println(DBConnection.class);
 //        ResultSet resultSet = locationDAO.createLocation(new LocationDTO("ORD", "1269"));
 //        List<List<Object>> resultList = new ArrayList<List<Object>>();
