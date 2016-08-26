@@ -17,7 +17,6 @@ public class Main {
     public static void main(String[] args) {
         final DBConnection connectionProvider = new DBConnection();
         DBTables dbProvider = new DBTables(connectionProvider);
-        dbProvider.dropDBTable("location");
         dbProvider.dropDB("server_monitoring", new DBConnectionListener() {
             public Connection unMapConnectionFromDataSource() {
                 return connectionProvider.unMapConnectionFromDataSource();
@@ -79,5 +78,16 @@ public class Main {
         locationDAO.createLocation(new LocationDTO("ORD3", "5547889"));
         LocationDTO locationDTO3 = locationDAO.readLocationById(3);
         System.out.println(locationDTO3.toString());
+
+        dbProvider.dropDB("server_monitoring", new DBConnectionListener() {
+            public Connection unMapConnectionFromDataSource() {
+                return connectionProvider.unMapConnectionFromDataSource();
+            }
+        });
+        dbProvider.createDB("server_monitoring");
+        dbProvider.createLocationDBTable();
+        dbProvider.createMonitorDBTable();
+        dbProvider.createServerDBTable();
+        dbProvider.createMonitorServerCrossDBTable();
     }
 }

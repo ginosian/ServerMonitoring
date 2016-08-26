@@ -18,6 +18,11 @@ public class DBConnection implements ConnectionProvider, DBConnectionListener {
     private static final String URL;
     private static final String USER;
     private static final String PASSWORD;
+    public static int countOpenedConnection;
+    public static int countClosedConnection;
+    public static int remainingOpenConnection;
+    public static int existingOpenConnection;
+    public static int connectionCountInPool;
 
     private static String CREATED_DB_URL;
     private static ComboPooledDataSource dataSource;
@@ -55,6 +60,7 @@ public class DBConnection implements ConnectionProvider, DBConnectionListener {
         try {
             dataSource.setJdbcUrl(URL);
             connection = dataSource.getConnection();
+            dataSource.setMaxConnectionAge(2000);
             return connection;
         } catch (Exception e) {
             e.printStackTrace();
@@ -80,8 +86,10 @@ public class DBConnection implements ConnectionProvider, DBConnectionListener {
 
     public Connection openConnection(){
         try {
+            countOpenedConnection++;
             if (dataSource.getJdbcUrl() == null) connection = setupConnection();
             if(dataSource.getConnection() != null) connection = dataSource.getConnection();
+            System.out.println("Connection was opened " + countOpenedConnection + "times");
             return connection;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -91,8 +99,19 @@ public class DBConnection implements ConnectionProvider, DBConnectionListener {
 
     public void closeConnection(){
         try {
+            countClosedConnection++;
             connection = null;
             dataSource.getConnection().close();
+            System.out.println("Connection was closed " + countClosedConnection + "times");
+            System.out.println("Currently opened connections " + (countOpenedConnection - countClosedConnection));
+            System.out.println("Existing unclosed connections " + dataSource.getNumUnclosedOrphanedConnections());
+            System.out.println("Busy connections " + dataSource.getNumBusyConnections());
+            System.out.println("Existing active treads " + dataSource.getThreadPoolNumActiveThreads());
+            System.out.println("Tasks pending " + dataSource.getThreadPoolNumTasksPending());
+            System.out.println("Tasks pending " + dataSource.getNumUserPools());
+            System.out.println();
+            System.out.println();
+            System.out.println();
         } catch (SQLException e) {
             e.printStackTrace();
         }
