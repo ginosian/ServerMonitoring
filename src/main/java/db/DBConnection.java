@@ -70,7 +70,7 @@ public class DBConnection implements ConnectionProvider, DBConnectionListener {
             dataSource.setPassword(PASSWORD);
             dataSource.setMinPoolSize(5);
             dataSource.setAcquireIncrement(5);
-            dataSource.setMaxPoolSize(20);
+            dataSource.setMaxPoolSize(100);
             connection = dataSource.getConnection();
             return connection;
         } catch (Exception e) {

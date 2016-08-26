@@ -74,5 +74,10 @@ public class Main {
         for (int i = 0; i < monitors.size(); i++) {
             System.out.println(monitors.get(i).toString());
         }
+
+        System.out.println("**************Third CREATED LOCATION!*****************");
+        locationDAO.createLocation(new LocationDTO("ORD3", "5547889"));
+        LocationDTO locationDTO3 = locationDAO.readLocationById(3);
+        System.out.println(locationDTO3.toString());
     }
 }

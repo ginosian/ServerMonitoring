@@ -5,7 +5,10 @@ import db.ConnectionProvider;
 import model.MonitorDTO;
 import util.DBResultMapper;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -85,15 +88,15 @@ public class MonitorDAOImpl implements MonitorDAO{
         return null;
     }
 
-    public Integer updateMonitorCheckFrequency(Integer monitorId, Integer monitorCheckFrequency) {
+    public Boolean updateMonitorCheckFrequency(Integer monitorId, Integer monitorCheckFrequency) {
         try {
             connection = connectionProvider.openConnection();
 
-            preparedStatement = connection.prepareStatement(MonitorDAO.UPDATE_MONITOR_CHECK_FREQUENCY);
+            preparedStatement = connection.prepareStatement(UPDATE_MONITOR_CHECK_FREQUENCY);
             preparedStatement.setInt(1, monitorId);
             preparedStatement.setInt(2, monitorCheckFrequency);
 
-            return preparedStatement.executeUpdate();
+            return preparedStatement.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
