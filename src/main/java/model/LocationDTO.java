@@ -2,7 +2,6 @@ package model;
 
 import interfaces.DBColumn;
 
-import java.beans.Transient;
 import java.io.Serializable;
 import java.util.List;
 

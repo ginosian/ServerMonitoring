@@ -26,8 +26,7 @@ public class LocationDAOImpl implements LocationDAO {
         try {
             connection = connectionProvider.openConnection();
 
-            preparedStatement = connection.prepareStatement(LocationDAO.CREATE_LOCATION,
-                    Statement.RETURN_GENERATED_KEYS);
+            preparedStatement = connection.prepareStatement(LocationDAO.CREATE_LOCATION);
             preparedStatement.setString(1, locationDTO.getLocation_name());
             preparedStatement.setString(2, locationDTO.getAddr());
 
@@ -50,7 +49,7 @@ public class LocationDAOImpl implements LocationDAO {
 
             preparedStatement = connection.prepareStatement(LocationDAO.READ_LOCATIONS);
 
-            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet = preparedStatement.executeQuery();
             DBResultMapper<LocationDTO> location = DBResultMapper.instance();
             return location.toList(resultSet, LocationDTO.class);
         } catch (SQLException e) {
@@ -72,7 +71,7 @@ public class LocationDAOImpl implements LocationDAO {
             preparedStatement = connection.prepareStatement(LocationDAO.READ_LOCATION_BY_ID);
             preparedStatement.setInt(1, id);
 
-            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet = preparedStatement.executeQuery();
             DBResultMapper<LocationDTO> location = DBResultMapper.instance();
             return location.toObject(resultSet, LocationDTO.class);
         } catch (SQLException e) {
@@ -87,26 +86,9 @@ public class LocationDAOImpl implements LocationDAO {
         return null;
     }
 
-    private LocationDTO retrieveData(@NotNull ResultSet queryResult){
-        int location_id = 0;
-        String name = null;
-        String addr = null;
-        try {
-            while(queryResult.next()) {
-                location_id = queryResult.getInt("location_id");
-                name = queryResult.getString("location_name");
-                addr = queryResult.getString("addr");
-            }
-            return new LocationDTO(location_id, name, addr);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
     private void closeConnections()throws Exception{
-        if(preparedStatement != null) preparedStatement.close();
         if (resultSet != null) resultSet.close();
+        if(preparedStatement != null) preparedStatement.close();
         connection = null;
         connectionProvider.closeConnection();
     }
