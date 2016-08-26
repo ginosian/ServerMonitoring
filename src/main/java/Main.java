@@ -5,6 +5,7 @@ import listener.DBConnectionListener;
 import model.LocationDTO;
 
 import java.sql.Connection;
+import java.util.List;
 
 /**
  * Created by Martha on 8/24/2016.
@@ -29,31 +30,21 @@ public class Main {
 
 
         LocationDAOImpl locationDAO = new LocationDAOImpl(connectionProvider);
-        locationDAO.createLocation(new LocationDTO("ORD", "1269"));
-//        System.out.println(locationDAO.readLocationById());
-//        System.out.println(DBConnection.class);
-//        ResultSet resultSet = locationDAO.createLocation(new LocationDTO("ORD", "1269"));
-//        List<List<Object>> resultList = new ArrayList<List<Object>>();
-//
-//        try {
-//            ResultSetMetaData metadata = resultSet.getMetaData();
-//            int numberOfColumns = metadata.getColumnCount();
-//            while (resultSet.next()) {
-//                List<Object> list = new ArrayList<Object>();
-//                for (int i = 1; i < numberOfColumns; i++) {
-//                    list.add(resultSet.getString(i));
-//                }
-//                resultList.add(list);
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//
-//        List<LocationDTO> results = QueryResultMapper.map(resultList, LocationDTO.class);
-//        for (int i = 0; i < results.size(); i++) {
-//            System.out.println(results.toString());
-//        }
 
-//
+        System.out.println("**************FIRST CREATED LOCATION!*****************");
+        locationDAO.createLocation(new LocationDTO("ORD", "1269"));
+        LocationDTO locationDTO1 = locationDAO.readLocationById(1);
+        System.out.println(locationDTO1.toString());
+
+        System.out.println("**************SECOND CREATED LOCATION!*****************");
+        locationDAO.createLocation(new LocationDTO("ORDK", "565889"));
+        LocationDTO locationDTO2 = locationDAO.readLocationById(2);
+        System.out.println(locationDTO2.toString());
+
+        System.out.println("**************LOCATIONS LIST!**************************");
+        List<LocationDTO> locations = locationDAO.readLocations();
+        for (int i = 0; i < locations.size(); i++) {
+            System.out.println(locations.get(i).toString());
+        }
     }
 }

@@ -21,16 +21,15 @@ public interface LocationDAO {
      * Location.name and location.add. Location.id needed to be injected under "1"
      * index in query statement using statement.setString(parameter index, values) method.*/
     String READ_LOCATION_BY_ID = ""
-            + " SELECT location_id, name, addr,"
-            + " FROM location,"
-            + " WHERE location_id = ?"
-            + ")";
+            + "SELECT location_id, location_name, addr"
+            + " FROM location"
+            + " WHERE location_id = ?";
 
     /**
      * A SQL query string for reading all existing locations from location table.*/
     String READ_LOCATIONS = ""
-            + " SELECT location"
-            + ")";
+            + "SELECT *"
+            + " FROM location";
 
     /**
      * Creates new location in location table.

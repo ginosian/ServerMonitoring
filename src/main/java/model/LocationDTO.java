@@ -1,15 +1,25 @@
 package model;
 
+import interfaces.DBColumn;
+
+import java.beans.Transient;
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Martha on 8/23/2016.
  */
-public class LocationDTO {
+public class LocationDTO implements Serializable {
 
+    @DBColumn(name = "location_id", type = Integer.class)
     private Integer location_id;
+
+    @DBColumn(name = "location_name", type = String.class)
     private String location_name;
+
+    @DBColumn(name = "addr", type = String.class)
     private String addr;
+
     private List<ServerDTO> servers;
 
     public LocationDTO() {
@@ -24,6 +34,13 @@ public class LocationDTO {
         this.location_id = location_id;
         this.location_name = location_name;
         this.addr = addr;
+    }
+
+    @Override
+    public String toString() {
+        return "Location id = " + location_id + "\n"
+                + "Location name = " + location_name + "\n"
+                + "Location addr = " + addr;
     }
 
     public Integer getLocation_id() {

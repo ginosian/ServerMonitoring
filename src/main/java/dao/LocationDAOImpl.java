@@ -3,6 +3,7 @@ package dao;
 import com.sun.istack.internal.NotNull;
 import db.ConnectionProvider;
 import model.LocationDTO;
+import util.DBResultMapper;
 
 import java.sql.*;
 import java.util.List;
@@ -47,10 +48,11 @@ public class LocationDAOImpl implements LocationDAO {
         try {
             connection = connectionProvider.openConnection();
 
-            preparedStatement = connection.prepareStatement(LocationDAO.READ_LOCATION_BY_ID);
+            preparedStatement = connection.prepareStatement(LocationDAO.READ_LOCATIONS);
 
             ResultSet resultSet = preparedStatement.executeQuery();
-            return null;
+            DBResultMapper<LocationDTO> location = DBResultMapper.instance();
+            return location.toList(resultSet, LocationDTO.class);
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -68,10 +70,11 @@ public class LocationDAOImpl implements LocationDAO {
             connection = connectionProvider.openConnection();
 
             preparedStatement = connection.prepareStatement(LocationDAO.READ_LOCATION_BY_ID);
-            preparedStatement.setString(1, Integer.toString(id));
+            preparedStatement.setInt(1, id);
 
             ResultSet resultSet = preparedStatement.executeQuery();
-            return retrieveData(resultSet);
+            DBResultMapper<LocationDTO> location = DBResultMapper.instance();
+            return location.toObject(resultSet, LocationDTO.class);
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -91,7 +94,7 @@ public class LocationDAOImpl implements LocationDAO {
         try {
             while(queryResult.next()) {
                 location_id = queryResult.getInt("location_id");
-                name = queryResult.getString("name");
+                name = queryResult.getString("location_name");
                 addr = queryResult.getString("addr");
             }
             return new LocationDTO(location_id, name, addr);
