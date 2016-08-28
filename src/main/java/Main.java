@@ -94,10 +94,46 @@ public class Main {
         serverDTO2.setLocationDTO(serversLocation);
         System.out.println(serverDTO2.toString());
 
-        System.out.println("**************SECOND CREATED SERVER with updated flag!*****************");
+        System.out.println("**************SECOND CREATED SERVER with updated flag 1!*****************");
         serverDAO.updateServerWithFlag(2, false);
         serverDTO2 = serverDAO.readServerById(2);
         System.out.println(serverDTO2.toString());
+
+        System.out.println("**************SECOND CREATED SERVER with updated flag 2!*****************");
+        serverDAO.updateServerWithFlag(2, true);
+        serverDTO2 = serverDAO.readServerById(2);
+        System.out.println(serverDTO2.toString());
+
+
+        System.out.println("**************Third CREATED MONITOR!*****************");
+        monitorDAO.createMonitor(new MonitorDTO("monitor3", locationDTO1));
+        MonitorDTO monitorDTO3 = monitorDAO.readMonitorById(3);
+        System.out.println(monitorDTO3.toString());
+
+        MonitorServerDAO monitorServerDAO = new MonitorServerDAOImpl(connectionProvider);
+        monitorServerDAO.createMonitorServerCrossRecord(3, 2);
+        ServerDTO serverFromMonitor = monitorServerDAO.readServerByMonitorId(3);
+        MonitorDTO monitorFromServer = monitorServerDAO.readMonitorByServerId(2);
+
+
+        System.out.println("**************Server from monitor_server by monitor id!*****************");
+        System.out.println(serverFromMonitor);
+        System.out.println("**************The same server by server id!*****************");
+        System.out.println(serverDTO2.toString());
+
+
+        System.out.println("**************Monitor from monitor_server by server id!*****************");
+        System.out.println(monitorFromServer);
+        System.out.println("**************The same monitor by monitor id!*****************");
+        System.out.println(monitorDTO3.toString());
+
+        System.out.println("**************Update server for monitor3!*****************");
+        monitorServerDAO.updateServerForMonitor(3, 1);
+
+        System.out.println("**************Server from monitor_server for monitor 3!*****************");
+        System.out.println(monitorServerDAO.readServerByMonitorId(3).toString());
+        System.out.println("**************The same server by server id!*****************");
+        System.out.println(serverDAO.readServerById(1));
 
     }
 }

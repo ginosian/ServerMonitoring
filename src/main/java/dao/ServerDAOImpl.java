@@ -30,7 +30,7 @@ public class ServerDAOImpl implements ServerDAO{
         try {
             connection = connectionProvider.openConnection();
 
-            preparedStatement = connection.prepareStatement(ServerDAO.CREATE_SERVER);
+            preparedStatement = connection.prepareStatement(CREATE_SERVER);
             preparedStatement.setString(1, serverDTO.getServer_name());
 
             return preparedStatement.executeUpdate();
@@ -50,7 +50,7 @@ public class ServerDAOImpl implements ServerDAO{
         try {
             connection = connectionProvider.openConnection();
 
-            preparedStatement = connection.prepareStatement(ServerDAO.READ_SERVERS);
+            preparedStatement = connection.prepareStatement(READ_SERVERS);
 
             resultSet = preparedStatement.executeQuery();
             DBResultMapper<ServerDTO> monitor = DBResultMapper.instance();
@@ -71,7 +71,7 @@ public class ServerDAOImpl implements ServerDAO{
         try {
             connection = connectionProvider.openConnection();
 
-            preparedStatement = connection.prepareStatement(ServerDAO.READ_SERVER_BY_ID);
+            preparedStatement = connection.prepareStatement(READ_SERVER_BY_ID);
             preparedStatement.setInt(1, id);
 
             resultSet = preparedStatement.executeQuery();
@@ -93,7 +93,7 @@ public class ServerDAOImpl implements ServerDAO{
         try {
             connection = connectionProvider.openConnection();
 
-            preparedStatement = connection.prepareStatement(ServerDAO.READ_LOCATION_ID_BY_SERVER_ID);
+            preparedStatement = connection.prepareStatement(READ_LOCATION_ID_BY_SERVER_ID);
             preparedStatement.setInt(1, serverId);
 
             resultSet = preparedStatement.executeQuery();

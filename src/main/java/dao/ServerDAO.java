@@ -11,7 +11,7 @@ import java.util.List;
 public interface ServerDAO {
 
     /**
-     * A SQL query string for creating server. Monitor.name
+     * A SQL query string for creating server. Server.name
      * parameter needed to be injected under "1" index in query statement
      * using statement.setString(parameter index, values) method.*/
     String CREATE_SERVER = ""
