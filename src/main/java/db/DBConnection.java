@@ -89,7 +89,7 @@ public class DBConnection implements ConnectionProvider, DBConnectionListener {
             countOpenedConnection++;
             if (dataSource.getJdbcUrl() == null) connection = setupConnection();
             if(dataSource.getConnection() != null) connection = dataSource.getConnection();
-            System.out.println("Connection was opened " + countOpenedConnection + "times");
+//            System.out.println("Connection was opened " + countOpenedConnection + "times");
             return connection;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -102,16 +102,16 @@ public class DBConnection implements ConnectionProvider, DBConnectionListener {
             countClosedConnection++;
             connection = null;
             dataSource.getConnection().close();
-            System.out.println("Connection was closed " + countClosedConnection + "times");
-            System.out.println("Currently opened connections " + (countOpenedConnection - countClosedConnection));
-            System.out.println("Existing unclosed connections " + dataSource.getNumUnclosedOrphanedConnections());
-            System.out.println("Busy connections " + dataSource.getNumBusyConnections());
-            System.out.println("Existing active treads " + dataSource.getThreadPoolNumActiveThreads());
-            System.out.println("Tasks pending " + dataSource.getThreadPoolNumTasksPending());
-            System.out.println("Tasks pending " + dataSource.getNumUserPools());
-            System.out.println();
-            System.out.println();
-            System.out.println();
+//            System.out.println("Connection was closed " + countClosedConnection + "times");
+//            System.out.println("Currently opened connections " + (countOpenedConnection - countClosedConnection));
+//            System.out.println("Existing unclosed connections " + dataSource.getNumUnclosedOrphanedConnections());
+//            System.out.println("Busy connections " + dataSource.getNumBusyConnections());
+//            System.out.println("Existing active treads " + dataSource.getThreadPoolNumActiveThreads());
+//            System.out.println("Tasks pending " + dataSource.getThreadPoolNumTasksPending());
+//            System.out.println("Tasks pending " + dataSource.getNumUserPools());
+//            System.out.println();
+//            System.out.println();
+//            System.out.println();
         } catch (SQLException e) {
             e.printStackTrace();
         }

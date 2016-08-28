@@ -1,13 +1,21 @@
 package model;
 
+import interfaces.DBColumn;
+
 /**
  * Created by Martha on 8/23/2016.
  */
 public class ServerDTO {
 
+    @DBColumn(name = "server_id", type = Integer.class)
     private Integer server_id;
+
+    @DBColumn(name = "server_name", type = String.class)
     private String server_name;
+
     private LocationDTO locationDTO;
+
+    @DBColumn(name = "is_default", type = Boolean.class)
     private boolean is_default;
 
     public ServerDTO() {
@@ -22,6 +30,18 @@ public class ServerDTO {
     public ServerDTO(String server_name, LocationDTO locationDTO) {
         this.server_name = server_name;
         this.locationDTO = locationDTO;
+    }
+
+    public ServerDTO(String server_name) {
+        this.server_name = server_name;
+    }
+
+    @Override
+    public String toString() {
+        return "Server id = " + server_id + "\n"
+                + "Server name = " + server_name + "\n"
+                + "Flag is_default = " + is_default + "\n"
+                + "Location_id = " + (locationDTO != null ? locationDTO.getLocation_id().toString() : "none");
     }
 
     public Integer getServer_id() {

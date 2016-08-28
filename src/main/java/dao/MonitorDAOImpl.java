@@ -88,7 +88,7 @@ public class MonitorDAOImpl implements MonitorDAO{
         return null;
     }
 
-    public Boolean updateMonitorCheckFrequency(Integer monitorId, Integer monitorCheckFrequency) {
+    public Boolean updateMonitorCheckFrequency(@NotNull Integer monitorId, @NotNull Integer monitorCheckFrequency) {
         try {
             connection = connectionProvider.openConnection();
 

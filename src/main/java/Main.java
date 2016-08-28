@@ -1,10 +1,10 @@
-import dao.LocationDAOImpl;
-import dao.MonitorDAOImpl;
+import dao.*;
 import db.DBConnection;
 import db.DBTables;
 import listener.DBConnectionListener;
 import model.LocationDTO;
 import model.MonitorDTO;
+import model.ServerDTO;
 
 import java.sql.Connection;
 import java.util.List;
@@ -29,7 +29,7 @@ public class Main {
         dbProvider.createMonitorServerCrossDBTable();
 
 
-        LocationDAOImpl locationDAO = new LocationDAOImpl(connectionProvider);
+        LocationDAO locationDAO = new LocationDAOImpl(connectionProvider);
 
         System.out.println("**************FIRST CREATED LOCATION!*****************");
         locationDAO.createLocation(new LocationDTO("ORD", "1269"));
@@ -47,7 +47,7 @@ public class Main {
             System.out.println(locations.get(i).toString());
         }
 
-        MonitorDAOImpl monitorDAO = new MonitorDAOImpl(connectionProvider);
+        MonitorDAO monitorDAO = new MonitorDAOImpl(connectionProvider);
 
         System.out.println("**************FIRST CREATED MONITOR!*****************");
         monitorDAO.createMonitor(new MonitorDTO("monitor1", locationDTO1));
@@ -79,15 +79,25 @@ public class Main {
         LocationDTO locationDTO3 = locationDAO.readLocationById(3);
         System.out.println(locationDTO3.toString());
 
-        dbProvider.dropDB("server_monitoring", new DBConnectionListener() {
-            public Connection unMapConnectionFromDataSource() {
-                return connectionProvider.unMapConnectionFromDataSource();
-            }
-        });
-        dbProvider.createDB("server_monitoring");
-        dbProvider.createLocationDBTable();
-        dbProvider.createMonitorDBTable();
-        dbProvider.createServerDBTable();
-        dbProvider.createMonitorServerCrossDBTable();
+        ServerDAO serverDAO = new ServerDAOImpl(connectionProvider);
+
+        System.out.println("**************First CREATED SERVER!*****************");
+        serverDAO.createServer(new ServerDTO("Server 1"));
+        ServerDTO serverDTO1 = serverDAO.readServerById(1);
+        System.out.println(serverDTO1.toString());
+
+        System.out.println("**************SECOND CREATED SERVER!*****************");
+        serverDAO.createServer(new ServerDTO("Server 2"));
+        if (serverDAO.updateServerWithLocationAndFlag(2, 3, true) == null) throw new RuntimeException();
+        ServerDTO serverDTO2 = serverDAO.readServerById(2);
+        LocationDTO serversLocation = serverDAO.readLocationIdByServerById(serverDTO2.getServer_id());
+        serverDTO2.setLocationDTO(serversLocation);
+        System.out.println(serverDTO2.toString());
+
+        System.out.println("**************SECOND CREATED SERVER with updated flag!*****************");
+        serverDAO.updateServerWithFlag(2, false);
+        serverDTO2 = serverDAO.readServerById(2);
+        System.out.println(serverDTO2.toString());
+
     }
 }

@@ -32,7 +32,9 @@ public interface MonitorDAO {
             + " FROM monitor";
 
     /**
-     * A SQL query string for reading all existing monitors from monitor table.*/
+     * A SQL query string for updating monitor with its new frequency.
+     * * Monitor.id needed to be injected under "1"
+     * index in query statement using statement.setString(parameter index, values) method.*/
     String UPDATE_MONITOR_CHECK_FREQUENCY = ""
             + "UPDATE monitor"
             + " SET check_frequency = ?"
@@ -62,6 +64,6 @@ public interface MonitorDAO {
      * Updates specified monitor chexk_frequency field with given value.
      * @param monitorId id of monitor to be retrieved.
      * @param monitorCheckFrequency new check_frequency of monitor
-     * @return {@link Integer} Has value if object was created and null otherwise.*/
+     * @return {@link Boolean} true if query dent successfully null otherwise..*/
     Boolean updateMonitorCheckFrequency(Integer monitorId, Integer monitorCheckFrequency);
 }

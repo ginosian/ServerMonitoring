@@ -2,7 +2,6 @@ package util;
 
 import interfaces.DBColumn;
 
-import java.beans.Transient;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.sql.ResultSet;
