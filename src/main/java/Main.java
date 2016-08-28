@@ -90,7 +90,7 @@ public class Main {
         serverDAO.createServer(new ServerDTO("Server 2"));
         if (serverDAO.updateServerWithLocationAndFlag(2, 3, true) == null) throw new RuntimeException();
         ServerDTO serverDTO2 = serverDAO.readServerById(2);
-        LocationDTO serversLocation = serverDAO.readLocationIdByServerById(serverDTO2.getServer_id());
+        LocationDTO serversLocation = serverDAO.readLocationIdByServerId(serverDTO2.getServer_id());
         serverDTO2.setLocationDTO(serversLocation);
         System.out.println(serverDTO2.toString());
 

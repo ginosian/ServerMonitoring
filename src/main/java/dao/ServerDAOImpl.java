@@ -67,6 +67,28 @@ public class ServerDAOImpl implements ServerDAO{
         return null;
     }
 
+    public List<ServerDTO> readServersWithinLocation(Integer location_id) {
+        try {
+            connection = connectionProvider.openConnection();
+
+            preparedStatement = connection.prepareStatement(READ_SERVERS_BY_LOCATION_ID);
+            preparedStatement.setInt(1, location_id);
+
+            resultSet = preparedStatement.executeQuery();
+            DBResultMapper<ServerDTO> monitor = DBResultMapper.instance();
+            return monitor.toList(resultSet, ServerDTO.class);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                closeConnections();
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
     public ServerDTO readServerById(@NotNull Integer id) {
         try {
             connection = connectionProvider.openConnection();
@@ -89,7 +111,7 @@ public class ServerDAOImpl implements ServerDAO{
         return null;
     }
 
-    public LocationDTO readLocationIdByServerById(Integer serverId) {
+    public LocationDTO readLocationIdByServerId(Integer serverId) {
         try {
             connection = connectionProvider.openConnection();
 

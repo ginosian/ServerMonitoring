@@ -33,6 +33,13 @@ public interface ServerDAO {
             + " FROM server";
 
     /**
+     * A SQL query string for reading all existing servers from server table.*/
+    String READ_SERVERS_BY_LOCATION_ID = ""
+            + "SELECT *"
+            + " FROM server"
+            + " WHERE location_id = ?";
+
+    /**
      * A SQL query string for updating server with its location and is_default flag.
      * Location.id needed to be injected under "1"
      * is_default parameter needed to be injected under "2"
@@ -64,6 +71,18 @@ public interface ServerDAO {
             + " WHERE server_id = ?)";
 
     /**
+     * A SQL query string for reading server_id; name and is_default parameters from server table.
+     * Server.id needed to be injected under "1"
+     * index in query statement using statement.setString(parameter index, values) method.*/
+    String READ_DEFAULT_SERVER_IN_LOCATION = ""
+            + "SELECT server_id, server_name, is_default"
+            + " FROM server"
+            + " WHERE location_id LIKE"
+            + " (SELECT location_id "
+            + " FROM location "
+            + " WHERE server_id = ?)";
+
+    /**
      * Creates new server in server table.
      * @param serverDTO new server to be created, only name field is used,
      *                    id is autoincrement.
@@ -77,6 +96,12 @@ public interface ServerDAO {
     List<ServerDTO> readServers();
 
     /**
+     * Reads servers within same specified location.
+     * @return {@link List <ServerDTO>} only server_id, name, location_id and flag fields are initialized with
+     * retrieved values.*/
+    List<ServerDTO> readServersWithinLocation(Integer location_id);
+
+    /**
      * Reads server from server table by specified id.
      * @param serverId id of server to be retrieved.
      * @return {@link ServerDTO} only server_id, name, location_id and flag fields are initialized with
@@ -84,10 +109,16 @@ public interface ServerDAO {
     ServerDTO readServerById(Integer serverId);
 
     /**
+     * Reads default server from server table by specified location.
+     * @param location_id id of location to look in.
+     * @return {@link Integer}  id of default server*/
+    Integer readDefaultServerWithinLocation(Integer location_id);
+
+    /**
      * Reads location id from specified server.
      * @param serverId id of server to be retrieved.
      * @return {@link LocationDTO} Location where specified server is situated*/
-    LocationDTO readLocationIdByServerById(Integer serverId);
+    LocationDTO readLocationIdByServerId(Integer serverId);
 
     /**
      * Updates specified server location_id and flag fields with given values.
