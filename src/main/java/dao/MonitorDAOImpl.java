@@ -2,7 +2,7 @@ package dao;
 
 import com.sun.istack.internal.NotNull;
 import db.ConnectionProvider;
-import model.MonitorDTO;
+import entity.MonitorDTO;
 import util.DBResultMapper;
 
 import java.sql.Connection;

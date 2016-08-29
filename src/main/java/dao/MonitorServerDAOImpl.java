@@ -2,14 +2,15 @@ package dao;
 
 import com.sun.istack.internal.NotNull;
 import db.ConnectionProvider;
-import model.MonitorDTO;
-import model.ServerDTO;
+import entity.MonitorDTO;
+import entity.ServerDTO;
 import util.DBResultMapper;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * Created by Martha on 8/28/2016.
@@ -46,7 +47,7 @@ public class MonitorServerDAOImpl implements MonitorServerDAO {
         return null;
     }
 
-    public ServerDTO readServerByMonitorId(Integer monitorId) {
+    public List<ServerDTO> readServersByMonitorId(Integer monitorId) {
         try {
             connection = connectionProvider.openConnection();
 
@@ -55,7 +56,7 @@ public class MonitorServerDAOImpl implements MonitorServerDAO {
 
             resultSet = preparedStatement.executeQuery();
             DBResultMapper<ServerDTO> monitor = DBResultMapper.instance();
-            return monitor.toObject(resultSet, ServerDTO.class);
+            return monitor.toList(resultSet, ServerDTO.class);
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -68,7 +69,7 @@ public class MonitorServerDAOImpl implements MonitorServerDAO {
         return null;
     }
 
-    public MonitorDTO readMonitorByServerId(Integer serverId) {
+    public List<MonitorDTO> readMonitorsByServerId(Integer serverId) {
         try {
             connection = connectionProvider.openConnection();
 
@@ -76,8 +77,8 @@ public class MonitorServerDAOImpl implements MonitorServerDAO {
             preparedStatement.setInt(1, serverId);
 
             resultSet = preparedStatement.executeQuery();
-            DBResultMapper<MonitorDTO> server = DBResultMapper.instance();
-            return server.toObject(resultSet, MonitorDTO.class);
+            DBResultMapper<MonitorDTO> monitor = DBResultMapper.instance();
+            return monitor.toList(resultSet, MonitorDTO.class);
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

@@ -1,8 +1,8 @@
 package Services;
 
-import model.LocationDTO;
-import model.MonitorDTO;
-import model.ServerDTO;
+import entity.LocationDTO;
+import entity.MonitorDTO;
+import entity.ServerDTO;
 
 import java.util.List;
 
@@ -12,12 +12,11 @@ import java.util.List;
 public interface MonitoringServices {
 
     List<LocationDTO> getAllLocations() throws Exception;
-    LocationDTO getLocationsWithCompleteData(Integer location_id) throws Exception;
     ServerDTO getDefaultServer(Integer location_id) throws Exception;
     ServerDTO getServerWithLowestDensity(Integer location_id) throws Exception;
-    ServerDTO setDefaultServer(Integer location_id, Integer server_id) throws Exception;
-    Boolean createServer(String server_name, Integer location_id) throws Exception;
-    Boolean createLocation(String locationName) throws Exception;
+    Boolean setDefaultServer(Integer location_id, Integer server_id) throws Exception;
+    ServerDTO createServer(String server_name, Integer location_id) throws Exception;
+    LocationDTO createLocation(String locationName) throws Exception;
     List<MonitorDTO> getMonitorsWithCompleteData() throws Exception;
-
+    LocationDTO getLocationWithServers(Integer location_id) throws Exception;
 }

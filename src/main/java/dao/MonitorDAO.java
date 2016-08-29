@@ -1,6 +1,6 @@
 package dao;
 
-import model.MonitorDTO;
+import entity.MonitorDTO;
 
 import java.util.List;
 

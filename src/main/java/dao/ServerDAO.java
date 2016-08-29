@@ -1,7 +1,7 @@
 package dao;
 
-import model.LocationDTO;
-import model.ServerDTO;
+import entity.LocationDTO;
+import entity.ServerDTO;
 
 import java.util.List;
 
@@ -25,6 +25,11 @@ public interface ServerDAO {
             + "SELECT server_id, server_name, is_default"
             + " FROM server"
             + " WHERE server_id = ?";
+
+    String READ_SERVER_BY_NAME = ""
+            + "SELECT server_id, server_name, is_default"
+            + " FROM server"
+            + " WHERE server_name = ?";
 
     /**
      * A SQL query string for reading all existing servers from server table.*/
@@ -72,15 +77,12 @@ public interface ServerDAO {
 
     /**
      * A SQL query string for reading server_id; name and is_default parameters from server table.
-     * Server.id needed to be injected under "1"
+     * Location.id needed to be injected under "1"
      * index in query statement using statement.setString(parameter index, values) method.*/
     String READ_DEFAULT_SERVER_IN_LOCATION = ""
             + "SELECT server_id, server_name, is_default"
             + " FROM server"
-            + " WHERE location_id LIKE"
-            + " (SELECT location_id "
-            + " FROM location "
-            + " WHERE server_id = ?)";
+            + " WHERE location_id = ?";
 
     /**
      * Creates new server in server table.
@@ -108,11 +110,13 @@ public interface ServerDAO {
      * retrieved values.*/
     ServerDTO readServerById(Integer serverId);
 
+    ServerDTO readServerByName(String server_name);
+
     /**
      * Reads default server from server table by specified location.
      * @param location_id id of location to look in.
      * @return {@link Integer}  id of default server*/
-    Integer readDefaultServerWithinLocation(Integer location_id);
+    ServerDTO readDefaultServerWithinLocation(Integer location_id);
 
     /**
      * Reads location id from specified server.

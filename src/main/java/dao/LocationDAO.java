@@ -1,6 +1,6 @@
 package dao;
 
-import model.LocationDTO;
+import entity.LocationDTO;
 
 import java.util.List;
 

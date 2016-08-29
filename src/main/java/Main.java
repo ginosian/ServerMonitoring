@@ -2,9 +2,9 @@ import dao.*;
 import db.DBConnection;
 import db.DBTables;
 import listener.DBConnectionListener;
-import model.LocationDTO;
-import model.MonitorDTO;
-import model.ServerDTO;
+import entity.LocationDTO;
+import entity.MonitorDTO;
+import entity.ServerDTO;
 
 import java.sql.Connection;
 import java.util.List;
@@ -55,7 +55,7 @@ public class Main {
         System.out.println(monitorDTO1.toString());
 
         System.out.println("**************SECOND CREATED MONITOR!*****************");
-        monitorDAO.createMonitor(new MonitorDTO("monitor1", locationDTO2));
+        monitorDAO.createMonitor(new MonitorDTO("monitor2", locationDTO2));
         MonitorDTO monitorDTO2 = monitorDAO.readMonitorById(2);
         System.out.println(monitorDTO2.toString());
 
@@ -112,18 +112,18 @@ public class Main {
 
         MonitorServerDAO monitorServerDAO = new MonitorServerDAOImpl(connectionProvider);
         monitorServerDAO.createMonitorServerCrossRecord(3, 2);
-        ServerDTO serverFromMonitor = monitorServerDAO.readServerByMonitorId(3);
-        MonitorDTO monitorFromServer = monitorServerDAO.readMonitorByServerId(2);
+        List<ServerDTO> serverFromMonitor = monitorServerDAO.readServersByMonitorId(3);
+        List<MonitorDTO> monitorFromServer = monitorServerDAO.readMonitorsByServerId(2);
 
 
         System.out.println("**************Server from monitor_server by monitor id!*****************");
-        System.out.println(serverFromMonitor);
+        System.out.println(serverFromMonitor.get(0));
         System.out.println("**************The same server by server id!*****************");
         System.out.println(serverDTO2.toString());
 
 
         System.out.println("**************Monitor from monitor_server by server id!*****************");
-        System.out.println(monitorFromServer);
+        System.out.println(monitorFromServer.get(0));
         System.out.println("**************The same monitor by monitor id!*****************");
         System.out.println(monitorDTO3.toString());
 
@@ -131,7 +131,7 @@ public class Main {
         monitorServerDAO.updateServerForMonitor(3, 1);
 
         System.out.println("**************Server from monitor_server for monitor 3!*****************");
-        System.out.println(monitorServerDAO.readServerByMonitorId(3).toString());
+        System.out.println(monitorServerDAO.readServersByMonitorId(3).get(0).toString());
         System.out.println("**************The same server by server id!*****************");
         System.out.println(serverDAO.readServerById(1));
 

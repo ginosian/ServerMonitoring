@@ -2,8 +2,8 @@ package dao;
 
 import com.sun.istack.internal.NotNull;
 import db.ConnectionProvider;
-import model.LocationDTO;
-import model.ServerDTO;
+import entity.LocationDTO;
+import entity.ServerDTO;
 import util.DBResultMapper;
 
 import java.sql.Connection;
@@ -67,6 +67,28 @@ public class ServerDAOImpl implements ServerDAO{
         return null;
     }
 
+    public ServerDTO readDefaultServerWithinLocation(Integer location_id) {
+        try {
+            connection = connectionProvider.openConnection();
+
+            preparedStatement = connection.prepareStatement(READ_DEFAULT_SERVER_IN_LOCATION);
+            preparedStatement.setInt(1, location_id);
+
+            resultSet = preparedStatement.executeQuery();
+            DBResultMapper<ServerDTO> server = DBResultMapper.instance();
+            return server.toObject(resultSet, ServerDTO.class);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                closeConnections();
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
     public List<ServerDTO> readServersWithinLocation(Integer location_id) {
         try {
             connection = connectionProvider.openConnection();
@@ -95,6 +117,28 @@ public class ServerDAOImpl implements ServerDAO{
 
             preparedStatement = connection.prepareStatement(READ_SERVER_BY_ID);
             preparedStatement.setInt(1, id);
+
+            resultSet = preparedStatement.executeQuery();
+            DBResultMapper<ServerDTO> server = DBResultMapper.instance();
+            return server.toObject(resultSet, ServerDTO.class);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                closeConnections();
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+    public ServerDTO readServerByName(String server_name) {
+        try {
+            connection = connectionProvider.openConnection();
+
+            preparedStatement = connection.prepareStatement(READ_SERVER_BY_NAME);
+            preparedStatement.setString(1, server_name);
 
             resultSet = preparedStatement.executeQuery();
             DBResultMapper<ServerDTO> server = DBResultMapper.instance();

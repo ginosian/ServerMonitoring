@@ -10,14 +10,18 @@ public interface DBDescription {
             + " CREATE TABLE location("
             + " location_id INTEGER PRIMARY KEY AUTO_INCREMENT,"
             + " location_name VARCHAR(30),"
-            + " addr VARCHAR(30)"
+            + " addr VARCHAR(30),"
+            + " UNIQUE (location_id),"
+            + " UNIQUE (location_name)"
             + ")";
 
     String CREATE_MONITOR_TABEL_SQL = ""
             + " CREATE TABLE monitor("
             + " monitor_id INTEGER PRIMARY KEY AUTO_INCREMENT,"
             + " monitor_name VARCHAR(30),"
-            + " check_frequency INTEGER"
+            + " check_frequency INTEGER,"
+            + " UNIQUE (monitor_id),"
+            + " UNIQUE (monitor_name)"
             + ")";
 
     String CREATE_SERVER_TABLE_SQL = ""
@@ -26,7 +30,9 @@ public interface DBDescription {
             + " server_name VARCHAR(30),"
             + " is_default BOOLEAN,"
             + " location_id INTEGER,"
-            + " FOREIGN KEY (location_id) REFERENCES location(location_id)"
+            + " FOREIGN KEY (location_id) REFERENCES location(location_id),"
+            + " UNIQUE (server_id),"
+            + " UNIQUE (server_name)"
             + ")";
 
     String CREATE_MOITOR_SERVER_TABLE_SQL = ""

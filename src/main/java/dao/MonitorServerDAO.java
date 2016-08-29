@@ -1,7 +1,9 @@
 package dao;
 
-import model.MonitorDTO;
-import model.ServerDTO;
+import entity.MonitorDTO;
+import entity.ServerDTO;
+
+import java.util.List;
 
 /**
  * Created by Martha on 8/28/2016.
@@ -62,16 +64,16 @@ public interface MonitorServerDAO {
     Integer createMonitorServerCrossRecord(Integer monitor_id, Integer server_id);
 
     /**
-     * Reads server from server table by specified monitor id.
+     * Reads servers from server table by specified monitor id.
      * @param monitorId id of monitor.
-     * @return {@link ServerDTO} retrieved server.*/
-    ServerDTO readServerByMonitorId(Integer monitorId);
+     * @return {@link List<ServerDTO>} retrieved servers.*/
+    List<ServerDTO> readServersByMonitorId(Integer monitorId);
 
     /**
-     * Reads monitor from monitor table by specified server id.
+     * Reads monitors from monitor table by specified server id.
      * @param serverId id of server.
-     * @return {@link MonitorDTO} retrieved monitor.*/
-    MonitorDTO readMonitorByServerId(Integer serverId);
+     * @return {@link List<MonitorDTO>} retrieved monitors.*/
+    List<MonitorDTO> readMonitorsByServerId(Integer serverId);
 
     /**
      * Updates server for monitor.
