@@ -5,7 +5,10 @@
   Time: 10:03 AM
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<c:set var="root" value="${pageContext.request.contextPath}"/>
+<jsp:include page='${root} + "/hello"'/>
 <html>
 <head>
   <style type="text/css">
@@ -48,7 +51,9 @@
   </tr>
   <tr>
     <td style="vertical-align: middle; font-size: 24px; text-align: left; width: 70%; background-color: #b0bec5;" colspan="3">Time left for next density check</td>
-    <td style="vertical-align: middle; font-size: 22px; text-align: left; width: 30%; background-color: #b0bec5;" colspan="1">time</td>
+    <td style="vertical-align: middle; font-size: 22px; text-align: left; width: 30%; background-color: #b0bec5;" colspan="1">
+      <span id="countdownSpan">&nbsp;<span id="countdown"></span>seconds remaining</span>
+    </td>
   </tr>
   <tr>
     <td style="table-layout: fixed; vertical-align: middle; font-size: 22px; text-align: left; width: 25%; background-color: #cfd8dc; color:#311B92">Default server</td>
