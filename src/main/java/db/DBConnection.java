@@ -2,9 +2,8 @@ package db;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import listener.DBConnectionListener;
+import util.Util;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Properties;
@@ -18,6 +17,7 @@ public class DBConnection implements ConnectionProvider, DBConnectionListener {
     private static final String URL;
     private static final String USER;
     private static final String PASSWORD;
+
     public static int countOpenedConnection;
     public static int countClosedConnection;
     public static int remainingOpenConnection;
@@ -28,13 +28,7 @@ public class DBConnection implements ConnectionProvider, DBConnectionListener {
     private static ComboPooledDataSource dataSource;
 
     static {
-        Properties prop = new Properties();
-        InputStream inputStream = DBConnection.class.getClassLoader().getResourceAsStream("db.properties");
-        try {
-            prop.load(inputStream);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Properties prop = Util.getProperty();
         DRIVER = prop.getProperty("database_driver");
         URL = prop.getProperty("database_url");
         USER = prop.getProperty("database_username");

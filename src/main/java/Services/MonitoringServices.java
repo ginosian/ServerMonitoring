@@ -16,7 +16,8 @@ public interface MonitoringServices {
     ServerDTO getServerWithLowestDensity(Integer location_id) throws Exception;
     Boolean setDefaultServer(Integer location_id, Integer server_id) throws Exception;
     ServerDTO createServer(String server_name, Integer location_id) throws Exception;
-    LocationDTO createLocation(String locationName) throws Exception;
-    List<MonitorDTO> getMonitorsWithCompleteData() throws Exception;
+    LocationDTO createLocation(String locationName, String locationAddr) throws Exception;
+    MonitorDTO createMonitor(String monitorName, Integer check_frequency, Integer location_id) throws Exception;
+    List<MonitorDTO> getAllMonitors() throws Exception;
     LocationDTO getLocationWithServers(Integer location_id) throws Exception;
 }

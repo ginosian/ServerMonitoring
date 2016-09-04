@@ -28,6 +28,12 @@ public class MonitorDTO implements Serializable{
         this.locationDTO = location;
     }
 
+    public MonitorDTO(String monitor_name, Integer check_frequency, LocationDTO locationDTO) {
+        this.monitor_name = monitor_name;
+        this.check_frequency = check_frequency;
+        this.locationDTO = locationDTO;
+    }
+
     @Override
     public String toString() {
         return "Monitor id = " + monitor_id + "\n"

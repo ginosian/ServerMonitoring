@@ -14,8 +14,8 @@ public interface MonitorDAO {
      * parameter needed to be injected under "1" index in query statement
      * using statement.setString(parameter index, values) method.*/
     String CREATE_MONITOR = ""
-            + "INSERT INTO monitor (monitor_name)"
-            + " VALUES (?)";
+            + "INSERT INTO monitor (monitor_name, check_frequency)"
+            + " VALUES (?, ?)";
     /**
      * A SQL query string for reading monitor_id; name and check_frequency parameters from monitor table.
      * Monitor.id needed to be injected under "1"
@@ -24,6 +24,15 @@ public interface MonitorDAO {
             + "SELECT monitor_id, monitor_name, check_frequency"
             + " FROM monitor"
             + " WHERE monitor_id = ?";
+
+    /**
+     * A SQL query string for reading monitor_id; name and check_frequency parameters from monitor table.
+     * Monitor.name needed to be injected under "1"
+     * index in query statement using statement.setString(parameter index, values) method.*/
+    String READ_MONITOR_BY_NAME = ""
+            + "SELECT monitor_id, monitor_name, check_frequency"
+            + " FROM monitor"
+            + " WHERE monitor_name = ?";
 
     /**
      * A SQL query string for reading all existing monitors from monitor table.*/
@@ -59,6 +68,13 @@ public interface MonitorDAO {
      * @return {@link MonitorDTO} only monitor_id, name and check_frequency fields are initialized with
      * retrieved values.*/
     MonitorDTO readMonitorById(Integer monitorId);
+
+    /**
+     * Reads monitor from monitor table by specified id.
+     * @param monitorName name of monitor to be retrieved.
+     * @return {@link MonitorDTO} only monitor_id, name and check_frequency fields are initialized with
+     * retrieved values.*/
+    MonitorDTO readMonitorByName(String monitorName);
 
     /**
      * Updates specified monitor chexk_frequency field with given value.

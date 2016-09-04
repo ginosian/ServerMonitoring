@@ -31,6 +31,7 @@ public class MonitorDAOImpl implements MonitorDAO{
 
             preparedStatement = connection.prepareStatement(MonitorDAO.CREATE_MONITOR);
             preparedStatement.setString(1, monitorDTO.getMonitor_name());
+            preparedStatement.setInt(2, monitorDTO.getCheck_frequency());
 
             return preparedStatement.executeUpdate();
         } catch (Exception e) {
@@ -52,6 +53,7 @@ public class MonitorDAOImpl implements MonitorDAO{
             preparedStatement = connection.prepareStatement(MonitorDAO.READ_MONITORS);
 
             resultSet = preparedStatement.executeQuery();
+            if (!resultSet.next()) return null;
             DBResultMapper<MonitorDTO> monitor = DBResultMapper.instance();
             return monitor.toList(resultSet, MonitorDTO.class);
         } catch (SQLException e) {
@@ -74,6 +76,30 @@ public class MonitorDAOImpl implements MonitorDAO{
             preparedStatement.setInt(1, id);
 
             resultSet = preparedStatement.executeQuery();
+            if (!resultSet.next()) return null;
+            DBResultMapper<MonitorDTO> monitor = DBResultMapper.instance();
+            return monitor.toObject(resultSet, MonitorDTO.class);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                closeConnections();
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+    public MonitorDTO readMonitorByName(String monitorName) {
+        try {
+            connection = connectionProvider.openConnection();
+
+            preparedStatement = connection.prepareStatement(MonitorDAO.READ_MONITOR_BY_NAME);
+            preparedStatement.setString(1, monitorName);
+
+            resultSet = preparedStatement.executeQuery();
+            if (!resultSet.next()) return null;
             DBResultMapper<MonitorDTO> monitor = DBResultMapper.instance();
             return monitor.toObject(resultSet, MonitorDTO.class);
         } catch (SQLException e) {

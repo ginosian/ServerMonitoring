@@ -50,6 +50,7 @@ public class LocationDAOImpl implements LocationDAO {
             preparedStatement = connection.prepareStatement(LocationDAO.READ_LOCATIONS);
 
             resultSet = preparedStatement.executeQuery();
+            if (!resultSet.next()) return null;
             DBResultMapper<LocationDTO> location = DBResultMapper.instance();
             return location.toList(resultSet, LocationDTO.class);
         } catch (SQLException e) {
@@ -72,6 +73,30 @@ public class LocationDAOImpl implements LocationDAO {
             preparedStatement.setInt(1, id);
 
             resultSet = preparedStatement.executeQuery();
+            if (!resultSet.next()) return null;
+            DBResultMapper<LocationDTO> location = DBResultMapper.instance();
+            return location.toObject(resultSet, LocationDTO.class);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                closeConnections();
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+    public LocationDTO readLocationByName(String locationName) {
+        try {
+            connection = connectionProvider.openConnection();
+
+            preparedStatement = connection.prepareStatement(LocationDAO.READ_LOCATION_BY_NAMW);
+            preparedStatement.setString(1, locationName);
+
+            resultSet = preparedStatement.executeQuery();
+            if (!resultSet.next()) return null;
             DBResultMapper<LocationDTO> location = DBResultMapper.instance();
             return location.toObject(resultSet, LocationDTO.class);
         } catch (SQLException e) {

@@ -10,6 +10,7 @@ import java.sql.*;
  */
 public class DBTables implements DBDescription{
 
+    public static boolean DB_IS_CREATED;
     private ConnectionProvider connectionProvider;
     private Connection connection;
     private PreparedStatement preparedStatement;
@@ -32,6 +33,8 @@ public class DBTables implements DBDescription{
             result =  statement.executeUpdate(createDBSQL);
 
             connectionProvider.mapConnectionToDataSource(dbName);
+
+            DB_IS_CREATED = true;
 
             return result;
         } catch (SQLException e) {
@@ -129,6 +132,8 @@ public class DBTables implements DBDescription{
 
             preparedStatement = connection.prepareStatement(DBUtil.enableForeignKeyChecks);
             preparedStatement.executeUpdate();
+
+            DB_IS_CREATED = false;
 
             return 1;
         } catch (SQLException e) {

@@ -26,6 +26,17 @@ public interface ServerDAO {
             + " FROM server"
             + " WHERE server_id = ?";
 
+    /**
+     * A SQL query string for reading server_id; name and is_default parameters from server table.
+     * Where server has the lowst density within location. But actually picks random server.
+     * Location.id needed to be injected under "1"
+     * index in query statement using statement.setString(parameter index, values) method.*/
+    String READ_SERVER_BY_LOWEST_DENSITY = ""
+            + "SELECT server_id, server_name, is_default"
+            + " FROM server"
+            + " WHERE location_id = ?"
+            + " ORDER BY RAND() LIMIT 1";
+
     String READ_SERVER_BY_NAME = ""
             + "SELECT server_id, server_name, is_default"
             + " FROM server"
@@ -67,7 +78,7 @@ public interface ServerDAO {
      * A SQL query string for reading server_id; name and is_default parameters from server table.
      * Server.id needed to be injected under "1"
      * index in query statement using statement.setString(parameter index, values) method.*/
-    String READ_LOCATION_ID_BY_SERVER_ID = ""
+    String READ_LOCATION_BY_SERVER_ID = ""
             + "SELECT location_id, location_name, addr"
             + " FROM location"
             + " WHERE location_id LIKE"
@@ -82,7 +93,8 @@ public interface ServerDAO {
     String READ_DEFAULT_SERVER_IN_LOCATION = ""
             + "SELECT server_id, server_name, is_default"
             + " FROM server"
-            + " WHERE location_id = ?";
+            + " WHERE location_id = ?"
+            + " AND is_default = 1";
 
     /**
      * Creates new server in server table.
@@ -123,6 +135,13 @@ public interface ServerDAO {
      * @param serverId id of server to be retrieved.
      * @return {@link LocationDTO} Location where specified server is situated*/
     LocationDTO readLocationIdByServerId(Integer serverId);
+
+    /**
+     * Reads server with lowest density, actualy picks random server within
+     * location as a server with lowest density.
+     * @param location_id id of server to be retrieved.
+     * @return {@link ServerDTO} Server with lowest density*/
+    ServerDTO readServerWithLowestDensity(Integer location_id);
 
     /**
      * Updates specified server location_id and flag fields with given values.

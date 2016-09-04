@@ -26,6 +26,15 @@ public interface LocationDAO {
             + " WHERE location_id = ?";
 
     /**
+     * A SQL query string for reading location_id; name and addr parametrs from location table.
+     * Location.name needed to be injected under "1"
+     * index in query statement using statement.setString(parameter index, values) method.*/
+    String READ_LOCATION_BY_NAMW = ""
+            + "SELECT location_id, location_name, addr"
+            + " FROM location"
+            + " WHERE location_name = ?";
+
+    /**
      * A SQL query string for reading all existing locations from location table.*/
     String READ_LOCATIONS = ""
             + "SELECT *"
@@ -50,4 +59,11 @@ public interface LocationDAO {
      * @return {@link LocationDTO} only location_id, name and addr fields are initialized with
      * retrieved values.*/
     LocationDTO readLocationById(Integer locationId);
+
+    /**
+     * Reads location from location table by specified name.
+     * @param locationName name of location to be retrieved.
+     * @return {@link LocationDTO} only location_id, name and addr fields are initialized with
+     * retrieved values.*/
+    LocationDTO readLocationByName(String locationName);
 }

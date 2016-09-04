@@ -73,7 +73,7 @@ public interface MonitorServerDAO {
      * Reads monitors from monitor table by specified server id.
      * @param serverId id of server.
      * @return {@link List<MonitorDTO>} retrieved monitors.*/
-    List<MonitorDTO> readMonitorsByServerId(Integer serverId);
+    MonitorDTO readMonitorByServerId(Integer serverId);
 
     /**
      * Updates server for monitor.
