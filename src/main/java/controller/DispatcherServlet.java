@@ -13,9 +13,12 @@ import java.io.IOException;
 
 @WebServlet("")
 public class DispatcherServlet extends HttpServlet implements DS {
+
+    public static int check = 0;
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        check++;
+        System.out.println("************************" + check + "*******************************");
         String path = request.getPathInfo();
 
         if (path.equals(locations)) request.getRequestDispatcher(locations).forward(request, response);

@@ -115,9 +115,19 @@ public class MonitorServerDAOImpl implements MonitorServerDAO {
     }
 
     private void closeConnections()throws Exception{
-        if (resultSet != null) resultSet.close();
-        if(preparedStatement != null) preparedStatement.close();
+        if (resultSet != null) try {
+            resultSet.close();
+            resultSet = null;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (preparedStatement != null) try {
+            preparedStatement.close();
+            preparedStatement = null;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        connection.close();
         connection = null;
-        connectionProvider.closeConnection();
     }
 }

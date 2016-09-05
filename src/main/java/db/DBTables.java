@@ -8,7 +8,7 @@ import java.sql.*;
 /**
  * Created by Martha on 8/23/2016.
  */
-public class DBTables implements DBDescription{
+public class DBTables implements DBDescription {
 
     public static boolean DB_IS_CREATED;
     private ConnectionProvider connectionProvider;
@@ -19,8 +19,8 @@ public class DBTables implements DBDescription{
         this.connectionProvider = connectionProvider;
     }
 
-    public Integer createDB(String dbName){
-        Statement statement;
+    public Integer createDB(String dbName) {
+        Statement statement = null;
         int result;
         String createDBSQL = ""
                 + "CREATE DATABASE "
@@ -30,7 +30,7 @@ public class DBTables implements DBDescription{
             connection = connectionProvider.openConnection();
 
             statement = connection.createStatement();
-            result =  statement.executeUpdate(createDBSQL);
+            result = statement.executeUpdate(createDBSQL);
 
             connectionProvider.mapConnectionToDataSource(dbName);
 
@@ -42,14 +42,15 @@ public class DBTables implements DBDescription{
         } finally {
             try {
                 closeConnections();
-            } catch (Exception e){
+                if (statement != null) statement.close();
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
         return null;
     }
 
-    public Integer createLocationDBTable(){
+    public Integer createLocationDBTable() {
         try {
             connection = connectionProvider.openConnection();
             preparedStatement = connection.prepareStatement(CREATE_LOCATION_TABLE_SQL);
@@ -59,14 +60,14 @@ public class DBTables implements DBDescription{
         } finally {
             try {
                 closeConnections();
-            } catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
         return null;
     }
 
-    public Integer createMonitorDBTable(){
+    public Integer createMonitorDBTable() {
         try {
             connection = connectionProvider.openConnection();
             preparedStatement = connection.prepareStatement(CREATE_MONITOR_TABEL_SQL);
@@ -75,15 +76,15 @@ public class DBTables implements DBDescription{
             e.printStackTrace();
         } finally {
             try {
-               closeConnections();
-            } catch (Exception e){
+                closeConnections();
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
         return null;
     }
 
-    public Integer createServerDBTable(){
+    public Integer createServerDBTable() {
         try {
             connection = connectionProvider.openConnection();
             preparedStatement = connection.prepareStatement(CREATE_SERVER_TABLE_SQL);
@@ -93,14 +94,14 @@ public class DBTables implements DBDescription{
         } finally {
             try {
                 closeConnections();
-            } catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
         return null;
     }
 
-    public Integer createMonitorServerCrossDBTable(){
+    public Integer createMonitorServerCrossDBTable() {
         try {
             connection = connectionProvider.openConnection();
             preparedStatement = connection.prepareStatement(CREATE_MOITOR_SERVER_TABLE_SQL);
@@ -110,14 +111,14 @@ public class DBTables implements DBDescription{
         } finally {
             try {
                 closeConnections();
-            } catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
         return null;
     }
 
-    public Integer dropDBTable(String tableName){
+    public Integer dropDBTable(String tableName) {
         String dropTableSQL = ""
                 + "DROP TABLE "
                 + tableName;
@@ -141,14 +142,14 @@ public class DBTables implements DBDescription{
         } finally {
             try {
                 closeConnections();
-            } catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
         return null;
     }
 
-    public Integer dropDB(String dbName, DBConnectionListener listener){
+    public Integer dropDB(String dbName, DBConnectionListener listener) {
         int result;
         String dropTableSQL = ""
                 + "DROP DATABASE "
@@ -163,17 +164,17 @@ public class DBTables implements DBDescription{
             e.printStackTrace();
         } finally {
             try {
-               closeConnections();
-            } catch (Exception e){
+                closeConnections();
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
         return null;
     }
 
-    private void closeConnections()throws Exception{
-        if(preparedStatement != null) preparedStatement.close();
+    private void closeConnections() throws Exception {
+        if (preparedStatement != null) preparedStatement.close();
+        connection.close();
         connection = null;
-        connectionProvider.closeConnection();
     }
 }

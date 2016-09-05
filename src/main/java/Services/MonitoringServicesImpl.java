@@ -35,23 +35,29 @@ public class MonitoringServicesImpl implements MonitoringServices{
         if(!valid(server_name) || !valid(location_id))
             throw new InvalidOrEmptyInputException("Input is either null or <= 0");
 
-        //Checks if server valid
-        ServerDTO serverDTO = serverDAO.readServerByName(server_name);
-        if(serverDTO != null && serverDTO.getServer_id() != null)
-            throw new ObjectExistException("Server with specified name already valid.");
+//        //Checks if server valid
+//        ServerDTO serverDTO = serverDAO.readServerByName(server_name);
+//        if(serverDTO != null)
+//            throw new ObjectExistException("Server with specified name already valid.");
 
 
         // Creates server and reads it to obtain id
-        serverDTO = new ServerDTO(server_name);
+        ServerDTO serverDTO = new ServerDTO(server_name);
         serverDAO.createServer(serverDTO);
         serverDTO = serverDAO.readServerByName(server_name);
 
         // Reads and checks if location valid, if valid updates server with location and flag and returns latter.
         LocationDTO locationDTO = locationDAO.readLocationById(location_id);
+
         if(locationDTO != null && locationDTO.getLocation_id() != null) {
-            serverDAO.updateServerWithLocationAndFlag(serverDTO.getServer_id(), locationDTO.getLocation_id(), false);
+
+            // Checks if location have default server , if not set created server a s default
+            ServerDTO defaultServer = serverDAO.readDefaultServerWithinLocation(location_id);
+            if(defaultServer == null || defaultServer.getServer_id() == null) {
+               setDefaultServer(location_id, serverDTO.getServer_id());
+            }
+
             serverDTO.setLocationDTO(locationDTO);
-            serverDTO.setIs_default(false);
             return serverDTO;
         }
         return null;
@@ -62,13 +68,13 @@ public class MonitoringServicesImpl implements MonitoringServices{
         if(!valid(locationName) || !valid(locationAddr))
             throw new InvalidOrEmptyInputException("Input is either null or <= 0");
 
-        //Checks if server valid
-        LocationDTO locationDTO = locationDAO.readLocationByName(locationName);
-        if(locationDTO != null && locationDTO.getLocation_id() != null)
-            throw new ObjectExistException("Server with specified name already valid.");
+//        //Checks if location valid
+//        LocationDTO locationDTO = locationDAO.readLocationByName(locationName);
+//        if(locationDTO != null)
+//            throw new ObjectExistException("Server with specified name already valid.");
 
         // Creates location
-        locationDTO = new LocationDTO(locationName, locationAddr);
+        LocationDTO locationDTO = new LocationDTO(locationName, locationAddr);
         locationDAO.createLocation(locationDTO);
         return locationDAO.readLocationByName(locationName);
     }
@@ -78,10 +84,10 @@ public class MonitoringServicesImpl implements MonitoringServices{
         if(!valid(monitorName) || !valid(checkFrequency) || !valid(location_id))
             throw new InvalidOrEmptyInputException("Input is either null or <= 0");
 
-        //Checks if monitor name is valid
-        MonitorDTO monitorDTO = monitorDAO.readMonitorByName(monitorName);
-        if(monitorDTO != null && monitorDTO.getMonitor_id() != null)
-            throw new ObjectExistException("Monitor with specified name already valid.");
+//        //Checks if monitor name is valid
+//        MonitorDTO monitorDTO = monitorDAO.readMonitorByName(monitorName);
+//        if(monitorDTO != null)
+//            throw new ObjectExistException("Monitor with specified name already valid.");
 
         // Checks if location is valid
         LocationDTO locationDTO = locationDAO.readLocationById(location_id);
@@ -90,13 +96,15 @@ public class MonitoringServicesImpl implements MonitoringServices{
 
         // Checks if location has default server
         ServerDTO defaultServer = serverDAO.readDefaultServerWithinLocation(location_id);
-        if (defaultServer == null || defaultServer.getServer_id() == 0)
-            throw new NoDefaultServerException("There is default server within location");
+        if (defaultServer == null || defaultServer.getServer_id() == 0) {
+            setDefaultServer(location_id, serverDAO.readServersWithinLocation(location_id).get(0).getServer_id());
+            defaultServer = getDefaultServer(location_id);
+        }
 
         // Creates Monitor
         if (monitorServerDAO.readMonitorByServerId(defaultServer.getServer_id()) != null)
             throw new MonitorExistException("Location already has a monitor");
-        monitorDTO = new MonitorDTO(monitorName, checkFrequency, locationDTO);
+        MonitorDTO monitorDTO = new MonitorDTO(monitorName, checkFrequency, locationDTO);
         monitorDAO.createMonitor(monitorDTO);
 
         //Obtains created monitor
@@ -160,6 +168,26 @@ public class MonitoringServicesImpl implements MonitoringServices{
         return defaultServer;
     }
 
+    public MonitorDTO getMonitorByLocation(Integer location_id) throws Exception{
+        // Checks if input is valid
+        if(!valid(location_id))
+            throw new InvalidOrEmptyInputException("Input is either null or <= 0");
+
+        // Checks if location is valid
+        LocationDTO locationDTO = locationDAO.readLocationById(location_id);
+        if(locationDTO == null || locationDTO.getLocation_id() == 0)
+            throw new NoLocationException("There is no location with specified ID");
+
+        //Obtains default server so to be able to find monitor attached to location
+        ServerDTO defaultServer = serverDAO.readDefaultServerWithinLocation(location_id);
+        if (defaultServer == null) throw new NoDefaultServerException("No default server is settled up for this location");
+
+        //Gets monitor attached to location
+        MonitorDTO monitorDTO = monitorServerDAO.readMonitorByServerId(defaultServer.getServer_id());
+        if(monitorDTO == null) throw new NoMonitorException("Location does not monitored");
+        return monitorDTO;
+    }
+
     public ServerDTO getServerWithLowestDensity(Integer location_id) throws Exception{
         // Checks if input is valid
         if(!valid(location_id))
@@ -176,13 +204,13 @@ public class MonitoringServicesImpl implements MonitoringServices{
        return serverDAO.readServerWithLowestDensity(location_id);
     }
 
-    public Boolean setDefaultServer(Integer location_id, Integer server_id) throws Exception{
+    public ServerDTO setDefaultServer(Integer location_id, Integer server_id) throws Exception{
         boolean monitorExist = false;
         boolean defaultServerExist = false;
         boolean defaultServerIsNotToBeChanged = false;
 
         // Checks if input is valid
-        if(!valid(location_id) || valid(server_id))
+        if(!valid(location_id) || !valid(server_id))
             throw new InvalidOrEmptyInputException("Input is either null or <= 0");
 
         // Checks if location does valid
@@ -192,7 +220,7 @@ public class MonitoringServicesImpl implements MonitoringServices{
 
         //Checks if server valid
         ServerDTO updatingServer = serverDAO.readServerById(server_id);
-        if(updatingServer == null || updatingServer.getServer_id() == null)
+        if(updatingServer == null)
             throw new NoServerException("There is no server with specified ID");
 
         // Checks if default server valid
@@ -203,8 +231,8 @@ public class MonitoringServicesImpl implements MonitoringServices{
         if (defaultServerExist && currentDefaultServer.getServer_id().intValue() == server_id.intValue())
             defaultServerIsNotToBeChanged = true;
 
-        // In case when default server match with given server returns true;
-        if(defaultServerIsNotToBeChanged) return true;
+        // In case when default server match with given server returns th same server;
+        if(defaultServerIsNotToBeChanged) return currentDefaultServer;
 
         // Checks is there is a monitor assigned to location
         MonitorDTO monitorDTO = monitorServerDAO.readMonitorByServerId(server_id);
@@ -214,11 +242,8 @@ public class MonitoringServicesImpl implements MonitoringServices{
         serverDAO.updateServerWithFlag(server_id, true);
         if(monitorExist)
         monitorServerDAO.createMonitorServerCrossRecord(server_id, monitorDTO.getMonitor_id());
-        return true;
+        return updatingServer;
     }
-
-
-
 
     private boolean valid(Integer input){
        return !(input == null || input <= 0);

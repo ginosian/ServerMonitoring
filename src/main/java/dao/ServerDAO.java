@@ -17,6 +17,26 @@ public interface ServerDAO {
     String CREATE_SERVER = ""
             + "INSERT INTO server (server_name)"
             + " VALUES (?)";
+
+//    /**
+//     * A SQL query string for creating server. Server.name
+//     * parameter needed to be injected under "1" index in query statement
+//     * using statement.setString(parameter index, values) method.*/
+//    String CREATE_SERVER = ""
+//            + "IF EXISTS (SELECT * FROM server WHERE server_name = ?)"
+//            + " BEGIN"
+//            + " DELETE FROM server"
+//            + " WHERE server_name = ?"
+//            + " AND"
+//            + " INSERT INTO server (server_name)"
+//            + " VALUES (?)"
+//            + " END ELSE"
+//            + " BEGIN"
+//            + " INSERT INTO server (server_name)"
+//            + " VALUES (?)"
+//            + " END";
+
+
     /**
      * A SQL query string for reading server_id; name and is_default parameters from server table.
      * Server.id needed to be injected under "1"

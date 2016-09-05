@@ -16,6 +16,24 @@ public interface MonitorDAO {
     String CREATE_MONITOR = ""
             + "INSERT INTO monitor (monitor_name, check_frequency)"
             + " VALUES (?, ?)";
+
+//    /**
+//     * A SQL query string for creating monitor. Monitor.name
+//     * parameter needed to be injected under "1" index in query statement
+//     * using statement.setString(parameter index, values) method.*/
+//    String CREATE_MONITOR = ""
+//            + "IF EXISTS (SELECT * FROM monitor WHERE monitor_name = ?)"
+//            + " BEGIN"
+//            + " DELETE FROM monitor"
+//            + " WHERE monitor_name = ?"
+//            + " AND"
+//            + " INSERT INTO monitor (monitor_name, check_frequency)"
+//            + " VALUES (?, ?)"
+//            + " END ELSE"
+//            + " BEGIN"
+//            + " INSERT INTO monitor (monitor_name, check_frequency)"
+//            + " VALUES (?, ?)"
+//            + " END";
     /**
      * A SQL query string for reading monitor_id; name and check_frequency parameters from monitor table.
      * Monitor.id needed to be injected under "1"

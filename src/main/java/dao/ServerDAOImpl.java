@@ -76,7 +76,6 @@ public class ServerDAOImpl implements ServerDAO{
             preparedStatement.setInt(1, location_id);
 
             resultSet = preparedStatement.executeQuery();
-            if (!resultSet.next()) return null;
             DBResultMapper<ServerDTO> server = DBResultMapper.instance();
             return server.toObject(resultSet, ServerDTO.class);
         } catch (SQLException e) {
@@ -99,7 +98,6 @@ public class ServerDAOImpl implements ServerDAO{
             preparedStatement.setInt(1, location_id);
 
             resultSet = preparedStatement.executeQuery();
-            if (!resultSet.next()) return null;
             DBResultMapper<ServerDTO> monitor = DBResultMapper.instance();
             return monitor.toList(resultSet, ServerDTO.class);
         } catch (SQLException e) {
@@ -122,7 +120,6 @@ public class ServerDAOImpl implements ServerDAO{
             preparedStatement.setInt(1, id);
 
             resultSet = preparedStatement.executeQuery();
-            if (!resultSet.next()) return null;
             DBResultMapper<ServerDTO> server = DBResultMapper.instance();
             return server.toObject(resultSet, ServerDTO.class);
         } catch (SQLException e) {
@@ -145,7 +142,6 @@ public class ServerDAOImpl implements ServerDAO{
             preparedStatement.setString(1, server_name);
 
             resultSet = preparedStatement.executeQuery();
-            if (!resultSet.next()) return null;
             DBResultMapper<ServerDTO> server = DBResultMapper.instance();
             return server.toObject(resultSet, ServerDTO.class);
         } catch (SQLException e) {
@@ -168,7 +164,6 @@ public class ServerDAOImpl implements ServerDAO{
             preparedStatement.setInt(1, location_id);
 
             resultSet = preparedStatement.executeQuery();
-            if (!resultSet.next()) return null;
             DBResultMapper<ServerDTO> server = DBResultMapper.instance();
             return server.toObject(resultSet, ServerDTO.class);
         } catch (SQLException e) {
@@ -191,7 +186,6 @@ public class ServerDAOImpl implements ServerDAO{
             preparedStatement.setInt(1, serverId);
 
             resultSet = preparedStatement.executeQuery();
-            if (!resultSet.next()) return null;
             DBResultMapper<LocationDTO> monitor = DBResultMapper.instance();
             return monitor.toObject(resultSet, LocationDTO.class);
         } catch (SQLException e) {
@@ -251,9 +245,19 @@ public class ServerDAOImpl implements ServerDAO{
     }
 
     private void closeConnections()throws Exception{
-        if (resultSet != null) resultSet.close();
-        if(preparedStatement != null) preparedStatement.close();
+        if (resultSet != null) try {
+            resultSet.close();
+            resultSet = null;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (preparedStatement != null) try {
+            preparedStatement.close();
+            preparedStatement = null;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        connection.close();
         connection = null;
-        connectionProvider.closeConnection();
     }
 }

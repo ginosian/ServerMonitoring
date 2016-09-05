@@ -31,11 +31,6 @@ public class DBResultMapper <T> {
     private DBResultMapper() { }
 
     public T toObject(ResultSet rs, Class<T> toClazz) {
-        try {
-            if (!rs.next()) return null;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
         T obj = null;
         Field[] fields = toClazz.getDeclaredFields();
         try {
@@ -51,11 +46,6 @@ public class DBResultMapper <T> {
     }
 
     public List<T> toList(ResultSet rs, Class<T> toClazz) {
-        try {
-            if (!rs.next()) return null;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
         List<T> listObj = new ArrayList<T>();
         T obj = null;
         Field[] fields = toClazz.getDeclaredFields();

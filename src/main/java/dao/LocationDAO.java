@@ -16,6 +16,25 @@ public interface LocationDAO {
     String CREATE_LOCATION = ""
             + "INSERT INTO location (location_name, addr)"
             + " VALUES (?, ?)";
+
+//    /**
+//     * A SQL query string for creating location. Location.name and location.addr
+//     * parameters needed to be injected under "1" and "2" indexes in query statement
+//     * using statement.setString(parameter index, values) method.*/
+//    String CREATE_LOCATION = ""
+//            + "IF EXISTS (SELECT * FROM location WHERE location_name = ?)"
+//            + " BEGIN"
+//            + " DELETE FROM location"
+//            + " WHERE location_name = ?"
+//            + " AND"
+//            + " INSERT INTO location (location_name, addr)"
+//            + " VALUES (?, ?)"
+//            + " END ELSE"
+//            + " BEGIN"
+//            + " INSERT INTO location (location_name, addr)"
+//            + " VALUES (?, ?)"
+//            + " END";
+
     /**
      * A SQL query string for reading location_id; name and addr parametrs from location table.
      * Location.id needed to be injected under "1"
