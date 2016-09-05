@@ -2,11 +2,12 @@ package controller;
 
 import Services.MonitoringServices;
 import Services.MonitoringServicesImpl;
-import dao.*;
-import db.ConnectionProvider;
+import dao.LocationDAOImpl;
+import dao.MonitorDAOImpl;
+import dao.MonitorServerDAOImpl;
+import dao.ServerDAOImpl;
 import db.DBConnection;
-import db.DBTables;
-import listener.DBConnectionListener;
+import exception.ObjectExistException;
 import util.Util;
 
 /**
@@ -14,30 +15,30 @@ import util.Util;
  */
 public class Provider {
     private static Provider instance = new Provider();
-    private ConnectionProvider connectionProvider;
-    private LocationDAO locationDAO;
-    private MonitorDAO monitorDAO;
-    private ServerDAO serverDAO;
-    private MonitorServerDAO monitorServerDAO;
-    private MonitoringServices monitoringServices;
+    private MonitoringServices services;
 
     public static Provider instance() {
         return instance;
     }
 
-    public MonitoringServices services(){
-        if(monitoringServices!= null) return monitoringServices;
-        monitoringServices = new MonitoringServicesImpl(locationDAO(), monitorDAO(), serverDAO(), monitorServerDAO());
-        return monitoringServices;
-    }
-
-    // region Private methods
-
-    public void addSomeData(){
-
+    public void createDbAndSomeData(){
+        MonitoringServices monitoringServices = null;
         try {
-            createDB();
-            services().createLocation("Location1", "Addr1");
+            DBConnection connectionProvider = new DBConnection();
+            connectionProvider.setupConnection();
+//            DBTables dbProvider = new DBTables(connectionProvider);
+//            dbProvider.createDB(Util.getPropertyValue("database_name"));
+//            dbProvider.createLocationDBTable();
+//            dbProvider.createMonitorDBTable();
+//            dbProvider.createServerDBTable();
+//            dbProvider.createMonitorServerCrossDBTable();
+            connectionProvider.mapConnectionToDataSource(Util.getPropertyValue("database_name"));
+            monitoringServices = new MonitoringServicesImpl(
+                    new LocationDAOImpl(connectionProvider),
+                    new MonitorDAOImpl(connectionProvider),
+                    new ServerDAOImpl(connectionProvider),
+                    new MonitorServerDAOImpl(connectionProvider));
+            services = monitoringServices;
 //            services().getDefaultServer(2);
 //            services().createLocation("Location2");
 //            services().createLocation("Location3");
@@ -51,58 +52,17 @@ public class Provider {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    private ConnectionProvider createDB(){
-        final DBConnection connectionProvider = new DBConnection();
-        DBTables dbProvider = new DBTables(connectionProvider);
-
-        String database_name = Util.getPropertyValue("database_name");
-        if(!DBTables.DB_IS_CREATED) {
-            dbProvider.dropDB(database_name, new DBConnectionListener() {
-                public void unMapConnectionFromDataSource() {
-                    connectionProvider.unMapConnectionFromDataSource();
-                }
-            });
-            dbProvider.createDB(database_name);
-            dbProvider.createLocationDBTable();
-            dbProvider.createMonitorDBTable();
-            dbProvider.createServerDBTable();
-            dbProvider.createMonitorServerCrossDBTable();
+        try {
+            monitoringServices.createLocation("Location2", "Addr1");
+            System.out.println(monitoringServices.getAllLocations());
+        } catch (ObjectExistException e){
+            e.printStackTrace();
+        } catch (Exception e){
+            e.printStackTrace();
         }
-        connectionProvider.mapConnectionToDataSource(database_name);
-        return connectionProvider;
     }
 
-    private ConnectionProvider connection(){
-        if(connectionProvider!= null) return connectionProvider;
-        connectionProvider = createDB();
-        return connectionProvider;
+    public MonitoringServices getServices() {
+        return services;
     }
-
-    private LocationDAO locationDAO(){
-        if(locationDAO != null) return locationDAO;
-        locationDAO = new LocationDAOImpl(connection());
-        return locationDAO;
-    }
-
-    private MonitorDAO monitorDAO(){
-        if(monitorDAO!= null) return monitorDAO;
-        monitorDAO = new MonitorDAOImpl(connection());
-        return monitorDAO;
-    }
-
-    private ServerDAO serverDAO(){
-        if(serverDAO!= null) return serverDAO;
-        serverDAO = new ServerDAOImpl(connection());
-        return serverDAO;
-    }
-
-    private MonitorServerDAO monitorServerDAO(){
-        if(monitorServerDAO!= null) return monitorServerDAO;
-        monitorServerDAO = new MonitorServerDAOImpl(connection());
-        return monitorServerDAO;
-    }
-    // endregion
-
 }

@@ -15,7 +15,7 @@ public class LocationsServlet extends HttpServlet implements DS {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Provider.instance().addSomeData();
+        Provider.instance().createDbAndSomeData();
         request.getRequestDispatcher(getServletContext().getContextPath() + locationsPath).forward(request, response);
 
     }

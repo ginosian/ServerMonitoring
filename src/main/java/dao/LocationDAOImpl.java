@@ -90,7 +90,7 @@ public class LocationDAOImpl implements LocationDAO {
         try {
             connection = connectionProvider.openConnection();
 
-            preparedStatement = connection.prepareStatement(LocationDAO.READ_LOCATION_BY_NAMW);
+            preparedStatement = connection.prepareStatement(LocationDAO.READ_LOCATION_BY_NAME);
             preparedStatement.setString(1, locationName);
 
             resultSet = preparedStatement.executeQuery();

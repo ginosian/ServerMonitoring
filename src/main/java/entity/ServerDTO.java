@@ -27,6 +27,12 @@ public class ServerDTO {
         this.is_default = is_default;
     }
 
+    public void setData(String server_name, LocationDTO locationDTO, boolean is_default) {
+        this.server_name = server_name;
+        this.locationDTO = locationDTO;
+        this.is_default = is_default;
+    }
+
     public ServerDTO(String server_name, LocationDTO locationDTO) {
         this.server_name = server_name;
         this.locationDTO = locationDTO;

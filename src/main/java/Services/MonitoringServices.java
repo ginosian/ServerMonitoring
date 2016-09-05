@@ -11,12 +11,26 @@ import java.util.List;
  */
 public interface MonitoringServices {
 
-    List<LocationDTO> getAllLocations() throws Exception;
+    LocationDTO createLocation(String locationName, String locationAddr) throws Exception;
+    ServerDTO createServer(String server_name, Integer location_id) throws Exception;
+    MonitorDTO createMonitor(String monitorName, Integer check_frequency, Integer location_id) throws Exception;
+
+    LocationDTO getLocation(Integer location_id) throws Exception;
+    LocationDTO getLocation(String location_name) throws Exception;
+
+    ServerDTO getServer(Integer server_id) throws Exception;
+    ServerDTO getServer(String server_name) throws Exception;
+
+    MonitorDTO getMonitor(Integer monitor_id) throws Exception;
+    MonitorDTO getMonitor(String monitor_name) throws Exception;
+
+    ServerDTO setDefaultServer(Integer location_id, Integer server_id) throws Exception;
     ServerDTO getDefaultServer(Integer location_id) throws Exception;
     ServerDTO getServerWithLowestDensity(Integer location_id) throws Exception;
-    Boolean setDefaultServer(Integer location_id, Integer server_id) throws Exception;
-    ServerDTO createServer(String server_name, Integer location_id) throws Exception;
-    LocationDTO createLocation(String locationName, String locationAddr) throws Exception;
-    MonitorDTO createMonitor(String monitorName, Integer check_frequency, Integer location_id) throws Exception;
+
+    MonitorDTO getMonitorByLocation(Integer location_id) throws Exception;
+
+    List<LocationDTO> getAllLocations() throws Exception;
+    List<ServerDTO> getAllServers() throws Exception;
     List<MonitorDTO> getAllMonitors() throws Exception;
 }

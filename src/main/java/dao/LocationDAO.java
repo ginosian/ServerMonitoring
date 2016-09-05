@@ -29,7 +29,7 @@ public interface LocationDAO {
      * A SQL query string for reading location_id; name and addr parametrs from location table.
      * Location.name needed to be injected under "1"
      * index in query statement using statement.setString(parameter index, values) method.*/
-    String READ_LOCATION_BY_NAMW = ""
+    String READ_LOCATION_BY_NAME = ""
             + "SELECT location_id, location_name, addr"
             + " FROM location"
             + " WHERE location_name = ?";

@@ -64,9 +64,9 @@ public class DBConnection implements ConnectionProvider, DBConnectionListener {
 
     public Connection openConnection(){
         try {
-            if (dataSource.getJdbcUrl() == null) setupConnection();
-            printConnectionInfo();
+//            if (dataSource.getJdbcUrl() == null) setupConnection();
             check++;
+            printConnectionInfo();
             return dataSource.getConnection();
         } catch (SQLException e) {
             e.printStackTrace();

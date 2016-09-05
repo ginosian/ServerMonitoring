@@ -32,6 +32,8 @@ public class ServerDAOImpl implements ServerDAO{
 
             preparedStatement = connection.prepareStatement(CREATE_SERVER);
             preparedStatement.setString(1, serverDTO.getServer_name());
+            preparedStatement.setBoolean(2, serverDTO.is_default());
+            preparedStatement.setInt(3, serverDTO.getLocationDTO().getLocation_id());
 
             return preparedStatement.executeUpdate();
         } catch (Exception e) {
