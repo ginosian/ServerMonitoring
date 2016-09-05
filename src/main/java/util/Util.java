@@ -5,12 +5,14 @@ import db.DBConnection;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
+import java.util.Random;
 
 /**
  * Created by Martha on 9/3/2016.
  */
 public class Util {
     private static Properties properties;
+    public static Random rand = new Random();
 
     public static String getPropertyValue(String property){
         if(properties == null) getProperty();

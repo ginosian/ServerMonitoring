@@ -7,7 +7,7 @@ import dao.MonitorDAOImpl;
 import dao.MonitorServerDAOImpl;
 import dao.ServerDAOImpl;
 import db.DBConnection;
-import exception.ObjectExistException;
+import entity.LocationDTO;
 import util.Util;
 
 /**
@@ -39,25 +39,23 @@ public class Provider {
                     new ServerDAOImpl(connectionProvider),
                     new MonitorServerDAOImpl(connectionProvider));
             services = monitoringServices;
-//            services().getDefaultServer(2);
-//            services().createLocation("Location2");
-//            services().createLocation("Location3");
-//            List<LocationDTO> locationDTOList = services().getAllLocations();
-//            for (int i = 0; i < locationDTOList.size(); i++) {
-//                Integer locationId = locationDTOList.get(i).getLocation_id();
-//                services().createServer("Server" + locationId + "1", locationId);
-//                services().createServer("Server" + locationId + "2", locationId);
-//                services().createServer("Server" + locationId + "3", locationId);
+//            for (int i = 0; i < 4; i++) {
+//                services.createLocation("Location" + i+1, "Address" + i+1);
 //            }
+//            List<LocationDTO> locations = services.getAllLocations();
+            LocationDTO location = services.getLocation("Location01");
+//            for (int i = 0; i < locations.size(); i++) {
+//                int locationId = locations.get(i).getLocation_id();
+//                services.createServer("Server" + locationId + i+1 + "-", locationId);
+//                services.createServer("Server" + locationId + i+2 + "-", locationId);
+//                services.createServer("Server" + locationId + i+3 + "-", locationId);
+//            }
+//            List<ServerDTO> servers = services.getAllServers();
+//            for (int i = 0; i < locations.size(); i++) {
+//                services.createMonitor("Monitor" + i+1, Util.rand.nextInt(6) + 2, locations.get(i).getLocation_id());
+//            }
+//            List<MonitorDTO> monitors = services.getAllMonitors();
         } catch (Exception e) {
-            e.printStackTrace();
-        }
-        try {
-            monitoringServices.createLocation("Location2", "Addr1");
-            System.out.println(monitoringServices.getAllLocations());
-        } catch (ObjectExistException e){
-            e.printStackTrace();
-        } catch (Exception e){
             e.printStackTrace();
         }
     }
