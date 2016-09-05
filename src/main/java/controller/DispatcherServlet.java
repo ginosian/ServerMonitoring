@@ -11,7 +11,7 @@ import java.io.IOException;
  * Created by Martha on 9/2/2016.
  */
 
-@WebServlet("")
+@WebServlet({""})
 public class DispatcherServlet extends HttpServlet implements DS {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

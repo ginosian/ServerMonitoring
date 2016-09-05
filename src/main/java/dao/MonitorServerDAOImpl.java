@@ -55,7 +55,6 @@ public class MonitorServerDAOImpl implements MonitorServerDAO {
             preparedStatement.setInt(1, monitorId);
 
             resultSet = preparedStatement.executeQuery();
-            if (!resultSet.next()) return null;
             DBResultMapper<ServerDTO> monitor = DBResultMapper.instance();
             return monitor.toList(resultSet, ServerDTO.class);
         } catch (SQLException e) {
@@ -78,7 +77,6 @@ public class MonitorServerDAOImpl implements MonitorServerDAO {
             preparedStatement.setInt(1, serverId);
 
             resultSet = preparedStatement.executeQuery();
-            if (!resultSet.next()) return null;
             DBResultMapper<MonitorDTO> monitor = DBResultMapper.instance();
             return monitor.toObject(resultSet, MonitorDTO.class);
         } catch (SQLException e) {
@@ -115,9 +113,18 @@ public class MonitorServerDAOImpl implements MonitorServerDAO {
     }
 
     private void closeConnections()throws Exception{
-        if (resultSet != null) resultSet.close();
-        if(preparedStatement != null) preparedStatement.close();
+        try {
+            if (resultSet != null) resultSet.close();
+            resultSet = null;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            if (preparedStatement != null) preparedStatement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        connection.close();
         connection = null;
-        connectionProvider.closeConnection();
     }
 }

@@ -16,10 +16,10 @@ import java.util.List;
  */
 public class MonitoringServicesImpl implements MonitoringServices{
 
-    LocationDAO locationDAO;
-    MonitorDAO monitorDAO;
-    ServerDAO serverDAO;
-    MonitorServerDAO monitorServerDAO;
+    private LocationDAO locationDAO;
+    private MonitorDAO monitorDAO;
+    private ServerDAO serverDAO;
+    private MonitorServerDAO monitorServerDAO;
 
     public MonitoringServicesImpl(LocationDAO locationDAO, MonitorDAO monitorDAO,
                                   ServerDAO serverDAO, MonitorServerDAO monitorServerDAO) {
@@ -30,6 +30,22 @@ public class MonitoringServicesImpl implements MonitoringServices{
     }
 
     // region Creating entities
+
+    public LocationDTO createLocation(String locationName, String locationAddr) throws Exception{
+        // Checks if input is valid
+        if(!valid(locationName) || !valid(locationAddr))
+            throw new InvalidOrEmptyInputException("Input is either null or <= 0");
+
+        //Checks if a location with specified name exists
+        LocationDTO locationDTO = locationDAO.readLocationByName(locationName);
+        if(locationDTO != null && locationDTO.getLocation_id() != null)
+            throw new ObjectExistException("Server with specified name already valid.");
+
+        // Creates location
+        locationDTO = new LocationDTO(locationName, locationAddr);
+        locationDAO.createLocation(locationDTO);
+        return locationDAO.readLocationByName(locationName);
+    }
     public ServerDTO createServer(String server_name, Integer location_id) throws Exception{
         // Checks if input is valid
         if(!valid(server_name) || !valid(location_id))
@@ -55,22 +71,6 @@ public class MonitoringServicesImpl implements MonitoringServices{
             return serverDTO;
         }
         return null;
-    }
-
-    public LocationDTO createLocation(String locationName, String locationAddr) throws Exception{
-        // Checks if input is valid
-        if(!valid(locationName) || !valid(locationAddr))
-            throw new InvalidOrEmptyInputException("Input is either null or <= 0");
-
-        //Checks if server valid
-        LocationDTO locationDTO = locationDAO.readLocationByName(locationName);
-        if(locationDTO != null && locationDTO.getLocation_id() != null)
-            throw new ObjectExistException("Server with specified name already valid.");
-
-        // Creates location
-        locationDTO = new LocationDTO(locationName, locationAddr);
-        locationDAO.createLocation(locationDTO);
-        return locationDAO.readLocationByName(locationName);
     }
 
     public MonitorDTO createMonitor(String monitorName, Integer checkFrequency, Integer location_id) throws Exception {

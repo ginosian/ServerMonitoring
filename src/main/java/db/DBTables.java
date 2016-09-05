@@ -26,7 +26,6 @@ public class DBTables implements DBDescription{
                 + "CREATE DATABASE "
                 + dbName;
         try {
-            connectionProvider.setupConnection();
             connection = connectionProvider.openConnection();
 
             statement = connection.createStatement();
@@ -103,7 +102,7 @@ public class DBTables implements DBDescription{
     public Integer createMonitorServerCrossDBTable(){
         try {
             connection = connectionProvider.openConnection();
-            preparedStatement = connection.prepareStatement(CREATE_MOITOR_SERVER_TABLE_SQL);
+            preparedStatement = connection.prepareStatement(CREATE_MONITOR_SERVER_TABLE_SQL);
             return preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -172,8 +171,12 @@ public class DBTables implements DBDescription{
     }
 
     private void closeConnections()throws Exception{
-        if(preparedStatement != null) preparedStatement.close();
+        try {
+            if(preparedStatement != null) preparedStatement.close();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        connection.close();
         connection = null;
-        connectionProvider.closeConnection();
     }
 }

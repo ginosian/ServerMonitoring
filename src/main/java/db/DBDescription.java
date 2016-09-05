@@ -35,7 +35,7 @@ public interface DBDescription {
             + " UNIQUE (server_name)"
             + ")";
 
-    String CREATE_MOITOR_SERVER_TABLE_SQL = ""
+    String CREATE_MONITOR_SERVER_TABLE_SQL = ""
             + " CREATE TABLE monitor_server("
             + " monitor_id INTEGER,"
             + " server_id INTEGER,"

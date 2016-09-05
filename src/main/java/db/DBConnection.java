@@ -17,14 +17,8 @@ public class DBConnection implements ConnectionProvider, DBConnectionListener {
     private static final String URL;
     private static final String USER;
     private static final String PASSWORD;
+    private static int check = 0;
 
-    public static int countOpenedConnection;
-    public static int countClosedConnection;
-    public static int remainingOpenConnection;
-    public static int existingOpenConnection;
-    public static int connectionCountInPool;
-
-    private static String CREATED_DB_URL;
     private static ComboPooledDataSource dataSource;
 
     static {
@@ -36,33 +30,24 @@ public class DBConnection implements ConnectionProvider, DBConnectionListener {
         dataSource = new ComboPooledDataSource();
     }
 
-    private static Connection connection;
-
-    public Connection mapConnectionToDataSource(String dbName) {
+    public void mapConnectionToDataSource(String dbName) {
         try {
-            CREATED_DB_URL = URL + "/" + dbName;
+            String CREATED_DB_URL = URL + "/" + dbName;
             dataSource.setJdbcUrl(CREATED_DB_URL);
-            connection = dataSource.getConnection();
-            return connection;
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
     }
 
-    public Connection unMapConnectionFromDataSource(){
+    public void unMapConnectionFromDataSource(){
         try {
             dataSource.setJdbcUrl(URL);
-            connection = dataSource.getConnection();
-            dataSource.setMaxConnectionAge(2000);
-            return connection;
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
     }
 
-    public Connection setupConnection(){
+    public void setupConnection() {
         try {
             dataSource.setDriverClass(DRIVER);
             dataSource.setJdbcUrl(URL);
@@ -70,43 +55,35 @@ public class DBConnection implements ConnectionProvider, DBConnectionListener {
             dataSource.setPassword(PASSWORD);
             dataSource.setMinPoolSize(5);
             dataSource.setAcquireIncrement(5);
-            dataSource.setMaxPoolSize(100);
-            connection = dataSource.getConnection();
-            return connection;
+            dataSource.setMaxPoolSize(20);
+            dataSource.setMaxStatements(180);
         } catch (Exception e) {
             e.printStackTrace();
-        } return null;
+        }
     }
 
     public Connection openConnection(){
         try {
-            countOpenedConnection++;
-            if (dataSource.getJdbcUrl() == null) connection = setupConnection();
-            if(dataSource.getConnection() != null) connection = dataSource.getConnection();
-//            System.out.println("Connection was opened " + countOpenedConnection + "times");
-            return connection;
+            if (dataSource.getJdbcUrl() == null) setupConnection();
+            printConnectionInfo();
+            check++;
+            return dataSource.getConnection();
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    public void closeConnection(){
+    private void printConnectionInfo(){
         try {
-            countClosedConnection++;
-            connection = null;
-            dataSource.getConnection().close();
-//            System.out.println("Connection was closed " + countClosedConnection + "times");
-//            System.out.println("Currently opened connections " + (countOpenedConnection - countClosedConnection));
-//            System.out.println("Existing unclosed connections " + dataSource.getNumUnclosedOrphanedConnections());
-//            System.out.println("Busy connections " + dataSource.getNumBusyConnections());
-//            System.out.println("Existing active treads " + dataSource.getThreadPoolNumActiveThreads());
-//            System.out.println("Tasks pending " + dataSource.getThreadPoolNumTasksPending());
-//            System.out.println("Tasks pending " + dataSource.getNumUserPools());
-//            System.out.println();
-//            System.out.println();
-//            System.out.println();
-        } catch (SQLException e) {
+            System.out.println("Opened connections " + check);
+            System.out.println("NumBusyConnections " + dataSource.getNumBusyConnections());
+            System.out.println("NumIdleConnections " + dataSource.getNumIdleConnections());
+            System.out.println("NumConnections " + dataSource.getNumConnections());
+            System.out.println();
+            System.out.println();
+            System.out.println();
+        } catch (Exception e){
             e.printStackTrace();
         }
     }

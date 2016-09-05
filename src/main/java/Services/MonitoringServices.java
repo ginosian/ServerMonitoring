@@ -19,5 +19,4 @@ public interface MonitoringServices {
     LocationDTO createLocation(String locationName, String locationAddr) throws Exception;
     MonitorDTO createMonitor(String monitorName, Integer check_frequency, Integer location_id) throws Exception;
     List<MonitorDTO> getAllMonitors() throws Exception;
-    LocationDTO getLocationWithServers(Integer location_id) throws Exception;
 }

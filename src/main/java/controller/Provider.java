@@ -9,8 +9,6 @@ import db.DBTables;
 import listener.DBConnectionListener;
 import util.Util;
 
-import java.sql.Connection;
-
 /**
  * Created by Martha on 9/3/2016.
  */
@@ -35,9 +33,12 @@ public class Provider {
 
     // region Private methods
 
-    private void addSomeData(){
-//        try {
-//            services().createLocation("Location1");
+    public void addSomeData(){
+
+        try {
+            createDB();
+            services().createLocation("Location1", "Addr1");
+//            services().getDefaultServer(2);
 //            services().createLocation("Location2");
 //            services().createLocation("Location3");
 //            List<LocationDTO> locationDTOList = services().getAllLocations();
@@ -47,14 +48,35 @@ public class Provider {
 //                services().createServer("Server" + locationId + "2", locationId);
 //                services().createServer("Server" + locationId + "3", locationId);
 //            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private ConnectionProvider createDB(){
+        final DBConnection connectionProvider = new DBConnection();
+        DBTables dbProvider = new DBTables(connectionProvider);
+
+        String database_name = Util.getPropertyValue("database_name");
+        if(!DBTables.DB_IS_CREATED) {
+            dbProvider.dropDB(database_name, new DBConnectionListener() {
+                public void unMapConnectionFromDataSource() {
+                    connectionProvider.unMapConnectionFromDataSource();
+                }
+            });
+            dbProvider.createDB(database_name);
+            dbProvider.createLocationDBTable();
+            dbProvider.createMonitorDBTable();
+            dbProvider.createServerDBTable();
+            dbProvider.createMonitorServerCrossDBTable();
+        }
+        connectionProvider.mapConnectionToDataSource(database_name);
+        return connectionProvider;
     }
 
     private ConnectionProvider connection(){
         if(connectionProvider!= null) return connectionProvider;
-        connectionProvider = initialize();
+        connectionProvider = createDB();
         return connectionProvider;
     }
 
@@ -81,29 +103,6 @@ public class Provider {
         monitorServerDAO = new MonitorServerDAOImpl(connection());
         return monitorServerDAO;
     }
-
-    private ConnectionProvider initialize(){
-        final DBConnection connectionProvider = new DBConnection();
-        DBTables dbProvider = new DBTables(connectionProvider);
-
-        String database_name = Util.getPropertyValue("database_name");
-        if(!DBTables.DB_IS_CREATED) {
-            dbProvider.dropDB(database_name, new DBConnectionListener() {
-                public Connection unMapConnectionFromDataSource() {
-                    return connectionProvider.unMapConnectionFromDataSource();
-                }
-            });
-            dbProvider.createDB(database_name);
-            dbProvider.createLocationDBTable();
-            dbProvider.createMonitorDBTable();
-            dbProvider.createServerDBTable();
-            dbProvider.createMonitorServerCrossDBTable();
-        }
-        connectionProvider.mapConnectionToDataSource(database_name);
-
-        return connectionProvider;
-    }
-
     // endregion
 
 }
