@@ -2,58 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6efc5664-6fb6-4a61-9b9a-a54fb535fb17" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/view_model/LocationCardViewModel.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/view_model/LocationViewModel.java" />
-      <change type="DELETED" beforePath="E:\Monitis\ServerMonitoring\out\artifacts\ServerMonitoring_war_exploded\WEB-INF\classes\controller\Controller.class" afterPath="" />
-      <change type="DELETED" beforePath="E:\Monitis\ServerMonitoring\out\artifacts\ServerMonitoring_war_exploded\WEB-INF\classes\model\LocationsViewModel.class" afterPath="" />
-      <change type="DELETED" beforePath="E:\Monitis\ServerMonitoring\src\main\java\controller\Controller.java" afterPath="" />
-      <change type="DELETED" beforePath="E:\Monitis\ServerMonitoring\src\main\java\model\LocationsViewModel.java" afterPath="" />
-      <change type="DELETED" beforePath="E:\Monitis\ServerMonitoring\target\classes\controller\Controller.class" afterPath="" />
-      <change type="DELETED" beforePath="E:\Monitis\ServerMonitoring\target\classes\model\LocationsViewModel.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/ServerMonitoring_war_exploded/WEB-INF/classes/db/DBConnection.class" afterPath="$PROJECT_DIR$/out/artifacts/ServerMonitoring_war_exploded/WEB-INF/classes/db/DBConnection.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/db/DBConnection.class" afterPath="$PROJECT_DIR$/target/classes/db/DBConnection.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/ServerMonitoring_war_exploded/WEB-INF/classes/util/DBResultMapper.class" afterPath="$PROJECT_DIR$/out/artifacts/ServerMonitoring_war_exploded/WEB-INF/classes/util/DBResultMapper.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/util/DBResultMapper.class" afterPath="$PROJECT_DIR$/target/classes/util/DBResultMapper.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/ServerMonitoring_war_exploded/WEB-INF/classes/dao/LocationDAOImpl.class" afterPath="$PROJECT_DIR$/out/artifacts/ServerMonitoring_war_exploded/WEB-INF/classes/dao/LocationDAOImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/dao/LocationDAOImpl.class" afterPath="$PROJECT_DIR$/target/classes/dao/LocationDAOImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/ServerMonitoring_war_exploded/WEB-INF/classes/controller/LocationsServlet.class" afterPath="$PROJECT_DIR$/out/artifacts/ServerMonitoring_war_exploded/WEB-INF/classes/controller/LocationsServlet.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/controller/LocationsServlet.class" afterPath="$PROJECT_DIR$/target/classes/controller/LocationsServlet.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/ServerMonitoring_war_exploded/WEB-INF/classes/dao/MonitorDAOImpl.class" afterPath="$PROJECT_DIR$/out/artifacts/ServerMonitoring_war_exploded/WEB-INF/classes/dao/MonitorDAOImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/dao/MonitorDAOImpl.class" afterPath="$PROJECT_DIR$/target/classes/dao/MonitorDAOImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/ServerMonitoring_war_exploded/WEB-INF/classes/Services/MonitoringServices.class" afterPath="$PROJECT_DIR$/out/artifacts/ServerMonitoring_war_exploded/WEB-INF/classes/Services/MonitoringServices.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Services/MonitoringServices.class" afterPath="$PROJECT_DIR$/target/classes/Services/MonitoringServices.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/ServerMonitoring_war_exploded/WEB-INF/classes/Services/MonitoringServicesImpl.class" afterPath="$PROJECT_DIR$/out/artifacts/ServerMonitoring_war_exploded/WEB-INF/classes/Services/MonitoringServicesImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Services/MonitoringServicesImpl.class" afterPath="$PROJECT_DIR$/target/classes/Services/MonitoringServicesImpl.class" />
-      <change type="MODIFICATION" beforePath="E:\Monitis\ServerMonitoring\out\artifacts\ServerMonitoring_war_exploded\WEB-INF\classes\controller\Provider$1.class" afterPath="E:\Monitis\ServerMonitoring\out\artifacts\ServerMonitoring_war_exploded\WEB-INF\classes\controller\Provider$1.class" />
-      <change type="MODIFICATION" beforePath="E:\Monitis\ServerMonitoring\target\classes\controller\Provider$1.class" afterPath="E:\Monitis\ServerMonitoring\target\classes\controller\Provider$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/ServerMonitoring_war_exploded/WEB-INF/classes/controller/Provider.class" afterPath="$PROJECT_DIR$/out/artifacts/ServerMonitoring_war_exploded/WEB-INF/classes/controller/Provider.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/controller/Provider.class" afterPath="$PROJECT_DIR$/target/classes/controller/Provider.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/ServerMonitoring_war_exploded/WEB-INF/classes/dao/ServerDAO.class" afterPath="$PROJECT_DIR$/out/artifacts/ServerMonitoring_war_exploded/WEB-INF/classes/dao/ServerDAO.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/dao/ServerDAO.class" afterPath="$PROJECT_DIR$/target/classes/dao/ServerDAO.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/ServerMonitoring_war_exploded/WEB-INF/classes/dao/ServerDAOImpl.class" afterPath="$PROJECT_DIR$/out/artifacts/ServerMonitoring_war_exploded/WEB-INF/classes/dao/ServerDAOImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/dao/ServerDAOImpl.class" afterPath="$PROJECT_DIR$/target/classes/dao/ServerDAOImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/ServerMonitoring_war_exploded/WEB-INF/classes/util/Util.class" afterPath="$PROJECT_DIR$/out/artifacts/ServerMonitoring_war_exploded/WEB-INF/classes/util/Util.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/util/Util.class" afterPath="$PROJECT_DIR$/target/classes/util/Util.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/db/ConnectionProvider.java" afterPath="$PROJECT_DIR$/src/main/java/db/ConnectionProvider.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/db/DBConnection.java" afterPath="$PROJECT_DIR$/src/main/java/db/DBConnection.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/listener/DBConnectionListener.java" afterPath="$PROJECT_DIR$/src/main/java/listener/DBConnectionListener.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/util/DBResultMapper.java" afterPath="$PROJECT_DIR$/src/main/java/util/DBResultMapper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/db/DBTables.java" afterPath="$PROJECT_DIR$/src/main/java/db/DBTables.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/controller/DispatcherServlet.java" afterPath="$PROJECT_DIR$/src/main/java/controller/DispatcherServlet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/dao/LocationDAO.java" afterPath="$PROJECT_DIR$/src/main/java/dao/LocationDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/dao/LocationDAOImpl.java" afterPath="$PROJECT_DIR$/src/main/java/dao/LocationDAOImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/controller/LocationsServlet.java" afterPath="$PROJECT_DIR$/src/main/java/controller/LocationsServlet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/dao/MonitorDAO.java" afterPath="$PROJECT_DIR$/src/main/java/dao/MonitorDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/dao/MonitorDAOImpl.java" afterPath="$PROJECT_DIR$/src/main/java/dao/MonitorDAOImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/dao/MonitorServerDAOImpl.java" afterPath="$PROJECT_DIR$/src/main/java/dao/MonitorServerDAOImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Services/MonitoringServices.java" afterPath="$PROJECT_DIR$/src/main/java/Services/MonitoringServices.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Services/MonitoringServicesImpl.java" afterPath="$PROJECT_DIR$/src/main/java/Services/MonitoringServicesImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/controller/Provider.java" afterPath="$PROJECT_DIR$/src/main/java/controller/Provider.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/dao/ServerDAO.java" afterPath="$PROJECT_DIR$/src/main/java/dao/ServerDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/dao/ServerDAOImpl.java" afterPath="$PROJECT_DIR$/src/main/java/dao/ServerDAOImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/util/Util.java" afterPath="$PROJECT_DIR$/src/main/java/util/Util.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/ServerMonitoring_war_exploded/WEB-INF/locations.jsp" afterPath="$PROJECT_DIR$/out/artifacts/ServerMonitoring_war_exploded/WEB-INF/locations.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/locations.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/locations.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ServerMonitoring.iws" />
@@ -94,8 +42,8 @@
       <file leaf-file-name="Provider.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/controller/Provider.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.76363635">
-              <caret line="72" column="13" selection-start-line="72" selection-start-column="13" selection-end-line="72" selection-end-column="13" />
+            <state vertical-scroll-proportion="0.7983471">
+              <caret line="61" column="48" selection-start-line="61" selection-start-column="48" selection-end-line="61" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -1168,7 +1116,7 @@
       <workItem from="1472920012694" duration="37286000" />
       <workItem from="1472993644227" duration="5255000" />
       <workItem from="1472998978484" duration="306000" />
-      <workItem from="1472999737775" duration="27873000" />
+      <workItem from="1472999737775" duration="65687000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1471923420419</created>
@@ -1272,11 +1220,17 @@
       <option name="project" value="LOCAL" />
       <updated>1472979482066</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Fixes connection pooling bug.&#10;">
+      <created>1473061049472</created>
+      <option name="number" value="00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1473061049472</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="148126000" />
+    <option name="totallyTimeSpent" value="185940000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1390,7 +1344,8 @@
     <MESSAGE value="Creates .jsp pages of locations and monitors screens." />
     <MESSAGE value="Some experimental changes." />
     <MESSAGE value="Completes Services though not finally tested yet.&#10;Makes pages to be displayed in response to appropriate requests." />
-    <option name="LAST_COMMIT_MESSAGE" value="Completes Services though not finally tested yet.&#10;Makes pages to be displayed in response to appropriate requests." />
+    <MESSAGE value="Fixes connection pooling bug.&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixes connection pooling bug.&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1776,7 +1731,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
           <folding>
-            <element signature="e#1143#1144#0" expanded="true" />
+            <element signature="e#1143#1144#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1786,7 +1741,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="892" column="0" selection-start-line="892" selection-start-column="0" selection-end-line="892" selection-end-column="0" />
           <folding>
-            <element signature="e#33919#33920#0" expanded="true" />
+            <element signature="e#33919#33920#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1860,8 +1815,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/controller/Provider.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.76363635">
-          <caret line="72" column="13" selection-start-line="72" selection-start-column="13" selection-end-line="72" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.7983471">
+          <caret line="61" column="48" selection-start-line="61" selection-start-column="48" selection-end-line="61" selection-end-column="48" />
           <folding />
         </state>
       </provider>
