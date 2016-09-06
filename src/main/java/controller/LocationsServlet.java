@@ -42,9 +42,6 @@ public class LocationsServlet extends HttpServlet implements DS {
             // Gets location name
             String locationName = locations.get(i).getLocation_name();
 
-            // Gets temporary timer
-            int timerCountdown = i+1;
-
             // Gets default server
             ServerDTO defaultServer = Provider.instance().services().getDefaultServer(locations.get(i).getLocation_id());
             String defaultServerName = defaultServer.getServer_name();
@@ -58,7 +55,7 @@ public class LocationsServlet extends HttpServlet implements DS {
             for (int j = 0; j < serversNames.length; j++) {
                 serversNames[j] = servers.get(j).getServer_name();
             }
-            card.updateData(locationName, timerCountdown, defaultServerName, defaultServerDensityValue, serversNames);
+            card.updateData(locationName, defaultServerName, defaultServerDensityValue, serversNames);
             locationViewModel.addCard(card);
         }
         return locationViewModel;

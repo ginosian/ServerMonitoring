@@ -39,7 +39,7 @@ public class Provider {
                     new MonitorServerDAOImpl(connectionProvider));
             services = monitoringServices;
 //            for (int i = 0; i < 4; i++) {
-//                services.createLocation("Location" + i + 1, "Address" + i + 1);
+//                services.createLocation("Location" + (i + 1), "Address" + (i + 1));
 //            }
 //            final List<LocationDTO> locations = services.getAllLocations();
 //            System.out.println("****************************LOCATIONS**************************************");
@@ -49,9 +49,9 @@ public class Provider {
 //
 //            for (int i = 0; i < locations.size(); i++) {
 //                int locationId = locations.get(i).getLocation_id();
-//                services.createServer("Server" + locationId + i + 1 + "-", locationId);
-//                services.createServer("Server" + locationId + i + 2 + "-", locationId);
-//                services.createServer("Server" + locationId + i + 3 + "-", locationId);
+//                services.createServer("Server" + locationId + "-" + (1), locationId);
+//                services.createServer("Server" + locationId + "-" + (2), locationId);
+//                services.createServer("Server" + locationId + "-" + (3), locationId);
 //            }
 //            List<ServerDTO> servers = services.getAllServers();
 //            System.out.println("****************************SERVERS**************************************");
@@ -59,7 +59,7 @@ public class Provider {
 //                System.out.println(server.toString());
 //            }
 //            for (int i = 0; i < locations.size(); i++) {
-//                services.createMonitor("Monitor" + i + 1, Util.rand(2, 6), locations.get(i).getLocation_id());
+//                services.createMonitor("Monitor" + (i + 1), Util.rand(2, 6), locations.get(i).getLocation_id());
 //            }
 //            List<MonitorDTO> monitors = services.getAllMonitors();
 //            System.out.println("****************************MONITORS**************************************");

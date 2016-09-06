@@ -6,18 +6,15 @@ package view_model;
 public class LocationCardViewModel {
 
     private String locationName;
-    private int timeCountDown;
     private String defaultServerName;
     private int defaultServerDensityValue;
     String[] serversNames;
 
     public LocationCardViewModel(String locationName,
-                                 int timeCountDown,
                                  String defaultServerName,
                                  int defaultServerDensityValue,
                                  String[] serversNames) {
         this.locationName = locationName;
-        this.timeCountDown = timeCountDown;
         this.defaultServerName = defaultServerName;
         this.defaultServerDensityValue = defaultServerDensityValue;
         this.serversNames = serversNames;
@@ -27,12 +24,10 @@ public class LocationCardViewModel {
     }
 
     public LocationCardViewModel updateData (String locationName,
-                                 int timeCountDown,
                                  String defaultServerName,
                                  int defaultServerDensityValue,
                                  String[] serversName) {
         this.locationName = locationName;
-        this.timeCountDown = timeCountDown;
         this.defaultServerName = defaultServerName;
         this.defaultServerDensityValue = defaultServerDensityValue;
         this.serversNames = serversName;
@@ -45,14 +40,6 @@ public class LocationCardViewModel {
 
     public void setLocationName(String locationName) {
         this.locationName = locationName;
-    }
-
-    public int getTimeCountDown() {
-        return timeCountDown;
-    }
-
-    public void setTimeCountDown(int timeCountDown) {
-        this.timeCountDown = timeCountDown;
     }
 
     public String getDefaultServerName() {
