@@ -2,6 +2,7 @@ package controller;
 
 import entity.LocationDTO;
 import entity.ServerDTO;
+import exception.NoDefaultServerException;
 import view_model.LocationCardViewModel;
 import view_model.LocationViewModel;
 
@@ -34,18 +35,30 @@ public class LocationsServlet extends HttpServlet implements DS {
 
         LocationCardViewModel card;
         for (int i = 0; i < locations.size(); i++) {
+            int locationId = locations.get(i).getLocation_id();
             // Creates card
             card = new LocationCardViewModel();
 
             // Gets location name
             String locationName = locations.get(i).getLocation_name();
 
-            // Gets default server
-            ServerDTO defaultServer = Provider.instance().services().getDefaultServer(locations.get(i).getLocation_id());
-            String defaultServerName = defaultServer.getServer_name();
+            String defaultServerName;
+            ServerDTO defaultServer;
+            int defaultServerDensityValue;
+            try {
+                // Gets default server
+                defaultServer = Provider.instance().services().getDefaultServer(locationId);
+                defaultServerName = defaultServer.getServer_name();
 
-            // Gets default server density value
-            int defaultServerDensityValue = Provider.instance().services().getMonitorByLocation(locations.get(i).getLocation_id()).getCheck_frequency();
+                // Gets default server density value
+                defaultServerDensityValue = Provider.instance().services().getMonitorByLocation(locationId).getCheck_frequency();
+            } catch (NoDefaultServerException e){
+                defaultServerName = e.getMessage();
+                defaultServerDensityValue = 0;
+            } catch (Exception e){
+                defaultServerName = "Something went wrong";
+                defaultServerDensityValue = 0;
+            }
 
             // Gets servers list
             List<ServerDTO> servers = Provider.instance().services().getAllServersWithinLocation(locationName);

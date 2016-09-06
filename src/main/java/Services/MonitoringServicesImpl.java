@@ -330,9 +330,10 @@ public class MonitoringServicesImpl implements MonitoringServices{
     public List<LocationDTO> getAllNotMonitoredLocations() throws Exception {
         List<LocationDTO> locations = getAllMonitoredLocations();
         for (int i = 0; i < locations.size(); i++) {
-            int locationId = locations.get(i).getLocation_id();
+            LocationDTO location = locations.get(i);
+            int locationId = location.getLocation_id();
             if(isLocationMonitored(locationId)){
-                locations.remove(i);
+                locations.remove(location);
             }
         }
         return locations;
@@ -341,9 +342,10 @@ public class MonitoringServicesImpl implements MonitoringServices{
     public List<LocationDTO> getAllMonitoredLocations() throws Exception {
         List<LocationDTO> locations = getAllLocations();
         for (int i = 0; i < locations.size(); i++) {
-            int locationId = locations.get(i).getLocation_id();
+            LocationDTO location = locations.get(i);
+            int locationId = location.getLocation_id();
             if(!isLocationMonitored(locationId)){
-                locations.remove(i);
+                locations.remove(location);
             }
         }
         return locations;
