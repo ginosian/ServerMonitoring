@@ -71,6 +71,9 @@ public class Provider {
 //            services.setDefaultServer(location.getLocation_id(), 1);
 //            ServerDTO server =  services.getDefaultServer(location.getLocation_id());
 //            System.out.println("New default server " + server.toString());
+//            for (int i = 4; i < 8; i++) {
+//                services.createLocation("Location" + (i + 1), "Address" + (i + 1));
+//            }
         } catch (Exception e) {
             e.printStackTrace();
         }

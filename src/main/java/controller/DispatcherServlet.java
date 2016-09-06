@@ -17,6 +17,7 @@ public class DispatcherServlet extends HttpServlet implements DS {
     public static int check = 0;
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        Provider.instance().createDbAndSomeData();
         check++;
         System.out.println("************************" + check + "*******************************");
         String path = request.getPathInfo();

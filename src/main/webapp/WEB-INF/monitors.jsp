@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Martha
@@ -47,23 +48,21 @@
 </ul>
 <table style="width: 100%; height: 100%; table-layout: fixed;" align="center">
     <tbody>
-    <tr style="table-layout: fixed; vertical-align: middle; font-size: 30px; text-align: left; width: 100%; height: 5%; background-color: #90A4AE;">
-        <td colspan="4">Monitor</td>
-    </tr>
-    <tr style="table-layout: fixed; vertical-align: middle; font-size: 24px; text-align: left; width: 100%; height: 5%; background-color: #CFD8DC;">
-        <td colspan="3">Monitored location</td>
-        <td colspan="1">Location</td>
-    </tr>
-    <tr style="vertical-align: middle; font-size: 24px; text-align: left; width: 70%; height: 5%; background-color: #ECEFF1;">
-        <td colspan="3">Time left for next density check</td>
-        <td colspan="1">time</td>
-    </tr>
-    <tr style="table-layout: fixed; vertical-align: middle; font-size: 22px; text-align: left; width: 25%; height: 5%; color: #311b92;">
-        <td>Default server</td>
-        <td>server name</td>
-        <td>Current density</td>
-        <td>density value</td>
-    </tr>
+    <c:forEach items="${data.getCards()}" var="card">
+        <tr style="table-layout: fixed; vertical-align: middle; font-size: 30px; text-align: left; width: 100%; height: 5%; background-color: #90A4AE;">
+            <td colspan="4">${card.getMonitorName()}</td>
+        </tr>
+        <tr style="table-layout: fixed; vertical-align: middle; font-size: 24px; text-align: left; width: 100%; height: 5%; background-color: #CFD8DC;">
+            <td colspan="3">Monitored location</td>
+            <td colspan="1">${card.getLocationName()}</td>
+        </tr>
+        <tr style="table-layout: fixed; vertical-align: middle; font-size: 22px; text-align: left; width: 25%; height: 5%; color: #311b92;">
+            <td>Default server</td>
+            <td>${card.getDefaultServerName()}</td>
+            <td>Current density</td>
+            <td>${card.getDefaultServerDensityValue()}</td>
+        </tr>
+    </c:forEach>
     <tr style="font-size: 28px; text-align: center; table-layout: fixed; width: 33%; height: 5%; vertical-align: top; background-color: #f9a825;">
         <td colspan="4">Create Monitor</td>
     </tr>
@@ -82,9 +81,9 @@
         </td>
     </tr>
     <tr style="table-layout: fixed; text-align: center; vertical-align: middle; height: 50px;" colspan="4">
-        <td >
-            <input style="width: 40%; position: relative; white-space: normal; background-color: #b0bec5; font-size: 24px;"
-                type="button" value="Create monitor"/>
+        <td>
+            <input style="width: 100%; position: relative; white-space: normal; background-color: #b0bec5; font-size: 24px;"
+                   type="button" value="Create monitor"/>
         </td>
     </tr>
     </tbody>

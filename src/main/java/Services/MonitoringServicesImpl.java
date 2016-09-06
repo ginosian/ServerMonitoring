@@ -9,6 +9,8 @@ import entity.LocationDTO;
 import entity.MonitorDTO;
 import entity.ServerDTO;
 
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -283,6 +285,24 @@ public class MonitoringServicesImpl implements MonitoringServices{
         else throw new NoMonitorException("Location is not monitored");
     }
 
+    public LocationDTO getLocationByMonitor(Integer monitor_id) throws Exception {
+        //Checks if input is valid
+        if(!valid(monitor_id)) throw new InvalidOrEmptyInputException("Input is either null or <= 0");
+
+        // Checks if monitor exist, if not throws exception
+        MonitorDTO monitor = monitorDAO.readMonitorById(monitor_id);
+        if(monitor == null) throw new NoMonitorException("Monitor doesn't exist");
+
+        // Checks and obtains if monitor is monitoring a server
+        ServerDTO defaultServer = monitorServerDAO.readServerByMonitorId(monitor_id);
+        if(defaultServer == null) throw new NoServerException("No default server for monitor to monitor.");
+
+        // Obtain location where default server is situated
+        LocationDTO location = serverDAO.readLocationIdByServerId(defaultServer.getServer_id());
+        if (location == null) throw new NoLocationException("Location doesn't exist");
+        return location;
+    }
+
     public boolean isLocationMonitored(Integer location_id) throws Exception {
         //Checks if input is valid
         if(!valid(location_id)) throw new InvalidOrEmptyInputException("Input is either null or <= 0");
@@ -293,12 +313,40 @@ public class MonitoringServicesImpl implements MonitoringServices{
 
         // Checks if default server exist
         ServerDTO currentDefaultServer = serverDAO.readDefaultServerWithinLocation(location_id);
-        if (currentDefaultServer == null) throw new NoServerException("No default server within location to be monitored");
+        if (currentDefaultServer == null) return false;
 
         // Checks if location is monitored
         MonitorDTO monitor = monitorServerDAO.readMonitorByServerId(currentDefaultServer.getServer_id());
         if(monitor == null) return false;
         else return true;
+    }
+
+    public List<LocationDTO> getAllLocations() throws Exception {
+        List<LocationDTO> locations = locationDAO.readLocations();
+        if (locations.size() == 0) throw new NoLocationException("No locations exist, first create one.");
+        return locations;
+    }
+
+    public List<LocationDTO> getAllNotMonitoredLocations() throws Exception {
+        List<LocationDTO> locations = getAllMonitoredLocations();
+        for (int i = 0; i < locations.size(); i++) {
+            int locationId = locations.get(i).getLocation_id();
+            if(isLocationMonitored(locationId)){
+                locations.remove(i);
+            }
+        }
+        return locations;
+    }
+
+    public List<LocationDTO> getAllMonitoredLocations() throws Exception {
+        List<LocationDTO> locations = getAllLocations();
+        for (int i = 0; i < locations.size(); i++) {
+            int locationId = locations.get(i).getLocation_id();
+            if(!isLocationMonitored(locationId)){
+                locations.remove(i);
+            }
+        }
+        return locations;
     }
 
     public List<ServerDTO> getAllServersWithinLocation(Integer location_id) throws Exception {
@@ -323,12 +371,6 @@ public class MonitoringServicesImpl implements MonitoringServices{
 
         // Obtains servers list within location
         return serverDAO.readServersWithinLocation(location.getLocation_id());
-    }
-
-    public List<LocationDTO> getAllLocations() throws Exception {
-        List<LocationDTO> locations = locationDAO.readLocations();
-        if (locations.size() == 0) throw new NoLocationException("No locations exist, first create one.");
-        return locations;
     }
 
     public List<ServerDTO> getAllServers() throws Exception {

@@ -8,17 +8,7 @@ public class LocationCardViewModel {
     private String locationName;
     private String defaultServerName;
     private int defaultServerDensityValue;
-    String[] serversNames;
-
-    public LocationCardViewModel(String locationName,
-                                 String defaultServerName,
-                                 int defaultServerDensityValue,
-                                 String[] serversNames) {
-        this.locationName = locationName;
-        this.defaultServerName = defaultServerName;
-        this.defaultServerDensityValue = defaultServerDensityValue;
-        this.serversNames = serversNames;
-    }
+    private String[] serversNames;
 
     public LocationCardViewModel() {
     }

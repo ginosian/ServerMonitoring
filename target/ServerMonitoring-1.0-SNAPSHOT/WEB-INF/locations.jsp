@@ -12,9 +12,6 @@
 <%--<jsp:include page='${root} + "/hello"'/>--%>
 <html>
 <head>
-
-<script src="./libs/jquery/1.10.1/jquery.min.js"></script>
-    <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
     <style type="text/css">
         ul {
             list-style-type: none;

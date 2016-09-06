@@ -29,11 +29,16 @@ public interface MonitoringServices {
     ServerDTO getServerWithLowestDensity(Integer location_id) throws Exception;
 
     MonitorDTO getMonitorByLocation(Integer location_id) throws Exception;
+    LocationDTO getLocationByMonitor(Integer monitor_id) throws Exception;
     boolean isLocationMonitored(Integer location_id) throws Exception;
+
+    List<LocationDTO> getAllLocations() throws Exception;
+    List<LocationDTO> getAllNotMonitoredLocations() throws Exception;
+    List<LocationDTO> getAllMonitoredLocations() throws Exception;
 
     List<ServerDTO> getAllServersWithinLocation(Integer location_id) throws Exception;
     List<ServerDTO> getAllServersWithinLocation(String location_name) throws Exception;
-    List<LocationDTO> getAllLocations() throws Exception;
     List<ServerDTO> getAllServers() throws Exception;
+
     List<MonitorDTO> getAllMonitors() throws Exception;
 }

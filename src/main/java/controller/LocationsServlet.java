@@ -21,7 +21,6 @@ public class LocationsServlet extends HttpServlet implements DS {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
             try {
-                Provider.instance().createDbAndSomeData();
                 request.setAttribute("data", updatePageWithData());
                 request.getRequestDispatcher(getServletContext().getContextPath() + locationsPath).forward(request, response);
             } catch (Exception e) {
@@ -31,8 +30,7 @@ public class LocationsServlet extends HttpServlet implements DS {
 
     protected LocationViewModel updatePageWithData()throws Exception{
         LocationViewModel locationViewModel = LocationViewModel.model();
-        List<LocationDTO> locations = Provider.instance().services().getAllLocations();
-
+        List<LocationDTO> locations = Provider.instance().services().getAllMonitoredLocations();
 
         LocationCardViewModel card;
         for (int i = 0; i < locations.size(); i++) {

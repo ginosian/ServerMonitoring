@@ -15,6 +15,7 @@ public class HomeServlet extends HttpServlet implements DS {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
          request.getRequestDispatcher(homePath).forward(request, response);
 
     }

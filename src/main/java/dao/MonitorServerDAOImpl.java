@@ -10,7 +10,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 
 /**
  * Created by Martha on 8/28/2016.
@@ -47,7 +46,7 @@ public class MonitorServerDAOImpl implements MonitorServerDAO {
         return null;
     }
 
-    public List<ServerDTO> readServersByMonitorId(Integer monitorId) {
+    public ServerDTO readServerByMonitorId(Integer monitorId) {
         try {
             connection = connectionProvider.openConnection();
 
@@ -55,9 +54,8 @@ public class MonitorServerDAOImpl implements MonitorServerDAO {
             preparedStatement.setInt(1, monitorId);
 
             resultSet = preparedStatement.executeQuery();
-            if (!resultSet.next()) return null;
             DBResultMapper<ServerDTO> monitor = DBResultMapper.instance();
-            return monitor.toList(resultSet, ServerDTO.class);
+            return monitor.toObject(resultSet, ServerDTO.class);
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

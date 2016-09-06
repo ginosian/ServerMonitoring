@@ -101,7 +101,7 @@ public class Main {
 //
 //        MonitorServerDAO monitorServerDAO = new MonitorServerDAOImpl(connectionProvider);
 //        monitorServerDAO.createMonitorServerCrossRecord(3, 2);
-//        List<ServerDTO> serverFromMonitor = monitorServerDAO.readServersByMonitorId(3);
+//        List<ServerDTO> serverFromMonitor = monitorServerDAO.readServerByMonitorId(3);
 //        List<MonitorDTO> monitorFromServer = monitorServerDAO.readMonitorsByServerId(2);
 //
 //
@@ -120,7 +120,7 @@ public class Main {
 //        monitorServerDAO.updateServerForMonitor(3, 1);
 //
 //        System.out.println("**************Server from monitor_server for monitor 3!*****************");
-//        System.out.println(monitorServerDAO.readServersByMonitorId(3).get(0).toString());
+//        System.out.println(monitorServerDAO.readServerByMonitorId(3).get(0).toString());
 //        System.out.println("**************The same server by server id!*****************");
 //        System.out.println(serverDAO.readServerById(1));
 

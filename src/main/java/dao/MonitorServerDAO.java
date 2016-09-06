@@ -54,6 +54,7 @@ public interface MonitorServerDAO {
             + " SET server_id = ?"
             + " WHERE monitor_id = ?";
 
+
     /**
      * Creates a record in monitor_server table with given parameters.
      * @param monitor_id id of existing monitor
@@ -67,7 +68,7 @@ public interface MonitorServerDAO {
      * Reads servers from server table by specified monitor id.
      * @param monitorId id of monitor.
      * @return {@link List<ServerDTO>} retrieved servers.*/
-    List<ServerDTO> readServersByMonitorId(Integer monitorId);
+    ServerDTO readServerByMonitorId(Integer monitorId);
 
     /**
      * Reads monitors from monitor table by specified server id.
