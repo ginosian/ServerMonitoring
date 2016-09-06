@@ -1,14 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6efc5664-6fb6-4a61-9b9a-a54fb535fb17" name="Default" comment="">
+    <list default="true" id="6efc5664-6fb6-4a61-9b9a-a54fb535fb17" name="Default" comment="So first jsp with naked java on air )).">
+      <change type="DELETED" beforePath="E:\Monitis\ServerMonitoring\out\artifacts\ServerMonitoring_war_exploded\WEB-INF\classes\controller\Provider$1.class" afterPath="" />
+      <change type="DELETED" beforePath="E:\Monitis\ServerMonitoring\target\classes\controller\Provider$1.class" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/ServerMonitoring_war_exploded/WEB-INF/classes/view_model/LocationCardViewModel.class" afterPath="$PROJECT_DIR$/out/artifacts/ServerMonitoring_war_exploded/WEB-INF/classes/view_model/LocationCardViewModel.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/view_model/LocationCardViewModel.class" afterPath="$PROJECT_DIR$/target/classes/view_model/LocationCardViewModel.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/ServerMonitoring_war_exploded/WEB-INF/classes/controller/LocationsServlet.class" afterPath="$PROJECT_DIR$/out/artifacts/ServerMonitoring_war_exploded/WEB-INF/classes/controller/LocationsServlet.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/controller/LocationsServlet.class" afterPath="$PROJECT_DIR$/target/classes/controller/LocationsServlet.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/ServerMonitoring_war_exploded/WEB-INF/classes/dao/MonitorServerDAO.class" afterPath="$PROJECT_DIR$/out/artifacts/ServerMonitoring_war_exploded/WEB-INF/classes/dao/MonitorServerDAO.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/dao/MonitorServerDAO.class" afterPath="$PROJECT_DIR$/target/classes/dao/MonitorServerDAO.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/ServerMonitoring_war_exploded/WEB-INF/classes/dao/MonitorServerDAOImpl.class" afterPath="$PROJECT_DIR$/out/artifacts/ServerMonitoring_war_exploded/WEB-INF/classes/dao/MonitorServerDAOImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/dao/MonitorServerDAOImpl.class" afterPath="$PROJECT_DIR$/target/classes/dao/MonitorServerDAOImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/ServerMonitoring_war_exploded/WEB-INF/classes/Services/MonitoringServices.class" afterPath="$PROJECT_DIR$/out/artifacts/ServerMonitoring_war_exploded/WEB-INF/classes/Services/MonitoringServices.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Services/MonitoringServices.class" afterPath="$PROJECT_DIR$/target/classes/Services/MonitoringServices.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/ServerMonitoring_war_exploded/WEB-INF/classes/Services/MonitoringServicesImpl.class" afterPath="$PROJECT_DIR$/out/artifacts/ServerMonitoring_war_exploded/WEB-INF/classes/Services/MonitoringServicesImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Services/MonitoringServicesImpl.class" afterPath="$PROJECT_DIR$/target/classes/Services/MonitoringServicesImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/ServerMonitoring_war_exploded/WEB-INF/classes/controller/Provider.class" afterPath="$PROJECT_DIR$/out/artifacts/ServerMonitoring_war_exploded/WEB-INF/classes/controller/Provider.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/controller/Provider.class" afterPath="$PROJECT_DIR$/target/classes/controller/Provider.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/ServerMonitoring_war_exploded/WEB-INF/classes/dao/ServerDAO.class" afterPath="$PROJECT_DIR$/out/artifacts/ServerMonitoring_war_exploded/WEB-INF/classes/dao/ServerDAO.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/dao/ServerDAO.class" afterPath="$PROJECT_DIR$/target/classes/dao/ServerDAO.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/ServerMonitoring_war_exploded/WEB-INF/classes/dao/ServerDAOImpl.class" afterPath="$PROJECT_DIR$/out/artifacts/ServerMonitoring_war_exploded/WEB-INF/classes/dao/ServerDAOImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/dao/ServerDAOImpl.class" afterPath="$PROJECT_DIR$/target/classes/dao/ServerDAOImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/ServerMonitoring_war_exploded/WEB-INF/classes/entity/ServerDTO.class" afterPath="$PROJECT_DIR$/out/artifacts/ServerMonitoring_war_exploded/WEB-INF/classes/entity/ServerDTO.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/entity/ServerDTO.class" afterPath="$PROJECT_DIR$/target/classes/entity/ServerDTO.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/view_model/LocationCardViewModel.java" afterPath="$PROJECT_DIR$/src/main/java/view_model/LocationCardViewModel.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/controller/LocationsServlet.java" afterPath="$PROJECT_DIR$/src/main/java/controller/LocationsServlet.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/dao/MonitorServerDAO.java" afterPath="$PROJECT_DIR$/src/main/java/dao/MonitorServerDAO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/dao/MonitorServerDAOImpl.java" afterPath="$PROJECT_DIR$/src/main/java/dao/MonitorServerDAOImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Services/MonitoringServices.java" afterPath="$PROJECT_DIR$/src/main/java/Services/MonitoringServices.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Services/MonitoringServicesImpl.java" afterPath="$PROJECT_DIR$/src/main/java/Services/MonitoringServicesImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/controller/Provider.java" afterPath="$PROJECT_DIR$/src/main/java/controller/Provider.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/dao/ServerDAO.java" afterPath="$PROJECT_DIR$/src/main/java/dao/ServerDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/dao/ServerDAOImpl.java" afterPath="$PROJECT_DIR$/src/main/java/dao/ServerDAOImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/entity/ServerDTO.java" afterPath="$PROJECT_DIR$/src/main/java/entity/ServerDTO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/ServerMonitoring_war_exploded/WEB-INF/locations.jsp" afterPath="$PROJECT_DIR$/out/artifacts/ServerMonitoring_war_exploded/WEB-INF/locations.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/locations.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/locations.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ServerMonitoring.iws" />
@@ -33,64 +57,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="MonitoringServicesImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Services/MonitoringServicesImpl.java">
+      <file leaf-file-name="MonitoringServices.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Services/MonitoringServices.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="188" column="0" selection-start-line="188" selection-start-column="0" selection-end-line="188" selection-end-column="0" />
-              <folding>
-                <element signature="e#14985#14986#0" expanded="true" />
-                <element signature="e#15038#15039#0" expanded="true" />
-                <element signature="e#15079#15080#0" expanded="true" />
-                <element signature="e#15137#15138#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Provider.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/controller/Provider.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.8330579">
-              <caret line="85" column="24" selection-start-line="85" selection-start-column="24" selection-end-line="85" selection-end-column="24" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#577#578#0" expanded="true" />
-                <element signature="e#608#609#0" expanded="true" />
-                <element signature="e#3655#3656#0" expanded="true" />
-                <element signature="e#3686#3687#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Integer.java" pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_60/src.zip!/java/lang/Integer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="830" column="0" selection-start-line="830" selection-start-column="0" selection-end-line="830" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.79173553">
+              <caret line="38" column="1" selection-start-line="38" selection-start-column="1" selection-end-line="38" selection-end-column="1" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LocationDTO.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/entity/LocationDTO.java">
+      <file leaf-file-name="MonitoringServicesImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Services/MonitoringServicesImpl.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-              <folding>
-                <element signature="e#1143#1144#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MonitoringServices.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Services/MonitoringServices.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="23" column="44" selection-start-line="23" selection-start-column="44" selection-end-line="23" selection-end-column="44" />
+              <caret line="321" column="76" selection-start-line="321" selection-start-column="76" selection-end-line="321" selection-end-column="76" />
               <folding />
             </state>
           </provider>
@@ -100,37 +81,47 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/controller/LocationsServlet.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="35" column="39" selection-start-line="35" selection-start-column="39" selection-end-line="35" selection-end-column="39" />
+              <caret line="24" column="58" selection-start-line="24" selection-start-column="58" selection-end-line="24" selection-end-column="58" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ServerDAO.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/dao/ServerDAO.java">
+      <file leaf-file-name="LocationViewModel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/view_model/LocationViewModel.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="60" column="57" selection-start-line="60" selection-start-column="57" selection-end-line="60" selection-end-column="57" />
-              <folding />
+              <caret line="22" column="24" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
+              <folding>
+                <element signature="e#263#264#0" expanded="true" />
+                <element signature="e#291#292#0" expanded="true" />
+                <element signature="e#490#491#0" expanded="true" />
+                <element signature="e#521#522#0" expanded="true" />
+                <element signature="e#634#635#0" expanded="true" />
+                <element signature="e#662#663#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ServerDAOImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/dao/ServerDAOImpl.java">
+      <file leaf-file-name="LocationCardViewModel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/view_model/LocationCardViewModel.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="164" column="66" selection-start-line="164" selection-start-column="66" selection-end-line="164" selection-end-column="66" />
-              <folding />
+              <caret line="73" column="37" selection-start-line="73" selection-start-column="20" selection-end-line="73" selection-end-column="37" />
+              <folding>
+                <element signature="e#2285#2286#0" expanded="true" />
+                <element signature="e#2320#2321#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ServerDTO.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/entity/ServerDTO.java">
+      <file leaf-file-name="locations.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/locations.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="29" column="17" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
+            <state vertical-scroll-proportion="-2.3666666">
+              <caret line="93" column="8" selection-start-line="93" selection-start-column="8" selection-end-line="93" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -192,7 +183,6 @@
         <option value="$PROJECT_DIR$/src/main/resources/db.properties" />
         <option value="$PROJECT_DIR$/src/main/java/controller/Initializer.java" />
         <option value="$PROJECT_DIR$/src/main/java/exception/ObjectExistException.java" />
-        <option value="$PROJECT_DIR$/src/main/java/dao/MonitorServerDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/exception/NoDefaultServerException.java" />
         <option value="$PROJECT_DIR$/src/main/java/entity/MonitorDTO.java" />
         <option value="$PROJECT_DIR$/src/main/java/exception/MonitorExistException.java" />
@@ -200,28 +190,29 @@
         <option value="$PROJECT_DIR$/src/main/java/controller/MonitorsServlet.java" />
         <option value="$PROJECT_DIR$/src/main/java/exception/NoMonitorException.java" />
         <option value="$PROJECT_DIR$/src/main/java/util/Util.java" />
-        <option value="$PROJECT_DIR$/src/main/java/view_model/LocationCardViewModel.java" />
         <option value="$PROJECT_DIR$/src/main/java/util/DBResultMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/dao/LocationDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/dao/MonitorDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/controller/DispatcherServlet.java" />
         <option value="$PROJECT_DIR$/src/main/java/view_model/LocationViewModel.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/locations.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/listener/DBConnectionListener.java" />
         <option value="$PROJECT_DIR$/src/main/java/db/ConnectionProvider.java" />
         <option value="$PROJECT_DIR$/src/main/java/db/DBConnection.java" />
         <option value="$PROJECT_DIR$/src/main/java/db/DBTables.java" />
         <option value="$PROJECT_DIR$/src/main/java/dao/LocationDAOImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/dao/MonitorDAOImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/dao/MonitorServerDAOImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/entity/ServerDTO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/controller/LocationsServlet.java" />
         <option value="$PROJECT_DIR$/src/main/java/dao/ServerDAOImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/dao/ServerDAO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/view_model/LocationCardViewModel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/controller/Provider.java" />
+        <option value="$PROJECT_DIR$/src/main/java/dao/MonitorServerDAO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/dao/MonitorServerDAOImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/Services/MonitoringServices.java" />
         <option value="$PROJECT_DIR$/src/main/java/Services/MonitoringServicesImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/controller/Provider.java" />
+        <option value="$PROJECT_DIR$/src/main/java/controller/LocationsServlet.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/locations.jsp" />
       </list>
     </option>
   </component>
@@ -1173,7 +1164,7 @@
       <workItem from="1472920012694" duration="37286000" />
       <workItem from="1472993644227" duration="5255000" />
       <workItem from="1472998978484" duration="306000" />
-      <workItem from="1472999737775" duration="71880000" />
+      <workItem from="1472999737775" duration="79071000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1471923420419</created>
@@ -1289,11 +1280,17 @@
       <option name="project" value="LOCAL" />
       <updated>1473130343907</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Merges enhanced services.">
+      <created>1473136706391</created>
+      <option name="number" value="00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1473136706391</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="192133000" />
+    <option name="totallyTimeSpent" value="199324000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1309,10 +1306,10 @@
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" x="92" y="92" width="1170" height="544" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290469" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.328594" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.8420221" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.86097944" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.328594" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1429652" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.052950077" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.328594" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1320,7 +1317,7 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2473525" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.48025277" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38546604" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1408,18 +1405,29 @@
     <MESSAGE value="Some experimental changes." />
     <MESSAGE value="Completes Services though not finally tested yet.&#10;Makes pages to be displayed in response to appropriate requests." />
     <MESSAGE value="Fixes connection pooling bug.&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixes connection pooling bug.&#10;" />
+    <MESSAGE value="Merges enhanced services." />
+    <MESSAGE value="So first jsp with naked java on air ))." />
+    <option name="LAST_COMMIT_MESSAGE" value="So first jsp with naked java on air ))." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/webapp/WEB-INF/locations.jsp</url>
+          <line>54</line>
+          <properties />
+          <option name="timeStamp" value="136" />
+        </line-breakpoint>
+      </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="128" />
+      <option name="time" value="137" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory">
-        <watch expression="location.getLocation_id()" />
+        <watch expression="servers.get(j).getServer_name()" />
+        <watch expression="locations.get(i).getServers()" />
       </configuration>
       <configuration name="JUnit">
         <watch expression="success" />
@@ -1434,20 +1442,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/util/DBUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.34710744">
-          <caret line="10" column="11" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/db/DBDescription.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/exception/ObjectExistException.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.20826447">
@@ -1528,13 +1522,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.25565216">
           <caret line="65" column="9" selection-start-line="65" selection-start-column="9" selection-end-line="65" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/dao/MonitorServerDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="29" column="35" selection-start-line="29" selection-start-column="35" selection-end-line="29" selection-end-column="35" />
         </state>
       </provider>
     </entry>
@@ -1673,37 +1660,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/view_model/LocationCardViewModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.2082645">
-          <caret line="38" column="20" selection-start-line="38" selection-start-column="20" selection-end-line="38" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/view_model/LocationViewModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="29" column="47" selection-start-line="29" selection-start-column="39" selection-end-line="29" selection-end-column="47" />
-          <folding>
-            <element signature="e#634#635#0" expanded="false" />
-            <element signature="e#662#663#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="6" column="52" selection-start-line="6" selection-start-column="52" selection-end-line="6" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/locations.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7669565">
-          <caret line="105" column="8" selection-start-line="105" selection-start-column="8" selection-end-line="105" selection-end-column="8" />
           <folding />
         </state>
       </provider>
@@ -1724,14 +1684,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/dao/MonitorServerDAOImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6876033">
-          <caret line="129" column="27" selection-start-line="129" selection-start-column="27" selection-end-line="129" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/db/DBTables.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1740,17 +1692,6 @@
             <element signature="e#421#422#0" expanded="true" />
             <element signature="e#481#482#0" expanded="true" />
             <marker date="1473053372751" expanded="true" signature="-1:-1" placeholder="DROP TABLE m..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_60/src.zip!/java/util/ArrayList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="430" column="0" selection-start-line="430" selection-start-column="0" selection-end-line="430" selection-end-column="0" />
-          <folding>
-            <element signature="e#15414#15415#0" expanded="true" />
-            <element signature="e#15459#15460#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1771,34 +1712,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/db/DBConnection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="73" column="0" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/dao/LocationDAOImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="83" column="0" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/entity/ServerDTO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="29" column="17" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/controller/LocationsServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="35" column="39" selection-start-line="35" selection-start-column="39" selection-end-line="35" selection-end-column="39" />
           <folding />
         </state>
       </provider>
@@ -1811,27 +1728,46 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/dao/ServerDAOImpl.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_60/src.zip!/java/lang/Integer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="164" column="66" selection-start-line="164" selection-start-column="66" selection-end-line="164" selection-end-column="66" />
+        <state vertical-scroll-proportion="0.16528925">
+          <caret line="830" column="0" selection-start-line="830" selection-start-column="0" selection-end-line="830" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/dao/ServerDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="0.5140496">
           <caret line="60" column="57" selection-start-line="60" selection-start-column="57" selection-end-line="60" selection-end-column="57" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Services/MonitoringServices.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/dao/ServerDAOImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.40991735">
+          <caret line="164" column="66" selection-start-line="164" selection-start-column="66" selection-end-line="164" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/entity/ServerDTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.034710743">
+          <caret line="29" column="17" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_60/src.zip!/java/util/ArrayList.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="23" column="44" selection-start-line="23" selection-start-column="44" selection-end-line="23" selection-end-column="44" />
-          <folding />
+          <caret line="430" column="0" selection-start-line="430" selection-start-column="0" selection-end-line="430" selection-end-column="0" />
+          <folding>
+            <element signature="e#15414#15415#0" expanded="true" />
+            <element signature="e#15459#15460#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1845,10 +1781,56 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_60/src.zip!/java/lang/Integer.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/controller/Provider.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="830" column="0" selection-start-line="830" selection-start-column="0" selection-end-line="830" selection-end-column="0" />
+          <caret line="72" column="76" selection-start-line="40" selection-start-column="13" selection-end-line="72" selection-end-column="76" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#455#456#0" expanded="true" />
+            <element signature="e#486#487#0" expanded="true" />
+            <element signature="e#3608#3609#0" expanded="true" />
+            <element signature="e#3639#3640#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/dao/MonitorServerDAOImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.18512397">
+          <caret line="81" column="25" selection-start-line="81" selection-start-column="25" selection-end-line="81" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/db/DBConnection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.18347107">
+          <caret line="73" column="0" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/dao/MonitorServerDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.60991734">
+          <caret line="46" column="7" selection-start-line="46" selection-start-column="7" selection-end-line="46" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_60/src.zip!/java/lang/Thread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="744" column="0" selection-start-line="744" selection-start-column="0" selection-end-line="744" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/javax/servlet/javax.servlet-api/3.0.1/javax.servlet-api-3.0.1-sources.jar!/javax/servlet/http/HttpServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="728" column="0" selection-start-line="728" selection-start-column="0" selection-end-line="728" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1856,27 +1838,58 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/Services/MonitoringServicesImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="188" column="0" selection-start-line="188" selection-start-column="0" selection-end-line="188" selection-end-column="0" />
+          <caret line="321" column="76" selection-start-line="321" selection-start-column="76" selection-end-line="321" selection-end-column="76" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/controller/LocationsServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="24" column="58" selection-start-line="24" selection-start-column="58" selection-end-line="24" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/view_model/LocationViewModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="22" column="24" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
           <folding>
-            <element signature="e#14985#14986#0" expanded="true" />
-            <element signature="e#15038#15039#0" expanded="true" />
-            <element signature="e#15079#15080#0" expanded="true" />
-            <element signature="e#15137#15138#0" expanded="true" />
+            <element signature="e#263#264#0" expanded="true" />
+            <element signature="e#291#292#0" expanded="true" />
+            <element signature="e#490#491#0" expanded="true" />
+            <element signature="e#521#522#0" expanded="true" />
+            <element signature="e#634#635#0" expanded="true" />
+            <element signature="e#662#663#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/controller/Provider.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/view_model/LocationCardViewModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.8330579">
-          <caret line="85" column="24" selection-start-line="85" selection-start-column="24" selection-end-line="85" selection-end-column="24" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="73" column="37" selection-start-line="73" selection-start-column="20" selection-end-line="73" selection-end-column="37" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#577#578#0" expanded="true" />
-            <element signature="e#608#609#0" expanded="true" />
-            <element signature="e#3655#3656#0" expanded="true" />
-            <element signature="e#3686#3687#0" expanded="true" />
+            <element signature="e#2285#2286#0" expanded="true" />
+            <element signature="e#2320#2321#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/locations.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.3666666">
+          <caret line="93" column="8" selection-start-line="93" selection-start-column="8" selection-end-line="93" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Services/MonitoringServices.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.79173553">
+          <caret line="38" column="1" selection-start-line="38" selection-start-column="1" selection-end-line="38" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -52,12 +52,10 @@
 
 <table style="width: 100%; height: 100%; table-layout: fixed;" align="center">
     <tbody>
-    <%--<c:forEach items="${datas}" var="data">--%>
-        <%--<c:forEach items="${data[data.index]}" var="location">--%>
+    <c:forEach items="${data.getCards()}" var="card">
             <tr>
                 <td style="table-layout: fixed; vertical-align: middle; font-size: 30px; text-align: left; width: 100%; background-color: #78909C;"
-                    colspan="4">${location.getLocation_name()}
-                </td>
+                    colspan="4">${card.getLocationName()}</td>
             </tr>
             <tr>
                 <td style="vertical-align: middle; font-size: 24px; text-align: left; width: 70%; background-color: #b0bec5;"
@@ -65,32 +63,40 @@
                 </td>
                 <td style="vertical-align: middle; font-size: 22px; text-align: left; width: 30%; background-color: #b0bec5;"
                     colspan="1">
-                    <span id="countdownSpan">&nbsp;<span id="countdown"></span>seconds remaining</span>
+                    <span id="countdownSpan">&nbsp;<span id="countdown"></span>${card.getTimeCountDown()}</span>
                 </td>
             </tr>
             <tr>
                 <td style="table-layout: fixed; vertical-align: middle; font-size: 22px; text-align: left; width: 25%; background-color: #cfd8dc; color:#311B92">
                     Default server
                 </td>
-                <td style="table-layout: fixed; vertical-align: middle; font-size: 22px; text-align: left; width: 25%; background-color: #cfd8dc;">
-                    server name
-                </td>
+                <td style="table-layout: fixed; vertical-align: middle; font-size: 22px; text-align: left; width: 25%;
+                background-color: #cfd8dc;">${card.getDefaultServerName()}</td>
                 <td style="table-layout: fixed; vertical-align: middle; font-size: 22px; text-align: left; width: 25%; background-color: #cfd8dc;color:#311B92">
                     Current density
                 </td>
-                <td style="table-layout: fixed; vertical-align: middle; font-size: 22px; text-align: left; width: 25%; background-color: #cfd8dc;">
-                    density value
-                </td>
+                <td style="table-layout: fixed; vertical-align: middle; font-size: 22px; text-align: left; width: 25%;
+                background-color: #cfd8dc;">${card.getDefaultServerDensityValue()}</td>
             </tr>
             <tr>
                 <td style="font-size: 28px; text-align: left; table-layout: fixed; width: 33%; height: 100%; vertical-align: top; background-color: #eceff1;"
                     colspan="4">All servers
                 </td>
             </tr>
-        <%--</c:forEach>--%>
-    <%--</c:forEach>--%>
+            <tr>
+                <td style="font-size: 28px; text-align: left; table-layout: fixed; width: 33%; height: 100%; vertical-align: top;"colspan="4">
+                    <c:forEach items="${card.getServersNames()}" var="server_name">
+                        <div style="word-wrap:break-word; text-align: left; font-size:24px">${server_name}</div>
+                        </c:forEach>
+                </td>
+            </tr>
+    </c:forEach>
     <tr>
-        <td style="table-layout: fixed; vertical-align: middle; font-size: 22px; text-align: left; width: 33%;"
+        <td style="font-size: 28px; text-align: left; table-layout: fixed; width: 33%; height: 100%; vertical-align: top; background-color: #F57F17;"
+            colspan="4">CREATE SERVER</td>
+    </tr>
+    <tr>
+        <td style="table-layout: fixed; vertical-align: middle;  font-size: 22px; text-align: center; width: 33%;"
             colspan="4">Server name
         </td>
     </tr>

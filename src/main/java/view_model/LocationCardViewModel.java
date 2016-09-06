@@ -38,4 +38,44 @@ public class LocationCardViewModel {
         this.serversNames = serversName;
         return this;
     }
+
+    public String getLocationName() {
+        return locationName;
+    }
+
+    public void setLocationName(String locationName) {
+        this.locationName = locationName;
+    }
+
+    public int getTimeCountDown() {
+        return timeCountDown;
+    }
+
+    public void setTimeCountDown(int timeCountDown) {
+        this.timeCountDown = timeCountDown;
+    }
+
+    public String getDefaultServerName() {
+        return defaultServerName;
+    }
+
+    public void setDefaultServerName(String defaultServerName) {
+        this.defaultServerName = defaultServerName;
+    }
+
+    public int getDefaultServerDensityValue() {
+        return defaultServerDensityValue;
+    }
+
+    public void setDefaultServerDensityValue(int defaultServerDensityValue) {
+        this.defaultServerDensityValue = defaultServerDensityValue;
+    }
+
+    public String[] getServersNames() {
+        return serversNames;
+    }
+
+    public void setServersNames(String[] serversNames) {
+        this.serversNames = serversNames;
+    }
 }

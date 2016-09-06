@@ -36,13 +36,13 @@ public interface MonitorServerDAO {
      * from monitor table by corresponding server_id from monitor_server table.
      * Server.id needed to be injected under "1"
      * index in query statement using statement.setString(parameter index, values) method.*/
-    String READ_MONITOR_BY_SERVER_ID = ""
-            + "SELECT *"
-            + " FROM monitor"
-            + " WHERE monitor_id LIKE"
-            + " (SELECT monitor_id "
-            + " FROM monitor_server "
-            + " WHERE server_id = ?)";
+    String READ_MONITOR_BY_SERVER_ID = "SELECT * FROM monitor WHERE monitor_id LIKE (SELECT monitor_id FROM monitor_server WHERE server_id = ?)";
+//            + "SELECT *"
+//            + " FROM monitor"
+//            + " WHERE monitor_id LIKE"
+//            + " (SELECT monitor_id "
+//            + " FROM monitor_server "
+//            + " WHERE server_id = ?)";
 
     /**
      * A SQL query string for updating assigned server for specified monitor.

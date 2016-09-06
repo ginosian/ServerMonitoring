@@ -78,7 +78,7 @@ public class MonitorServerDAOImpl implements MonitorServerDAO {
             preparedStatement.setInt(1, serverId);
 
             resultSet = preparedStatement.executeQuery();
-            if (!resultSet.next()) return null;
+//            if (!resultSet.next()) return null;
             DBResultMapper<MonitorDTO> monitor = DBResultMapper.instance();
             return monitor.toObject(resultSet, MonitorDTO.class);
         } catch (SQLException e) {

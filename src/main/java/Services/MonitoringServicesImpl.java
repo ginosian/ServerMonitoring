@@ -116,8 +116,13 @@ public class MonitoringServicesImpl implements MonitoringServices{
         // Checks if input is valid
         if (!valid(location_id)) throw new InvalidOrEmptyInputException("Input is either null or <= 0");
 
+        // Obtains location
         LocationDTO location = locationDAO.readLocationById(location_id);
         if (location == null) throw new NoLocationException("Location doesn't exist");
+
+        // Obtains servers list within location
+        List<ServerDTO> servers = serverDAO.readServersWithinLocation(location_id);
+        location.setServers(servers);
         return location;
     }
 
@@ -125,8 +130,13 @@ public class MonitoringServicesImpl implements MonitoringServices{
         // Checks if input is valid
         if (!valid(location_name)) throw new InvalidOrEmptyInputException("Input is either null or <= 0");
 
+        // Obtains location
         LocationDTO location = locationDAO.readLocationByName(location_name);
         if (location == null) throw new NoLocationException("Location doesn't exist");
+
+        // Obtains servers list within location
+        List<ServerDTO> servers = serverDAO.readServersWithinLocation(location.getLocation_id());
+        location.setServers(servers);
         return location;
     }
 
@@ -269,10 +279,8 @@ public class MonitoringServicesImpl implements MonitoringServices{
         if (currentDefaultServer == null) throw new NoServerException("No default server within location to be monitored");
 
         // Checks if location is monitored and obtains monitor
-        MonitorDTO monitor = monitorServerDAO.readMonitorByServerId(currentDefaultServer.getServer_id());
-        if(monitor == null) throw new NoMonitorException("Location is not monitored");
-
-        return monitor;
+        if(isLocationMonitored(location_id)) return monitorServerDAO.readMonitorByServerId(currentDefaultServer.getServer_id());
+        else throw new NoMonitorException("Location is not monitored");
     }
 
     public boolean isLocationMonitored(Integer location_id) throws Exception {
@@ -291,6 +299,30 @@ public class MonitoringServicesImpl implements MonitoringServices{
         MonitorDTO monitor = monitorServerDAO.readMonitorByServerId(currentDefaultServer.getServer_id());
         if(monitor == null) return false;
         else return true;
+    }
+
+    public List<ServerDTO> getAllServersWithinLocation(Integer location_id) throws Exception {
+        // Checks if input is valid
+        if (!valid(location_id)) throw new InvalidOrEmptyInputException("Input is either null or <= 0");
+
+        // Checks if location exist
+        LocationDTO location = locationDAO.readLocationById(location_id);
+        if (location == null) throw new NoLocationException("Location doesn't exist");
+
+        // Obtains servers list within location
+        return serverDAO.readServersWithinLocation(location_id);
+    }
+
+    public List<ServerDTO> getAllServersWithinLocation(String location_name) throws Exception {
+        // Checks if input is valid
+        if (!valid(location_name)) throw new InvalidOrEmptyInputException("Input is either null or <= 0");
+
+        // Checks if location exist
+        LocationDTO location = locationDAO.readLocationByName(location_name);
+        if (location == null) throw new NoLocationException("Location doesn't exist");
+
+        // Obtains servers list within location
+        return serverDAO.readServersWithinLocation(location.getLocation_id());
     }
 
     public List<LocationDTO> getAllLocations() throws Exception {
