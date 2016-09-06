@@ -15,8 +15,8 @@ public interface ServerDAO {
      * parameter needed to be injected under "1" index in query statement
      * using statement.setString(parameter index, values) method.*/
     String CREATE_SERVER = ""
-            + "INSERT INTO server (server_name)"
-            + " VALUES (?)";
+            + "INSERT INTO server (server_name, is_default, location_id)"
+            + " VALUES (?, ?, ?)";
 
 //    /**
 //     * A SQL query string for creating server. Server.name

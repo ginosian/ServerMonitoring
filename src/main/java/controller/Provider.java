@@ -2,13 +2,15 @@ package controller;
 
 import Services.MonitoringServices;
 import Services.MonitoringServicesImpl;
-import dao.*;
-import db.ConnectionProvider;
+import dao.LocationDAOImpl;
+import dao.MonitorDAOImpl;
+import dao.MonitorServerDAOImpl;
+import dao.ServerDAOImpl;
 import db.DBConnection;
 import db.DBTables;
 import entity.LocationDTO;
+import entity.MonitorDTO;
 import entity.ServerDTO;
-import listener.DBConnectionListener;
 import util.Util;
 
 import java.util.List;
@@ -17,120 +19,70 @@ import java.util.List;
  * Created by Martha on 9/3/2016.
  */
 public class Provider {
-    public static int chack = 0;
     private static Provider instance = new Provider();
-    private ConnectionProvider connectionProvider;
-    private LocationDAO locationDAO;
-    private MonitorDAO monitorDAO;
-    private ServerDAO serverDAO;
-    private MonitorServerDAO monitorServerDAO;
-    private MonitoringServices monitoringServices;
-    public static boolean DB_CREATED = false;
-    public static boolean DATA_CREATED = false;
+    private MonitoringServices services;
 
-    public static Provider provider() {
+    public static Provider instance() {
         return instance;
     }
 
-    public MonitoringServices services() {
-        if (monitoringServices != null) return monitoringServices;
-        monitoringServices = new MonitoringServicesImpl(locationDAO(), monitorDAO(), serverDAO(), monitorServerDAO());
-        addSomeData();
-        return monitoringServices;
-    }
-
-    // region Private methods
-
-    private void addSomeData() {
-        if (chack == 1) return;
+    public void createDbAndSomeData() {
+        MonitoringServices monitoringServices;
         try {
-            // Creates locations
-            for (int i = 0; i < 2; i++) {
-                services().createLocation("Location" + i + 1, "Address" + i + 1);
+            DBConnection connectionProvider = new DBConnection();
+            connectionProvider.setupConnection();
+            DBTables dbProvider = new DBTables(connectionProvider);
+            dbProvider.createDB(Util.getPropertyValue("database_name"));
+            dbProvider.createLocationDBTable();
+            dbProvider.createMonitorDBTable();
+            dbProvider.createServerDBTable();
+            dbProvider.createMonitorServerCrossDBTable();
+            connectionProvider.mapConnectionToDataSource(Util.getPropertyValue("database_name"));
+            monitoringServices = new MonitoringServicesImpl(
+                    new LocationDAOImpl(connectionProvider),
+                    new MonitorDAOImpl(connectionProvider),
+                    new ServerDAOImpl(connectionProvider),
+                    new MonitorServerDAOImpl(connectionProvider));
+            services = monitoringServices;
+            for (int i = 0; i < 4; i++) {
+                services.createLocation("Location" + i + 1, "Address" + i + 1);
+            }
+            final List<LocationDTO> locations = services.getAllLocations();
+            System.out.println("****************************LOCATIONS**************************************");
+            for (LocationDTO location1 : locations) {
+                System.out.println(location1.toString());
             }
 
-            // Creates servers
-            List<LocationDTO> locationDTOList = services().getAllLocations();
-            for (int i = 0; i < locationDTOList.size(); i++) {
-                Integer locationId = locationDTOList.get(i).getLocation_id();
-                ServerDTO server1 = services().createServer(("Server" + locationId.toString() + "1"), locationId);
-                ServerDTO server2 = services().createServer(("Server" + locationId.toString() + "2"), locationId);
-                ServerDTO defaultServer = server1;
-                int rand = Util.rand(1, 2);
-                switch (rand) {
-                    case 1:
-                        defaultServer = server1;
-                        break;
-                    case 2:
-                        defaultServer = server2;
-                        break;
-                }
-                services().setDefaultServer(locationId, defaultServer.getServer_id());
-                services().getDefaultServer(locationId);
+            for (int i = 0; i < locations.size(); i++) {
+                int locationId = locations.get(i).getLocation_id();
+                services.createServer("Server" + locationId + i + 1 + "-", locationId);
+                services.createServer("Server" + locationId + i + 2 + "-", locationId);
+                services.createServer("Server" + locationId + i + 3 + "-", locationId);
             }
-            for (int i = 0; i < locationDTOList.size(); i++) {
-                services().createMonitor("Monitor" + i + 1, Util.rand(1, 2), locationDTOList.get(i).getLocation_id());
+            List<ServerDTO> servers = services.getAllServers();
+            System.out.println("****************************SERVERS**************************************");
+            for (ServerDTO server : servers) {
+                System.out.println(server.toString());
             }
-            DATA_CREATED = true;
-            chack = 1;
+            for (int i = 0; i < locations.size(); i++) {
+                services.createMonitor("Monitor" + i + 1, Util.rand(2, 6), locations.get(i).getLocation_id());
+            }
+            List<MonitorDTO> monitors = services.getAllMonitors();
+            System.out.println("****************************MONITORS**************************************");
+            for (MonitorDTO monitor : monitors) {
+                System.out.println(monitor.toString());
+            }
 
+            LocationDTO location = services.getLocation(1);
+            services.setDefaultServer(location.getLocation_id(), 1);
+            ServerDTO server =  services.getDefaultServer(location.getLocation_id());
+            System.out.println("New default server " + server.toString());
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private ConnectionProvider initialize() {
-        final DBConnection connectionProvider = new DBConnection();
-        DBTables dbProvider = new DBTables(connectionProvider);
-
-        String database_name = Util.getPropertyValue("database_name");
-        if (!DBTables.DB_IS_CREATED) {
-            dbProvider.dropDB(database_name, new DBConnectionListener() {
-                public void unMapConnectionFromDataSource() {
-                    connectionProvider.unMapConnectionFromDataSource();
-                }
-            });
-            dbProvider.createDB(database_name);
-            dbProvider.createLocationDBTable();
-            dbProvider.createMonitorDBTable();
-            dbProvider.createServerDBTable();
-            dbProvider.createMonitorServerCrossDBTable();
-        }
-        connectionProvider.mapConnectionToDataSource(Util.getPropertyValue("database_name"));
-
-        DB_CREATED = true;
-        return connectionProvider;
+    public MonitoringServices getServices() {
+        return services;
     }
-
-    private ConnectionProvider connection() {
-        if (connectionProvider != null) return connectionProvider;
-        connectionProvider = initialize();
-        return connectionProvider;
-    }
-
-    private LocationDAO locationDAO() {
-        if (locationDAO != null) return locationDAO;
-        locationDAO = new LocationDAOImpl(connection());
-        return locationDAO;
-    }
-
-    private MonitorDAO monitorDAO() {
-        if (monitorDAO != null) return monitorDAO;
-        monitorDAO = new MonitorDAOImpl(connection());
-        return monitorDAO;
-    }
-
-    private ServerDAO serverDAO() {
-        if (serverDAO != null) return serverDAO;
-        serverDAO = new ServerDAOImpl(connection());
-        return serverDAO;
-    }
-
-    private MonitorServerDAO monitorServerDAO() {
-        if (monitorServerDAO != null) return monitorServerDAO;
-        monitorServerDAO = new MonitorServerDAOImpl(connection());
-        return monitorServerDAO;
-    }
-    // endregion
-
 }
