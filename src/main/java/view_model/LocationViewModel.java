@@ -29,6 +29,9 @@ public class LocationViewModel implements Serializable{
     @SerializedName("location_names")
     private List<String> locationsNames;
 
+    @SerializedName("error")
+    private String error_message;
+
     public void addCard(LocationCardViewModel card){
         cards.add(card);
     }
@@ -51,5 +54,13 @@ public class LocationViewModel implements Serializable{
 
     public List<String> getLocationsNames() {
         return locationsNames;
+    }
+
+    public String getError_message() {
+        return error_message;
+    }
+
+    public void setError_message(String error_message) {
+        this.error_message = error_message;
     }
 }

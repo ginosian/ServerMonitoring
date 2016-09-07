@@ -56,9 +56,13 @@
         <a href="${pageContext.request.contextPath}/monitors">MONITORS</a></li>
 </ul>
 <form method="post" action="${pageContext.request.contextPath}/locations">
-    <c:set var="data" value="${data}"/>
+    <c:set var="data" value="${data}" />
     <table id="mytable" style="width: 100%; height: 100%; table-layout: fixed;" align="center">
         <tbody>
+        <tr>
+            <td style="vertical-align: middle; font-size: 30px; text-align: left; width: 100%;"
+                colspan="4">${data.getError_message()}</td>
+        </tr>
         <c:forEach items="${data.getCards()}" var="card">
             <tr>
                 <td style="table-layout: fixed; vertical-align: middle; font-size: 30px; text-align: left; width: 100%; background-color: #78909C;"
@@ -107,10 +111,11 @@
         </tr>
         <tr style="table-layout: fixed; text-align: center; vertical-align: middle;">
             <td style="height: 5%;" colspan="1">
+                <p style="color: #c51202">${error}</p>
                 <input style="color: #757575; width: 70%; position: relative; white-space: normal; background-color: #fff9c4; font-size: 18px;"
-                       type="input" value="location name" name="location" onfocus="value =  null" onblur="value = 'location name'"/>
+                       type="input" value="location name" name="location" onfocus="value =  null"/>
                 <input style="color: #757575; width: 70%; position: relative; white-space: normal; background-color: #fff9c4; font-size: 18px;"
-                       type="input" value="location addr" name="address" onfocus="value = null" onblur="value = 'location address'"/>
+                       type="input" value="location addr" name="address" onfocus="value = null"/>
             </td>
             <td style="height: 5%;" colspan="2">
             </td>
@@ -126,8 +131,9 @@
         </tr>
         <tr style="table-layout: fixed; text-align: center; vertical-align: middle;">
             <td colspan="1">
+                <p style="color: #c51202">${error}</p>
                 <input style="color: #757575; width: 70%; position: relative; white-space: normal; background-color: #fff9c4; font-size: 18px;"
-                       type="input" value="server name" name="server" onfocus="value =  null" onblur="value = 'server name'"/></td>
+                       type="input" value="server name" name="server" onfocus="value =  null"/></td>
             <td colspan="2">
                 <select style="word-wrap: break-word; width: 50%; font-size: 18px;" name="location"
                         size="6">
@@ -208,6 +214,25 @@
 
     function eraseCookie(name) {
         createCookie(name, "", -1);
+    }
+</script>
+
+<script>
+    function loadDoc() {
+        var json;
+        var str;
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+//                json = JSON.parse(this.prototype);
+//                for (i = 0; i < json.length; ++i) {
+//                }
+                document.getElementsByTagName("error").innerHTML = xhttp;
+//                document.getElementById("vle").innerHTML = "VAZGENCHIK";
+            }
+        };
+        xhttp.open("GET", "locations", true);
+        xhttp.send();
     }
 </script>
 

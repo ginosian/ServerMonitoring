@@ -73,7 +73,7 @@
     <tr style="table-layout: fixed; text-align: center; vertical-align: middle;">
         <td style="height: 5%;" colspan="1">
             <input style="color: #757575; width: 70%; position: relative; white-space: normal; background-color: #fff9c4; font-size: 18px;"
-                   type="input" value="monitor name"/></td>
+                   type="input" value="monitor name" onfocus="value =  null"/></td>
         <td style="height: 5%;" colspan="2">
             <select style="word-wrap: break-word; width: 50%; height: 20%; font-size: 18px;" name="location" size="6">
                 <option value="${user.getId()}">${user.getName()}</option>

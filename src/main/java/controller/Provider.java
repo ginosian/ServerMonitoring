@@ -3,6 +3,7 @@ package controller;
 import Annotation.Objects;
 import Services.MonitoringServices;
 import Services.MonitoringServicesImpl;
+import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.SerializedName;
@@ -22,7 +23,12 @@ import java.util.HashMap;
 public class Provider {
     private static Provider instance = new Provider();
     private MonitoringServices services;
-    public static Gson gson = new GsonBuilder().create();
+    public Gson gson = new GsonBuilder()
+             .disableHtmlEscaping()
+             .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
+             .setPrettyPrinting()
+             .serializeNulls()
+             .create();
 
     public static Provider instance() {
         return instance;

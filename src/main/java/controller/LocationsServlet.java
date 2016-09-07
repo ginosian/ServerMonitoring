@@ -88,7 +88,8 @@ public class LocationsServlet extends HttpServlet implements DS {
         }
         return locationViewModel;
     }
-    public LocationViewModel addNewLocation(HttpServletRequest request) throws ObjectExistException {
+
+    private LocationViewModel addNewLocation(HttpServletRequest request) throws ObjectExistException {
         String newLocation = request.getParameter("location");
         String newLocationAddress = request.getParameter("address");
         LocationViewModel locationViewModel = LocationViewModel.model();
@@ -96,7 +97,13 @@ public class LocationsServlet extends HttpServlet implements DS {
             Provider.instance().services().createLocation(newLocation, newLocationAddress);
             locationViewModel = updatePageWithData();
         } catch (ObjectExistException e) {
+            locationViewModel.setError_message(e.getMessage());
             e.printStackTrace();
+            try {
+                return updatePageWithData();
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
         } catch (Exception e){
             e.printStackTrace();
         }
