@@ -3,6 +3,7 @@ package controller;
 import entity.LocationDTO;
 import entity.ServerDTO;
 import exception.NoServerException;
+import exception.ObjectExistException;
 import view_model.LocationCardViewModel;
 import view_model.LocationViewModel;
 
@@ -21,12 +22,8 @@ import java.util.List;
 public class LocationsServlet extends HttpServlet implements DS {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
-
-
             throws ServletException, IOException {
             try {
-                request.removeAttribute("data");
-                response.reset();
                 request.setAttribute("data", updatePageWithData());
                 request.getRequestDispatcher(getServletContext().getContextPath() + locationsPath).forward(request, response);
             } catch (Exception e) {
@@ -36,10 +33,15 @@ public class LocationsServlet extends HttpServlet implements DS {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher(homePath).forward(request, response);
+        try {
+            request.setAttribute("data", addNewLocation(request));
+            request.getRequestDispatcher(getServletContext().getContextPath() + locationsPath).forward(request, response);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    protected LocationViewModel updatePageWithData()throws Exception{
+    protected LocationViewModel updatePageWithData() throws Exception {
         LocationViewModel locationViewModel = LocationViewModel.model();
         locationViewModel.clearCards();
         List<LocationDTO> locations = Provider.instance().services().getAllMonitoredLocations();
@@ -57,34 +59,48 @@ public class LocationsServlet extends HttpServlet implements DS {
             ServerDTO defaultServer;
             int defaultServerDensityValue;
             try {
-                 // Gets default server
+                // Gets default server
                 defaultServer = Provider.instance().services().getDefaultServer(locationId);
                 defaultServerName = defaultServer.getServer_name();
 
                 // Gets default server density value
                 defaultServerDensityValue = Provider.instance().services().getMonitorByLocation(locationId).getCheck_frequency();
-            } catch (NoServerException e){
+            } catch (NoServerException e) {
                 defaultServerName = e.getMessage();
                 defaultServerDensityValue = 0;
-            } catch (Exception e){
+            } catch (Exception e) {
                 defaultServerName = "No default server";
                 defaultServerDensityValue = 0;
             }
 
             // Gets servers list
             List<ServerDTO> servers = Provider.instance().services().getAllServersWithinLocation(locationName);
-            String [] serversNames = new String[servers.size()];
+            String[] serversNames = new String[servers.size()];
             for (int j = 0; j < serversNames.length; j++) {
                 serversNames[j] = servers.get(j).getServer_name();
             }
             card.updateData(locationName, defaultServerName, defaultServerDensityValue, serversNames);
             locationViewModel.addCard(card);
         }
+
+        for (int i = 0; i < locations.size(); i++) {
+            locationViewModel.addLocation(locations.get(i).getLocation_name());
+        }
         return locationViewModel;
     }
-
-    public LocationCardViewModel addNewCard(){
-        return null;
+    public LocationViewModel addNewLocation(HttpServletRequest request) throws ObjectExistException {
+        String newLocation = request.getParameter("location");
+        String newLocationAddress = request.getParameter("address");
+        LocationViewModel locationViewModel = LocationViewModel.model();
+        try {
+            Provider.instance().services().createLocation(newLocation, newLocationAddress);
+            locationViewModel = updatePageWithData();
+        } catch (ObjectExistException e) {
+            e.printStackTrace();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return locationViewModel;
     }
 
 }

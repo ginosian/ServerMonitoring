@@ -1,7 +1,11 @@
 package controller;
 
+import Annotation.Objects;
 import Services.MonitoringServices;
 import Services.MonitoringServicesImpl;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.annotations.SerializedName;
 import dao.LocationDAOImpl;
 import dao.MonitorDAOImpl;
 import dao.MonitorServerDAOImpl;
@@ -9,12 +13,16 @@ import dao.ServerDAOImpl;
 import db.DBConnection;
 import util.Util;
 
+import java.lang.reflect.Field;
+import java.util.HashMap;
+
 /**
  * Created by Martha on 9/3/2016.
  */
 public class Provider {
     private static Provider instance = new Provider();
     private MonitoringServices services;
+    public static Gson gson = new GsonBuilder().create();
 
     public static Provider instance() {
         return instance;
@@ -25,12 +33,16 @@ public class Provider {
         try {
             DBConnection connectionProvider = new DBConnection();
             connectionProvider.setupConnection();
+
+
 //            DBTables dbProvider = new DBTables(connectionProvider);
 //            dbProvider.createDB(Util.getPropertyValue("database_name"));
 //            dbProvider.createLocationDBTable();
 //            dbProvider.createMonitorDBTable();
 //            dbProvider.createServerDBTable();
 //            dbProvider.createMonitorServerCrossDBTable();
+
+
             connectionProvider.mapConnectionToDataSource(Util.getPropertyValue("database_name"));
             monitoringServices = new MonitoringServicesImpl(
                     new LocationDAOImpl(connectionProvider),
@@ -38,6 +50,8 @@ public class Provider {
                     new ServerDAOImpl(connectionProvider),
                     new MonitorServerDAOImpl(connectionProvider));
             services = monitoringServices;
+
+
 //            for (int i = 0; i < 4; i++) {
 //                services.createLocation("Location" + (i + 1), "Address" + (i + 1));
 //            }
@@ -81,5 +95,37 @@ public class Provider {
 
     public MonitoringServices services() {
         return services;
+    }
+
+    // Json maker , but for some reason doesn't work, to be debugged later
+    public String jsonMaker(Object object) {
+        // String will stand for serialized name, object as the actual object value
+        HashMap<String, Object> requestData = new HashMap<String, Object>();
+        try {
+            // obtains fields from object
+            Field fields[] = object.getClass().getDeclaredFields();
+            //Iterates through fields
+            for (int i = 0; i < fields.length; ++i) {
+                // Makes field accessible for reflective usage
+                fields[i].setAccessible(true);
+                // Checks if field is annotated
+                if (fields[i].isAnnotationPresent(Objects.class)) {
+                    // Obtains filed value
+                    Object value = fields[i].toGenericString();
+                    // Obtains variable name
+                    String name = fields[i].getName();
+                    // Obtains serialized name
+                    SerializedName serializedName = fields[i].getAnnotation(SerializedName.class);
+                    // Checks if serialized exist changes name to serialized name, if not keeps variable name
+                    if (serializedName != null) name = serializedName.value();
+
+                    requestData.put(name, value);
+                }
+            }
+            return gson.toJson(requestData);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

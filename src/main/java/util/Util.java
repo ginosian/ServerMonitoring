@@ -14,6 +14,7 @@ public class Util {
     private static Properties properties;
     private static Random rand = new Random();
 
+
     public static String getPropertyValue(String property){
         if(properties == null) getProperty();
         return getProperty().getProperty(property);
@@ -30,6 +31,8 @@ public class Util {
         }
         return properties;
     }
+
+
 
     public static int rand(int lowest, int highest){
         return rand.nextInt(highest) + lowest;

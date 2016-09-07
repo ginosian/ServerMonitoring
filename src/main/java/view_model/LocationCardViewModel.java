@@ -1,13 +1,24 @@
 package view_model;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+
 /**
  * Created by Martha on 9/4/2016.
  */
-public class LocationCardViewModel {
+public class LocationCardViewModel implements Serializable{
 
+    @SerializedName("location_name")
     private String locationName;
+
+    @SerializedName("default_server_name")
     private String defaultServerName;
+
+    @SerializedName("default_server_density_value")
     private int defaultServerDensityValue;
+
+    @SerializedName("servers_names")
     private String[] serversNames;
 
     public LocationCardViewModel() {

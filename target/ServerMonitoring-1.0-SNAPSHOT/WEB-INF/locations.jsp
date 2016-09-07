@@ -8,7 +8,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<c:set var="root" value="${pageContext.request.contextPath}"/>
+
 <html>
 <head>
     <style type="text/css">
@@ -55,7 +55,8 @@
     <li>
         <a href="${pageContext.request.contextPath}/monitors">MONITORS</a></li>
 </ul>
-<form method="post"  action="${pageContext.request.contextPath}/locations">
+<form method="post" action="${pageContext.request.contextPath}/locations">
+    <c:set var="data" value="${data}"/>
     <table id="mytable" style="width: 100%; height: 100%; table-layout: fixed;" align="center">
         <tbody>
         <c:forEach items="${data.getCards()}" var="card">
@@ -107,9 +108,12 @@
         <tr style="table-layout: fixed; text-align: center; vertical-align: middle;">
             <td style="height: 5%;" colspan="1">
                 <input style="color: #757575; width: 70%; position: relative; white-space: normal; background-color: #fff9c4; font-size: 18px;"
-                       type="input" value="location name" name="server"/></td>
+                       type="input" value="location name" name="location" onfocus="value =  null" onblur="value = 'location name'"/>
+                <input style="color: #757575; width: 70%; position: relative; white-space: normal; background-color: #fff9c4; font-size: 18px;"
+                       type="input" value="location addr" name="address" onfocus="value = null" onblur="value = 'location name'"/>
+            </td>
             <td style="height: 5%;" colspan="2">
-            </td >
+            </td>
             <td style="height: 5%;" colspan="1">
                 <input style="width: 80%; position: relative; white-space: normal; background-color: #b0bec5; font-size: 24px;"
                        type="submit" value="Create location"/>
@@ -121,15 +125,18 @@
             </td>
         </tr>
         <tr style="table-layout: fixed; text-align: center; vertical-align: middle;">
-            <td style="height: 5%;" colspan="1">
+            <td colspan="1">
                 <input style="color: #757575; width: 70%; position: relative; white-space: normal; background-color: #fff9c4; font-size: 18px;"
-                       type="input" value="server name" name="server"/></td>
-            <td style="height: 5%;" colspan="2">
-                <select style="word-wrap: break-word; width: 50%; height: 20%; font-size: 18px;" name="locations" size="6">
-                    <option value="${user.getId()}">${user.getName()}</option>
+                       type="input" value="server name" name="server" onfocus="value = hidden"/></td>
+            <td colspan="2">
+                <select style="word-wrap: break-word; width: 50%; font-size: 18px;" name="location"
+                        size="6">
+                    <c:forEach items="${data.getLocationsNames()}" var="location">
+                        <option value="${location.toString()}">${location.toString()}</option>
+                    </c:forEach>
                 </select>
-            </td >
-            <td style="height: 5%;" colspan="1">
+            </td>
+            <td colspan="1">
                 <input style="width: 80%; position: relative; white-space: normal; background-color: #b0bec5; font-size: 24px;"
                        type="submit" value="Create server"/>
             </td>
@@ -141,12 +148,19 @@
 
 <script>
     function start(initial_time, ele) {
-        var initialTime = parseInt(initial_time);
-
+        var initialTime;
+        if (readCookie("timer") != undefined) {
+            initialTime = readCookie("timer");
+        } else {
+            initialTime = parseInt(initial_time);
+            createCookie("timer", initialTime, 365);
+        }
         tick();
         setInterval(function () {
             tick();
-            if (initialTime < -1) reset();
+            if (initialTime < -1) {
+                reset();
+            }
             if (initialTime < 6) paint("red")
         }, 1000)
 
@@ -159,19 +173,42 @@
             initialTime = initial_time;
             tick();
             paint("red");
+            eraseCookie("timer");
         }
 
         function paint(color) {
             ele.style.color = color;
         }
     }
-
     (function () {
         $("#mytable").find("div[data-timer]").each(function () {
             start($(this).data("timer"), $(this)[0]);
         });
     })();
 
+    function createCookie(name, value, days) {
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            var expires = "; expires=" + date.toGMTString();
+        } else var expires = "";
+        document.cookie = name + "=" + value + expires + "; path=/monitors";
+    }
+
+    function readCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+    }
+
+    function eraseCookie(name) {
+        createCookie(name, "", -1);
+    }
 </script>
 
 

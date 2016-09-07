@@ -7,6 +7,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
 <head>
     <style type="text/css">
         ul {
@@ -38,6 +39,7 @@
             background-color: #FDD835;
         }        </style>
 </head>
+<body>
 <ul>
     <li>
         <a href="${pageContext.request.contextPath}/home">HOME</a></li>
@@ -63,28 +65,27 @@
             <td>${card.getDefaultServerDensityValue()}</td>
         </tr>
     </c:forEach>
-    <tr style="font-size: 28px; text-align: center; table-layout: fixed; width: 33%; height: 5%; vertical-align: top; background-color: #f9a825;">
-        <td colspan="4">Create Monitor</td>
-    </tr>
-    <tr style="table-layout: fixed; text-align: center; vertical-align: middle; height: 10px;" colspan="4">
-        <td>
-            <input style="color: #757575; width: 50%; position: relative; white-space: normal; background-color: #fff9c4; font-size: 18px;"
-                   type="input" value="monitor name"/>
+    <tr>
+        <td style="font-size: 24px; text-align: center; vertical-align: middle; table-layout: fixed; width: 100%; height: 3%; background-color: #F57F17;"
+            colspan="4">CREATE MONITOR
         </td>
     </tr>
-    <tr style="table-layout: fixed; vertical-align: middle; font-size: 22px; text-align: left; width: 33%;">
-        <td colspan="1">Choose location</td>
-        <td>
-            <select style="word-wrap: break-word; width: 25%; height: 20%; font-size: 18px;" name="userId" size="6">
+    <tr style="table-layout: fixed; text-align: center; vertical-align: middle;">
+        <td style="height: 5%;" colspan="1">
+            <input style="color: #757575; width: 70%; position: relative; white-space: normal; background-color: #fff9c4; font-size: 18px;"
+                   type="input" value="monitor name"/></td>
+        <td style="height: 5%;" colspan="2">
+            <select style="word-wrap: break-word; width: 50%; height: 20%; font-size: 18px;" name="location" size="6">
                 <option value="${user.getId()}">${user.getName()}</option>
             </select>
         </td>
-    </tr>
-    <tr style="table-layout: fixed; text-align: center; vertical-align: middle; height: 50px;" colspan="4">
-        <td>
-            <input style="width: 100%; position: relative; white-space: normal; background-color: #b0bec5; font-size: 24px;"
-                   type="button" value="Create monitor"/>
+        <td style="height: 5%;" colspan="1">
+            <input style="width: 80%; position: relative; white-space: normal; background-color: #b0bec5; font-size: 24px;"
+                   type="submit" value="Create monitor"/>
         </td>
     </tr>
     </tbody>
 </table>
+</body>
+</html>
+

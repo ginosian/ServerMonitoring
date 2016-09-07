@@ -1,13 +1,18 @@
 package view_model;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.beans.Transient;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Martha on 9/4/2016.
  */
-public class LocationViewModel {
-    private static LocationViewModel model = new LocationViewModel();
+public class LocationViewModel implements Serializable{
+
+    private static transient LocationViewModel model = new LocationViewModel();
 
     public static LocationViewModel model() {
         return model;
@@ -18,7 +23,10 @@ public class LocationViewModel {
         locationsNames = new ArrayList<String>();
     }
 
+    @SerializedName("data")
     private List<LocationCardViewModel> cards;
+
+    @SerializedName("location_names")
     private List<String> locationsNames;
 
     public void addCard(LocationCardViewModel card){
@@ -41,7 +49,7 @@ public class LocationViewModel {
         return cards;
     }
 
-    public void setCards(List<LocationCardViewModel> cards) {
-        this.cards = cards;
+    public List<String> getLocationsNames() {
+        return locationsNames;
     }
 }
