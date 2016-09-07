@@ -23,6 +23,7 @@ public class MonitorsServlet extends HttpServlet implements DS{
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
+            request.removeAttribute("data");
             request.setAttribute("data", updatePageWithData());
             request.getRequestDispatcher(getServletContext().getContextPath() + monitorsPath).forward(request, response);
         } catch (Exception e) {

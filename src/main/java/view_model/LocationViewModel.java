@@ -15,9 +15,11 @@ public class LocationViewModel {
 
     private LocationViewModel() {
         cards = new ArrayList<LocationCardViewModel>();
+        locationsNames = new ArrayList<String>();
     }
 
     private List<LocationCardViewModel> cards;
+    private List<String> locationsNames;
 
     public void addCard(LocationCardViewModel card){
         cards.add(card);
@@ -25,6 +27,14 @@ public class LocationViewModel {
 
     public void clearCards(){
         cards.clear();
+    }
+
+    public void addLocation(String name){
+        locationsNames.add(name);
+    }
+
+    public void clearLocationsSelectionList(){
+        locationsNames.clear();
     }
 
     public List<LocationCardViewModel> getCards() {

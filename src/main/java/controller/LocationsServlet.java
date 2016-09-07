@@ -19,14 +19,24 @@ import java.util.List;
  */
 @WebServlet(urlPatterns = {"/locations"})
 public class LocationsServlet extends HttpServlet implements DS {
+
     public void doGet(HttpServletRequest request, HttpServletResponse response)
+
+
             throws ServletException, IOException {
             try {
+                request.removeAttribute("data");
+                response.reset();
                 request.setAttribute("data", updatePageWithData());
                 request.getRequestDispatcher(getServletContext().getContextPath() + locationsPath).forward(request, response);
             } catch (Exception e) {
                 e.printStackTrace();
             }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher(homePath).forward(request, response);
     }
 
     protected LocationViewModel updatePageWithData()throws Exception{
@@ -57,7 +67,7 @@ public class LocationsServlet extends HttpServlet implements DS {
                 defaultServerName = e.getMessage();
                 defaultServerDensityValue = 0;
             } catch (Exception e){
-                defaultServerName = "Something went wrong";
+                defaultServerName = "No default server";
                 defaultServerDensityValue = 0;
             }
 
@@ -71,6 +81,10 @@ public class LocationsServlet extends HttpServlet implements DS {
             locationViewModel.addCard(card);
         }
         return locationViewModel;
+    }
+
+    public LocationCardViewModel addNewCard(){
+        return null;
     }
 
 }
