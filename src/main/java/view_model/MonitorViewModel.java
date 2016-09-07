@@ -23,6 +23,10 @@ public class MonitorViewModel {
         cards.add(card);
     }
 
+    public void clearCards(){
+        cards.clear();
+    }
+
     public List<MonitorCardViewModel> getCards() {
         return cards;
     }

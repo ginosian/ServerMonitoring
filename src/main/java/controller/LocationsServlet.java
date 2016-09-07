@@ -2,7 +2,7 @@ package controller;
 
 import entity.LocationDTO;
 import entity.ServerDTO;
-import exception.NoDefaultServerException;
+import exception.NoServerException;
 import view_model.LocationCardViewModel;
 import view_model.LocationViewModel;
 
@@ -31,6 +31,7 @@ public class LocationsServlet extends HttpServlet implements DS {
 
     protected LocationViewModel updatePageWithData()throws Exception{
         LocationViewModel locationViewModel = LocationViewModel.model();
+        locationViewModel.clearCards();
         List<LocationDTO> locations = Provider.instance().services().getAllMonitoredLocations();
 
         LocationCardViewModel card;
@@ -46,13 +47,13 @@ public class LocationsServlet extends HttpServlet implements DS {
             ServerDTO defaultServer;
             int defaultServerDensityValue;
             try {
-                // Gets default server
+                 // Gets default server
                 defaultServer = Provider.instance().services().getDefaultServer(locationId);
                 defaultServerName = defaultServer.getServer_name();
 
                 // Gets default server density value
                 defaultServerDensityValue = Provider.instance().services().getMonitorByLocation(locationId).getCheck_frequency();
-            } catch (NoDefaultServerException e){
+            } catch (NoServerException e){
                 defaultServerName = e.getMessage();
                 defaultServerDensityValue = 0;
             } catch (Exception e){

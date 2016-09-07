@@ -32,6 +32,7 @@ public class MonitorsServlet extends HttpServlet implements DS{
 
     protected MonitorViewModel updatePageWithData()throws Exception{
         MonitorViewModel monitorViewModel = MonitorViewModel.model();
+        monitorViewModel.clearCards();
         List<MonitorDTO> monitors = Provider.instance().services().getAllMonitors();
 
         MonitorCardViewModel card;
