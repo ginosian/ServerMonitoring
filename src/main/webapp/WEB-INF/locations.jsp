@@ -1,4 +1,5 @@
-<%@ page import="controller.LocationsServlet" %><%--
+<%@ page import="controller.LocationsServlet" %>
+<%--
   Created by IntelliJ IDEA.
   User: Martha
   Date: 8/29/2016
@@ -41,6 +42,203 @@
             background-color: #FDD835;
         }
     </style>
+    <style>
+        #locationName {
+            table-layout: fixed;
+            vertical-align: middle;
+            font-size: 30px;
+            text-align: left;
+            width: 100%;
+            background-color: #78909C;
+        }
+
+        #mytable {
+            width: 100%;
+            height: 100%;
+            table-layout: fixed;
+        }
+
+        #densityCheck {
+            vertical-align: middle;
+            font-size: 24px;
+            text-align: left;
+            width: 70%;
+            background-color: #b0bec5;
+        }
+
+        #densityCheckValue {
+            vertical-align: middle;
+            font-size: 22px;
+            text-align: left;
+            width: 30%;
+            background-color: #b0bec5;
+        }
+
+        #defaultServer {
+            table-layout: fixed;
+            vertical-align: middle;
+            font-size: 22px;
+            text-align: left;
+            width: 25%;
+            background-color: #cfd8dc;
+            color: #311B92;
+        }
+
+        #defaultServerValue {
+            table-layout: fixed;
+            vertical-align: middle;
+            font-size: 22px;
+            text-align: left;
+            width: 25%;
+            background-color: #cfd8dc;
+        }
+
+        #currentDensity {
+            table-layout: fixed;
+            vertical-align: middle;
+            font-size: 22px;
+            text-align: left;
+            width: 25%;
+            background-color: #cfd8dc;
+            color: #311B92;
+        }
+
+        #currentDensityValue {
+            table-layout: fixed;
+            vertical-align: middle;
+            font-size: 22px;
+            text-align: left;
+            width: 25%;
+            background-color: #cfd8dc;
+        }
+
+        #allServers {
+            font-size: 28px;
+            text-align: left;
+            table-layout: fixed;
+            width: 33%;
+            height: 100%;
+            vertical-align: top;
+            background-color: #eceff1;
+        }
+
+        #eachServerRow {
+            font-size: 28px;
+            text-align: left;
+            table-layout: fixed;
+            width: 33%;
+            height: 100%;
+            vertical-align: top;
+        }
+
+        #eachServerDiv {
+            word-wrap: break-word;
+            text-align: left;
+            font-size: 24px;
+        }
+
+        #createMonitorLabel {
+            font-size: 24px;
+            text-align: center;
+            vertical-align: middle;
+            table-layout: fixed;
+            width: 100%;
+            height: 3%;
+            background-color: #F57F17;
+        }
+
+        #createLocationBlock {
+            table-layout: fixed;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        #location_name {
+            color: #757575;
+            width: 70%;
+            position: relative;
+            white-space: normal;
+            background-color: #fff9c4;
+            font-size: 18px;
+        }
+
+        #locationInputsColumn {
+            height: 5%;
+        }
+
+        #locationErrorPanel {
+            color: #c51202;
+        }
+
+        #location_name {
+            color: #757575;
+            width: 70%;
+            position: relative;
+            white-space: normal;
+            background-color: #fff9c4;
+            font-size: 18px;
+        }
+
+        #location_addr {
+            color: #757575;
+            width: 70%;
+            position: relative;
+            white-space: normal;
+            background-color: #fff9c4;
+            font-size: 18px;
+        }
+
+        #LocationSubmitButton {
+            width: 80%;
+            position: relative;
+            white-space: normal;
+            background-color: #b0bec5;
+            font-size: 24px;
+        }
+
+        #createLocationTitle {
+            font-size: 24px;
+            text-align: center;
+            vertical-align: middle;
+            table-layout: fixed;
+            width: 100%;
+            height: 3%;
+            background-color: #F57F17;
+        }
+
+        #createLocationBlock {
+            table-layout: fixed;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        #serverErrorPanel {
+            color: #c51202;
+        }
+
+        #newServerName {
+            color: #757575;
+            width: 70%;
+            position: relative;
+            white-space: normal;
+            background-color: #fff9c4;
+            font-size: 18px;
+        }
+
+        #chosenLocation {
+            word-wrap: break-word;
+            width: 50%;
+            font-size: 18px;
+        }
+
+        #createServerButton {
+            width: 80%;
+            position: relative;
+            white-space: normal;
+            background-color: #b0bec5;
+            font-size: 24px;
+        }
+    </style>
 </head>
 <script src="http://code.jquery.com/jquery-1.10.2.js"
         type="text/javascript"></script>
@@ -48,113 +246,99 @@
 <body>
 <ul>
     <li>
-
         <a href="${pageContext.request.contextPath}/home">HOME</a></li>
     <li>
         <a class="active">LOCATIONS</a></li>
     <li>
         <a href="${pageContext.request.contextPath}/monitors">MONITORS</a></li>
 </ul>
+
 <form method="post" action="${pageContext.request.contextPath}/locations">
-    <c:set var="data" value="${data}" />
-    <table id="mytable" style="width: 100%; height: 100%; table-layout: fixed;" align="center">
+    <c:set var="data" value="${data}"/>
+    <table id="mytable">
         <tbody>
-        <tr>
-            <td style="vertical-align: middle; font-size: 30px; text-align: left; width: 100%;"
-                colspan="4">${data.getError_message()}</td>
-        </tr>
+
+        <c:set var="count" value="0" scope="page" />
         <c:forEach items="${data.getCards()}" var="card">
             <tr>
-                <td style="table-layout: fixed; vertical-align: middle; font-size: 30px; text-align: left; width: 100%; background-color: #78909C;"
-                    colspan="4">${card.getLocationName()}</td>
+                <td id="locationName" colspan="4">${card.getLocationName()}</td>
             </tr>
             <tr>
-                <td style="vertical-align: middle; font-size: 24px; text-align: left; width: 70%; background-color: #b0bec5;"
-                    colspan="3">Time left for next density check
-                </td>
-                <td style="vertical-align: middle; font-size: 22px; text-align: left; width: 30%; background-color: #b0bec5;"
-                    colspan="1">
-                    <div data-timer="${card.getDefaultServerDensityValue()}"></div>
-                    <input hidden="hidden" id="density" value="${card.getDefaultServerDensityValue()}"/>
+                <td id="densityCheck" colspan="3">Time left for next density check</td>
+                <td id="densityCheckValue" colspan="1">
+                    <div id="${count}" data-timer="${card.getDefaultServerDensityValue()}"></div>
                 </td>
             </tr>
             <tr>
-                <td style="table-layout: fixed; vertical-align: middle; font-size: 22px; text-align: left; width: 25%; background-color: #cfd8dc; color:#311B92">
-                    Default server
+                <td id="defaultServer">Default server</td>
+                <td>
+                    <div server-name="${card.getDefaultServerName()}"></div>
                 </td>
-                <td style="table-layout: fixed; vertical-align: middle; font-size: 22px; text-align: left; width: 25%;
-                background-color: #cfd8dc;">${card.getDefaultServerName()}</td>
-                <td style="table-layout: fixed; vertical-align: middle; font-size: 22px; text-align: left; width: 25%; background-color: #cfd8dc;color:#311B92">
-                    Current density
-                </td>
-                <td style="table-layout: fixed; vertical-align: middle; font-size: 22px; text-align: left; width: 25%;
-                background-color: #cfd8dc;">${card.getDefaultServerDensityValue()}</td>
+                <td id="currentDensity">Current density</td>
+                <td id="currentDensityValue">${card.getDefaultServerDensityValue()}</td>
             </tr>
             <tr>
-                <td style="font-size: 28px; text-align: left; table-layout: fixed; width: 33%; height: 100%; vertical-align: top; background-color: #eceff1;"
-                    colspan="4">All servers
-                </td>
+                <td id="allServers" colspan="4">All servers</td>
             </tr>
             <tr>
-                <td style="font-size: 28px; text-align: left; table-layout: fixed; width: 33%; height: 100%; vertical-align: top;"
-                    colspan="4">
+                <td id="eachServerRow" colspan="4">
                     <c:forEach items="${card.getServersNames()}" var="server_name">
-                        <div style="word-wrap:break-word; text-align: left; font-size:24px">${server_name}</div>
+                        <div id="eachServerDiv">${server_name}</div>
                     </c:forEach>
                 </td>
             </tr>
+
+            <c:set var="count" value="${count + 1}" scope="page"/>
         </c:forEach>
+
+        </tbody>
+    </table>
+
+    <table id="submitTable" style="width: 100%">
+        <tbody>
         <tr>
-            <td style="font-size: 24px; text-align: center; vertical-align: middle; table-layout: fixed; width: 100%; height: 3%; background-color: #F57F17;"
-                colspan="4">CREATE LOCATION
-            </td>
+            <td id="createMonitorLabel" colspan="4">CREATE LOCATION</td>
         </tr>
-        <tr style="table-layout: fixed; text-align: center; vertical-align: middle;">
-            <td style="height: 5%;" colspan="1">
-                <p style="color: #c51202">${error}</p>
-                <input style="color: #757575; width: 70%; position: relative; white-space: normal; background-color: #fff9c4; font-size: 18px;"
-                       type="input" value="location name" name="location" onfocus="value =  null"/>
-                <input style="color: #757575; width: 70%; position: relative; white-space: normal; background-color: #fff9c4; font-size: 18px;"
-                       type="input" value="location addr" name="address" onfocus="value = null"/>
+        <tr id="createLocationBlock">
+            <td id="locationInputsColumn" colspan="1">
+                <p id="locationErrorPanel">${data.getLocation_exist_error_message()}</p>
+                <input id="location_name" name="location_name" type="text" placeholder="location name"/>
+                <input id="location_addr" name="location_address" type="text" placeholder="location addr"/>
             </td>
-            <td style="height: 5%;" colspan="2">
-            </td>
+            <td style="height: 5%;" colspan="2"></td>
             <td style="height: 5%;" colspan="1">
-                <input style="width: 80%; position: relative; white-space: normal; background-color: #b0bec5; font-size: 24px;"
-                       type="submit" value="Create location"/>
+                <input id="LocationSubmitButton" name="act" type="submit" value="Create location"/>
             </td>
         </tr>
         <tr>
-            <td style="font-size: 24px; text-align: center; vertical-align: middle; table-layout: fixed; width: 100%; height: 3%; background-color: #F57F17;"
-                colspan="4">CREATE SERVER
-            </td>
+            <td id="createLocationTitle" colspan="4">CREATE SERVER</td>
         </tr>
-        <tr style="table-layout: fixed; text-align: center; vertical-align: middle;">
+        <tr id="createServerBlock">
             <td colspan="1">
-                <p style="color: #c51202">${error}</p>
-                <input style="color: #757575; width: 70%; position: relative; white-space: normal; background-color: #fff9c4; font-size: 18px;"
-                       type="input" value="server name" name="server" onfocus="value =  null"/></td>
+                <p id="serverErrorPanel">${data.getServer_exist_error_message()}</p>
+                <input id="newServerName" name="newServerName" type="text" placeholder="server name"/></td>
             <td colspan="2">
-                <select style="word-wrap: break-word; width: 50%; font-size: 18px;" name="location"
-                        size="6">
+                <select id="chosenLocation" name="chosen_location" size="6">
                     <c:forEach items="${data.getLocationsNames()}" var="location">
-                        <option value="${location.toString()}">${location.toString()}</option>
+                        <option id="aLocation" value="${location.toString()}">${location.toString()}</option>
                     </c:forEach>
                 </select>
             </td>
             <td colspan="1">
-                <input style="width: 80%; position: relative; white-space: normal; background-color: #b0bec5; font-size: 24px;"
-                       type="submit" value="Create server"/>
+                <input id="createServerButton" name="act" type="submit" value="Create server"/>
             </td>
         </tr>
         </tbody>
     </table>
 </form>
 
+</body>
 
 <script>
-    function start(initial_time, ele) {
+    function start(initial_time, ele, serverNameTD) {
+//        debugger;
         var initialTime;
+        var isFrozen;
         if (readCookie("timer") != undefined) {
             initialTime = readCookie("timer");
         } else {
@@ -163,35 +347,59 @@
         }
         tick();
         setInterval(function () {
+            if (isFrozen) return;
             tick();
-            if (initialTime < -1) {
+            if (initialTime < 0) {
                 reset();
             }
             if (initialTime < 6) paint("red")
         }, 1000)
-
         function tick() {
             ele.innerHTML = initialTime.toString();
             --initialTime;
         }
-
         function reset() {
-            initialTime = initial_time;
-            tick();
+            debugger;
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+//                alert("readyState: " + this.readyState + " status: " + this.status + " " +
+//                        this.statusText);
+
+                if (this.readyState == 4 && this.status == 200) {
+                    var json = JSON.parse(this.responseText);
+                    serverNameTD.innerHTML = json.serverName;
+                    initial_time = json.density;
+                    initialTime = json.density;
+                    isFrozen = false;
+                }
+            };
+            xhttp.open("PUT", "locations", true);
+            isFrozen = true;
+            xhttp.send();
+
+
             paint("red");
             eraseCookie("timer");
         }
-
         function paint(color) {
             ele.style.color = color;
         }
     }
     (function () {
+        var currentDensityDiv = $("#mytable").find("div[data-timer]");
+        var currentServerNameTD = $("#mytable").find("div[server-name]");
+
+//        currentDensityDiv.each(function () {
+//            start($(this).data("timer"), );
+//        });
+
+
+
         $("#mytable").find("div[data-timer]").each(function () {
-            start($(this).data("timer"), $(this)[0]);
+            debugger;
+            start($(this).data("timer"), $(this)[0], currentServerNameTD[$(this)[0].id]);
         });
     })();
-
     function createCookie(name, value, days) {
         if (days) {
             var date = new Date();
@@ -200,7 +408,6 @@
         } else var expires = "";
         document.cookie = name + "=" + value + expires + "; path=/monitors";
     }
-
     function readCookie(name) {
         var nameEQ = name + "=";
         var ca = document.cookie.split(';');
@@ -211,32 +418,86 @@
         }
         return null;
     }
-
     function eraseCookie(name) {
         createCookie(name, "", -1);
     }
 </script>
 
-<script>
-    function loadDoc() {
-        var json;
-        var str;
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-//                json = JSON.parse(this.prototype);
-//                for (i = 0; i < json.length; ++i) {
-//                }
-                document.getElementsByTagName("error").innerHTML = xhttp;
-//                document.getElementById("vle").innerHTML = "VAZGENCHIK";
-            }
-        };
-        xhttp.open("GET", "locations", true);
-        xhttp.send();
-    }
-</script>
 
 
-</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<%--<script>--%>
+    <%--function loadDoc() {--%>
+        <%--var json;--%>
+        <%--var xhttp = new XMLHttpRequest();--%>
+        <%--xhttp.onreadystatechange = function() {--%>
+            <%--if (this.readyState == 4 && this.status == 200) {--%>
+                <%--json = JSON.parse(this.responseText);--%>
+
+                <%--document.getElementById("test").innerHTML = json;--%>
+                <%--for (i = 0; i < json.length; ++i) {--%>
+<%--//                    var tr = document.createElement("tr")--%>
+<%--//                    var name = document.createElement("th");--%>
+<%--//                    name.innerHTML = json[i].name;--%>
+<%--//                    var surname = document.createElement("th");--%>
+<%--//                    surname.innerHTML = json[i].surname;--%>
+<%--//                    var age = document.createElement("th");--%>
+<%--//                    age.innerHTML = json[i].age;--%>
+<%--//                    var checkTime = document.createElement("th");--%>
+<%--//                    tr.appendChild(name);--%>
+<%--//                    tr.appendChild(surname);--%>
+<%--//                    tr.appendChild(age);--%>
+<%--//                    tr.appendChild(checkTime);--%>
+<%--//                    document.getElementById("table").appendChild(tr);--%>
+<%--//                    timer(checkTime, json[i].checkTime);--%>
+                <%--}--%>
+            <%--}--%>
+        <%--};--%>
+        <%--xhttp.open("GET", "locations", true);--%>
+        <%--xhttp.send();--%>
+    <%--}--%>
+    <%--function timer(item, time) {--%>
+        <%--tick(item, time);--%>
+        <%--var defaultColor = item.style.color;--%>
+        <%--setInterval(function() {--%>
+            <%--time = tick(item, time);--%>
+            <%--if (time < 0) time = reset(item, time, defaultColor);--%>
+            <%--if (time < 10) paint("red")--%>
+        <%--}, 1000)--%>
+    <%--}--%>
+    <%--function tick(item, t) {--%>
+        <%--item.innerHTML = t.toString();--%>
+        <%--return --t;--%>
+    <%--}--%>
+    <%--function reset(item, defaultColor) {--%>
+        <%--paint(item, defaultColor);--%>
+        <%--var newTime = 0;--%>
+        <%--var xhttp = new XMLHttpRequest();--%>
+        <%--xhttp.onreadystatechange = function() {--%>
+            <%--if (this.readyState == 4 && this.status == 200) {--%>
+                <%--newTime = this.responseText;--%>
+            <%--}--%>
+        <%--};--%>
+        <%--xhttp.open("GET", "ajax/time", false);--%>
+        <%--xhttp.send();--%>
+        <%--return newTime;--%>
+    <%--}--%>
+    <%--function paint(item, color) {--%>
+        <%--item.style.color = color;--%>
+    <%--}--%>
+<%--</script>--%>
 
 </html>

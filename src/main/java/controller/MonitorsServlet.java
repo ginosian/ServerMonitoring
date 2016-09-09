@@ -24,17 +24,18 @@ public class MonitorsServlet extends HttpServlet implements DS{
             throws ServletException, IOException {
         try {
             request.removeAttribute("data");
-            request.setAttribute("data", updatePageWithData());
+            request.setAttribute("data", updatePageWithData(request));
             request.getRequestDispatcher(getServletContext().getContextPath() + monitorsPath).forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    protected MonitorViewModel updatePageWithData()throws Exception{
+    protected MonitorViewModel updatePageWithData(HttpServletRequest request)throws Exception{
         MonitorViewModel monitorViewModel = MonitorViewModel.model();
         monitorViewModel.clearCards();
         List<MonitorDTO> monitors = Provider.instance().services().getAllMonitors();
+        List<LocationDTO> locations = Provider.instance().services().getAllNotMonitoredLocations();
 
         MonitorCardViewModel card;
         for (int i = 0; i < monitors.size(); i++) {
@@ -54,6 +55,11 @@ public class MonitorsServlet extends HttpServlet implements DS{
             // Gets default server density value
             int defaultServerDensityValue = Provider.instance().services().getMonitorByLocation(locationId).getCheck_frequency();
 
+            int currentCountdown;
+            String currentCountdownString = request.getParameter("data-timer");
+            if (currentCountdownString == null || !currentCountdownString.isEmpty()) currentCountdown = defaultServerDensityValue;
+            else currentCountdown = Integer.getInteger(currentCountdownString);
+
             // Gets Locations which are not monitored
             List<LocationDTO> notMonitoredLocation = Provider.instance().services().getAllNotMonitoredLocations();
             String [] locationsNames = new String[notMonitoredLocation.size()];
@@ -62,9 +68,15 @@ public class MonitorsServlet extends HttpServlet implements DS{
             }
 
             card.updateData(monitors.get(i).getMonitor_name(),
-                    locationName, defaultServerName, defaultServerDensityValue, locationsNames);
+                    locationName, defaultServerName, defaultServerDensityValue, currentCountdown, locationsNames);
             monitorViewModel.addCard(card);
         }
+        if(locations != null && locations.size() != 0) {
+            for (int i = 0; i < locations.size(); i++) {
+                monitorViewModel.addLocation(locations.get(i).getLocation_name());
+            }
+        }else {monitorViewModel.addLocation("No location");}
+
         return monitorViewModel;
     }
 

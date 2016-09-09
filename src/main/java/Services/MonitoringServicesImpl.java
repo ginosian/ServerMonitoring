@@ -4,10 +4,10 @@ import dao.LocationDAO;
 import dao.MonitorDAO;
 import dao.MonitorServerDAO;
 import dao.ServerDAO;
-import exception.*;
 import entity.LocationDTO;
 import entity.MonitorDTO;
 import entity.ServerDTO;
+import exception.*;
 
 import java.util.List;
 
@@ -326,7 +326,7 @@ public class MonitoringServicesImpl implements MonitoringServices{
     }
 
     public List<LocationDTO> getAllNotMonitoredLocations() throws Exception {
-        List<LocationDTO> locations = getAllMonitoredLocations();
+        List<LocationDTO> locations = getAllLocations();
         for (int i = 0; i < locations.size(); i++) {
             LocationDTO location = locations.get(i);
             int locationId = location.getLocation_id();

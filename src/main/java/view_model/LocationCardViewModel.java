@@ -18,6 +18,9 @@ public class LocationCardViewModel implements Serializable{
     @SerializedName("default_server_density_value")
     private int defaultServerDensityValue;
 
+    @SerializedName("default_server_current_countdown")
+    private int defaultServerCurrentCountdown;
+
     @SerializedName("servers_names")
     private String[] serversNames;
 
@@ -27,10 +30,12 @@ public class LocationCardViewModel implements Serializable{
     public LocationCardViewModel updateData (String locationName,
                                  String defaultServerName,
                                  int defaultServerDensityValue,
+                                 int defaultServerCurrentCountdown,
                                  String[] serversName) {
         this.locationName = locationName;
         this.defaultServerName = defaultServerName;
         this.defaultServerDensityValue = defaultServerDensityValue;
+        this.defaultServerCurrentCountdown = defaultServerCurrentCountdown;
         this.serversNames = serversName;
         return this;
     }
@@ -65,5 +70,13 @@ public class LocationCardViewModel implements Serializable{
 
     public void setServersNames(String[] serversNames) {
         this.serversNames = serversNames;
+    }
+
+    public int getDefaultServerCurrentCountdown() {
+        return defaultServerCurrentCountdown;
+    }
+
+    public void setDefaultServerCurrentCountdown(int defaultServerCurrentCountdown) {
+        this.defaultServerCurrentCountdown = defaultServerCurrentCountdown;
     }
 }

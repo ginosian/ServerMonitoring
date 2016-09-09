@@ -80,17 +80,17 @@ public class DBConnection implements ConnectionProvider, DBConnectionListener {
 
     private void printDataSourceInfo() {
         try {
-            System.out.println("Connection was opened " + countOpenedConnection + "times");
-            System.out.println("NumUnclosedOrphanedConnections " + dataSource.getNumUnclosedOrphanedConnections());
-            System.out.println("NumConnections " + dataSource.getNumConnections());
-            System.out.println("NumBusyConnections " + dataSource.getNumBusyConnections());
-            System.out.println("NumIdleConnections " + dataSource.getNumIdleConnections());
-            System.out.println("ThreadPoolNumActiveThreads " + dataSource.getThreadPoolNumActiveThreads());
-            System.out.println("ThreadPoolNumTasksPending " + dataSource.getThreadPoolNumTasksPending());
-            System.out.println("NumUserPools " + dataSource.getNumUserPools());
-            System.out.println();
-            System.out.println();
-            System.out.println();
+//            System.out.println("Connection was opened " + countOpenedConnection + "times");
+//            System.out.println("NumUnclosedOrphanedConnections " + dataSource.getNumUnclosedOrphanedConnections());
+//            System.out.println("NumConnections " + dataSource.getNumConnections());
+//            System.out.println("NumBusyConnections " + dataSource.getNumBusyConnections());
+//            System.out.println("NumIdleConnections " + dataSource.getNumIdleConnections());
+//            System.out.println("ThreadPoolNumActiveThreads " + dataSource.getThreadPoolNumActiveThreads());
+//            System.out.println("ThreadPoolNumTasksPending " + dataSource.getThreadPoolNumTasksPending());
+//            System.out.println("NumUserPools " + dataSource.getNumUserPools());
+//            System.out.println();
+//            System.out.println();
+//            System.out.println();
         } catch (Exception e) {
             e.printStackTrace();
         }

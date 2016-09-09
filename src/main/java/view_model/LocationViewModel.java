@@ -2,7 +2,6 @@ package view_model;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.beans.Transient;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,8 +28,11 @@ public class LocationViewModel implements Serializable{
     @SerializedName("location_names")
     private List<String> locationsNames;
 
-    @SerializedName("error")
-    private String error_message;
+    @SerializedName("error_location")
+    private String location_exist_error_message;
+
+    @SerializedName("error_server")
+    private String server_exist_error_message;
 
     public void addCard(LocationCardViewModel card){
         cards.add(card);
@@ -48,6 +50,11 @@ public class LocationViewModel implements Serializable{
         locationsNames.clear();
     }
 
+    public void removeErrorMessages(){
+        this.location_exist_error_message = null;
+        this.server_exist_error_message = null;
+    }
+
     public List<LocationCardViewModel> getCards() {
         return cards;
     }
@@ -56,11 +63,21 @@ public class LocationViewModel implements Serializable{
         return locationsNames;
     }
 
-    public String getError_message() {
-        return error_message;
+    public String getLocation_exist_error_message() {
+        return location_exist_error_message;
     }
 
-    public void setError_message(String error_message) {
-        this.error_message = error_message;
+    public void setLocation_exist_error_message(String location_exist_error_message) {
+        this.location_exist_error_message = location_exist_error_message;
     }
+
+    public String getServer_exist_error_message() {
+        return server_exist_error_message;
+    }
+
+    public void setServer_exist_error_message(String server_exist_error_message) {
+        this.server_exist_error_message = server_exist_error_message;
+    }
+
+
 }
