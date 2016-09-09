@@ -51,6 +51,33 @@
             width: 100%;
             background-color: #78909C;
         }
+        #monitored {
+            font-size: 24px;
+            text-align: center;
+            vertical-align: middle;
+            table-layout: fixed;
+            width: 100%;
+            height: 3%;
+            background-color: #F57F17;
+        }
+        #notMonitored {
+            font-size: 24px;
+            text-align: center;
+            vertical-align: middle;
+            table-layout: fixed;
+            width: 100%;
+            height: 3%;
+            background-color: #F57F17;
+        }
+
+        #locationNameN {
+            table-layout: fixed;
+            vertical-align: middle;
+            font-size: 30px;
+            text-align: left;
+            width: 100%;
+            background-color: #78909C;
+        }
 
         #mytable {
             width: 100%;
@@ -112,6 +139,44 @@
             background-color: #cfd8dc;
         }
 
+        #defaultServerN {
+            table-layout: fixed;
+            vertical-align: middle;
+            font-size: 22px;
+            text-align: left;
+            width: 25%;
+            background-color: #cfd8dc;
+            color: #311B92;
+        }
+
+        #defaultServerValueN {
+            table-layout: fixed;
+            vertical-align: middle;
+            font-size: 22px;
+            text-align: left;
+            width: 25%;
+            background-color: #cfd8dc;
+        }
+
+        #currentDensityN {
+            table-layout: fixed;
+            vertical-align: middle;
+            font-size: 22px;
+            text-align: left;
+            width: 25%;
+            background-color: #cfd8dc;
+            color: #311B92;
+        }
+
+        #currentDensityValueN {
+            table-layout: fixed;
+            vertical-align: middle;
+            font-size: 22px;
+            text-align: left;
+            width: 25%;
+            background-color: #cfd8dc;
+        }
+
         #allServers {
             font-size: 28px;
             text-align: left;
@@ -123,6 +188,25 @@
         }
 
         #eachServerRow {
+            font-size: 28px;
+            text-align: left;
+            table-layout: fixed;
+            width: 33%;
+            height: 100%;
+            vertical-align: top;
+        }
+
+        #allServersN {
+            font-size: 28px;
+            text-align: left;
+            table-layout: fixed;
+            width: 33%;
+            height: 100%;
+            vertical-align: top;
+            background-color: #eceff1;
+        }
+
+        #eachServerRowN {
             font-size: 28px;
             text-align: left;
             table-layout: fixed;
@@ -164,19 +248,12 @@
 
         #locationInputsColumn {
             height: 5%;
+            text-align: left;
+            vertical-align: middle;
         }
 
         #locationErrorPanel {
             color: #c51202;
-        }
-
-        #location_name {
-            color: #757575;
-            width: 70%;
-            position: relative;
-            white-space: normal;
-            background-color: #fff9c4;
-            font-size: 18px;
         }
 
         #location_addr {
@@ -259,23 +336,32 @@
         <tbody>
 
         <c:set var="count" value="0" scope="page" />
-        <c:forEach items="${data.getCards()}" var="card">
+        <tr>
+            <td id="monitored" colspan="4">MONITORED LOCATIONS</td>
+        </tr>
+        <c:forEach items="${data.getMonitoredLocationsCards()}" var="card">
             <tr>
                 <td id="locationName" colspan="4">${card.getLocationName()}</td>
             </tr>
             <tr>
                 <td id="densityCheck" colspan="3">Time left for next density check</td>
                 <td id="densityCheckValue" colspan="1">
-                    <div id="${count}" data-timer="${card.getDefaultServerDensityValue()}"></div>
+                    <div Style="vertical-align: middle;
+                                font-size: 22px;
+                                text-align: left;
+                                width: 30%;
+                                background-color: #b0bec5;"
+                         id="${count}" data-timer="${card.getDefaultServerDensityValue()}"></div>
                 </td>
             </tr>
             <tr>
-                <td id="defaultServer">Default server</td>
-                <td>
-                    <div server-name="${card.getDefaultServerName()}"></div>
+                <td id="defaultServer" colspan="1">Default server</td>
+                <td id="defaultServerValue" colspan="1">
+                    <div
+                         server-name="${card.getDefaultServerName()}">${card.getDefaultServerName()}</div>
                 </td>
                 <td id="currentDensity">Current density</td>
-                <td id="currentDensityValue">${card.getDefaultServerDensityValue()}</td>
+                <td id="currentDensityValue" current-density = ${card.getDefaultServerDensityValue()}>${card.getDefaultServerDensityValue()}</td>
             </tr>
             <tr>
                 <td id="allServers" colspan="4">All servers</td>
@@ -289,6 +375,30 @@
             </tr>
 
             <c:set var="count" value="${count + 1}" scope="page"/>
+        </c:forEach>
+        <tr>
+            <td id="notMonitored" colspan="4">NOT MONITORED LOCATIONS</td>
+        </tr>
+        <c:forEach items="${data.getNotMonitoredLocationsCards()}" var="card">
+            <tr id="locationNameN">
+                <td  colspan="4">${card.getLocationName()}</td>
+            </tr>
+            <tr id="defaultServerN">
+                <td colspan="1">Default server</td>
+                <td id="defaultServerValueN" colspan="1">${card.getDefaultServerName()}</td>
+                <td id="currentDensityN" colspan="1">Current density</td>
+                <td id="currentDensityValueN" colspan="1">${card.getDefaultServerDensityValue()}</td>
+            </tr>
+            <tr>
+                <td id="allServersN" colspan="4">All servers</td>
+            </tr>
+            <tr>
+                <td id="eachServerRowN" colspan="4">
+                    <c:forEach items="${card.getServersNames()}" var="server_name">
+                        <div id="eachServerDiv">${server_name}</div>
+                    </c:forEach>
+                </td>
+            </tr>
         </c:forEach>
 
         </tbody>
@@ -335,7 +445,7 @@
 </body>
 
 <script>
-    function start(initial_time, ele, serverNameTD) {
+    function start(initial_time, ele, serverNameTD, currentDensityValueTd) {
 //        debugger;
         var initialTime;
         var isFrozen;
@@ -359,15 +469,18 @@
             --initialTime;
         }
         function reset() {
-            debugger;
             var xhttp = new XMLHttpRequest();
+            debugger;
             xhttp.onreadystatechange = function() {
 //                alert("readyState: " + this.readyState + " status: " + this.status + " " +
 //                        this.statusText);
 
                 if (this.readyState == 4 && this.status == 200) {
                     var json = JSON.parse(this.responseText);
+
+
                     serverNameTD.innerHTML = json.serverName;
+                    currentDensityValueTd.innerHTML = json.density;
                     initial_time = json.density;
                     initialTime = json.density;
                     isFrozen = false;
@@ -375,7 +488,9 @@
             };
             xhttp.open("PUT", "locations", true);
             isFrozen = true;
-            xhttp.send();
+            xhttp.send("currentServer=" + serverNameTD.innerHTML);
+
+
 
 
             paint("red");
@@ -386,18 +501,21 @@
         }
     }
     (function () {
-        var currentDensityDiv = $("#mytable").find("div[data-timer]");
+        var currentDensityValue = $("#mytable").find("td[current-density]");
         var currentServerNameTD = $("#mytable").find("div[server-name]");
 
 //        currentDensityDiv.each(function () {
 //            start($(this).data("timer"), );
 //        });
 
+        debugger;
 
 
         $("#mytable").find("div[data-timer]").each(function () {
             debugger;
-            start($(this).data("timer"), $(this)[0], currentServerNameTD[$(this)[0].id]);
+            start($(this).data("timer"), $(this)[0],
+                    currentServerNameTD[$(this)[0].id],
+                    currentDensityValue[$(this)[0].id]);
         });
     })();
     function createCookie(name, value, days) {

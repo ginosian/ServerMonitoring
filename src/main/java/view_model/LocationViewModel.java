@@ -51,7 +51,7 @@ public class LocationViewModel{
             String newLocationAddress = request.getParameter("location_address");
             if(isValid(newLocation) && isValid(newLocationAddress))addNewLocation(request, newLocation, newLocationAddress);
         } else if (act.equals("Create server")) {
-            String newServerName = request.getParameter("server_name");
+            String newServerName = request.getParameter("newServerName");
             String chosenLocationName = request.getParameter("chosen_location");
             if(isValid(newServerName) && isValid(chosenLocationName)) addNewServer(request, newServerName, chosenLocationName);
         } return updatePageWithData(request, false);
@@ -159,6 +159,22 @@ public class LocationViewModel{
                 densityList.add(model);
             }
             return densityList;
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public DensityModel updateDefaultServer(String serverName){
+        try {
+            LocationDTO locationDTO = Provider.instance().services().getLocationByServer(serverName);
+            int locationId = locationDTO.getLocation_id();
+            ServerDTO defaultServer = Provider.instance().services().getServerWithLowestDensity(locationId);
+            ServerDTO newDefaultServer = Provider.instance().services().setDefaultServer(locationId, defaultServer.getServer_id());
+            int densityValue = Provider.instance().services().getMonitorByLocation(locationId).getCheck_frequency();
+            DensityModel model = new DensityModel();
+            model.setData(newDefaultServer.getServer_name(), densityValue);
+            return model;
         } catch (Exception e){
             e.printStackTrace();
         }

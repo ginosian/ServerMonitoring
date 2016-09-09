@@ -2,6 +2,7 @@ package dao;
 
 import com.sun.istack.internal.NotNull;
 import db.ConnectionProvider;
+import db.DBConnection;
 import entity.MonitorDTO;
 import entity.ServerDTO;
 import util.DBResultMapper;
@@ -17,15 +18,14 @@ import java.sql.SQLException;
 public class MonitorServerDAOImpl implements MonitorServerDAO {
 
     private ConnectionProvider connectionProvider;
-    private Connection connection;
-    private PreparedStatement preparedStatement;
-    private ResultSet resultSet;
 
     public MonitorServerDAOImpl(@NotNull ConnectionProvider connectionProvider) {
         this.connectionProvider = connectionProvider;
     }
 
     public Integer createMonitorServerCrossRecord(Integer monitor_id, Integer server_id) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
         try {
             connection = connectionProvider.openConnection();
 
@@ -38,7 +38,7 @@ public class MonitorServerDAOImpl implements MonitorServerDAO {
             e.printStackTrace();
         } finally {
             try {
-                closeConnections();
+                DBConnection.closeConnections(connection, null, preparedStatement);
             } catch (Exception e){
                 e.printStackTrace();
             }
@@ -47,6 +47,9 @@ public class MonitorServerDAOImpl implements MonitorServerDAO {
     }
 
     public ServerDTO readServerByMonitorId(Integer monitorId) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
         try {
             connection = connectionProvider.openConnection();
 
@@ -60,7 +63,7 @@ public class MonitorServerDAOImpl implements MonitorServerDAO {
             e.printStackTrace();
         } finally {
             try {
-                closeConnections();
+                DBConnection.closeConnections(connection, resultSet, preparedStatement);
             } catch (Exception e){
                 e.printStackTrace();
             }
@@ -69,6 +72,9 @@ public class MonitorServerDAOImpl implements MonitorServerDAO {
     }
 
     public MonitorDTO readMonitorByServerId(Integer serverId) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
         try {
             connection = connectionProvider.openConnection();
 
@@ -83,7 +89,7 @@ public class MonitorServerDAOImpl implements MonitorServerDAO {
             e.printStackTrace();
         } finally {
             try {
-                closeConnections();
+                DBConnection.closeConnections(connection, resultSet, preparedStatement);
             } catch (Exception e){
                 e.printStackTrace();
             }
@@ -92,6 +98,8 @@ public class MonitorServerDAOImpl implements MonitorServerDAO {
     }
 
     public Boolean updateServerForMonitor(Integer monitorId, Integer serverId) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
         try {
             connection = connectionProvider.openConnection();
 
@@ -104,7 +112,7 @@ public class MonitorServerDAOImpl implements MonitorServerDAO {
             e.printStackTrace();
         } finally {
             try {
-                closeConnections();
+                DBConnection.closeConnections(connection, null, preparedStatement);
             } catch (Exception e){
                 e.printStackTrace();
             }
@@ -112,20 +120,4 @@ public class MonitorServerDAOImpl implements MonitorServerDAO {
         return null;
     }
 
-    private void closeConnections()throws Exception{
-        if (resultSet != null) try {
-            resultSet.close();
-            resultSet = null;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        if (preparedStatement != null) try {
-            preparedStatement.close();
-            preparedStatement = null;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        connection.close();
-        connection = null;
-    }
 }

@@ -2,6 +2,7 @@ package dao;
 
 import com.sun.istack.internal.NotNull;
 import db.ConnectionProvider;
+import db.DBConnection;
 import entity.LocationDTO;
 import entity.ServerDTO;
 import util.DBResultMapper;
@@ -18,15 +19,14 @@ import java.util.List;
 public class ServerDAOImpl implements ServerDAO{
 
     private ConnectionProvider connectionProvider;
-    private Connection connection;
-    private PreparedStatement preparedStatement;
-    private ResultSet resultSet;
 
     public ServerDAOImpl(@NotNull ConnectionProvider connectionProvider) {
         this.connectionProvider = connectionProvider;
     }
 
     public Integer createServer(@NotNull ServerDTO serverDTO) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
         try {
             connection = connectionProvider.openConnection();
 
@@ -40,7 +40,7 @@ public class ServerDAOImpl implements ServerDAO{
             e.printStackTrace();
         } finally {
             try {
-                closeConnections();
+                DBConnection.closeConnections(connection, null, preparedStatement);
             } catch (Exception e){
                 e.printStackTrace();
             }
@@ -49,6 +49,9 @@ public class ServerDAOImpl implements ServerDAO{
     }
 
     public List<ServerDTO> readServers() {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
         try {
             connection = connectionProvider.openConnection();
 
@@ -62,7 +65,7 @@ public class ServerDAOImpl implements ServerDAO{
             e.printStackTrace();
         } finally {
             try {
-                closeConnections();
+                DBConnection.closeConnections(connection, resultSet, preparedStatement);
             } catch (Exception e){
                 e.printStackTrace();
             }
@@ -71,6 +74,9 @@ public class ServerDAOImpl implements ServerDAO{
     }
 
     public ServerDTO readDefaultServerWithinLocation(Integer location_id) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
         try {
             connection = connectionProvider.openConnection();
 
@@ -84,7 +90,7 @@ public class ServerDAOImpl implements ServerDAO{
             e.printStackTrace();
         } finally {
             try {
-                closeConnections();
+                DBConnection.closeConnections(connection, resultSet, preparedStatement);
             } catch (Exception e){
                 e.printStackTrace();
             }
@@ -93,6 +99,9 @@ public class ServerDAOImpl implements ServerDAO{
     }
 
     public List<ServerDTO> readServersWithinLocation(Integer location_id) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
         try {
             connection = connectionProvider.openConnection();
 
@@ -106,7 +115,7 @@ public class ServerDAOImpl implements ServerDAO{
             e.printStackTrace();
         } finally {
             try {
-                closeConnections();
+                DBConnection.closeConnections(connection, resultSet, preparedStatement);
             } catch (Exception e){
                 e.printStackTrace();
             }
@@ -115,6 +124,9 @@ public class ServerDAOImpl implements ServerDAO{
     }
 
     public ServerDTO readServerById(@NotNull Integer id) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
         try {
             connection = connectionProvider.openConnection();
 
@@ -128,7 +140,7 @@ public class ServerDAOImpl implements ServerDAO{
             e.printStackTrace();
         } finally {
             try {
-                closeConnections();
+                DBConnection.closeConnections(connection, resultSet, preparedStatement);
             } catch (Exception e){
                 e.printStackTrace();
             }
@@ -137,6 +149,9 @@ public class ServerDAOImpl implements ServerDAO{
     }
 
     public ServerDTO readServerByName(String server_name) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
         try {
             connection = connectionProvider.openConnection();
 
@@ -150,7 +165,7 @@ public class ServerDAOImpl implements ServerDAO{
             e.printStackTrace();
         } finally {
             try {
-                closeConnections();
+                DBConnection.closeConnections(connection, resultSet, preparedStatement);
             } catch (Exception e){
                 e.printStackTrace();
             }
@@ -159,6 +174,9 @@ public class ServerDAOImpl implements ServerDAO{
     }
 
     public ServerDTO readServerWithLowestDensity(Integer location_id) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
         try {
             connection = connectionProvider.openConnection();
 
@@ -172,7 +190,7 @@ public class ServerDAOImpl implements ServerDAO{
             e.printStackTrace();
         } finally {
             try {
-                closeConnections();
+                DBConnection.closeConnections(connection, resultSet, preparedStatement);
             } catch (Exception e){
                 e.printStackTrace();
             }
@@ -181,6 +199,9 @@ public class ServerDAOImpl implements ServerDAO{
     }
 
     public LocationDTO readLocationIdByServerId(Integer serverId) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
         try {
             connection = connectionProvider.openConnection();
 
@@ -194,7 +215,7 @@ public class ServerDAOImpl implements ServerDAO{
             e.printStackTrace();
         } finally {
             try {
-                closeConnections();
+                DBConnection.closeConnections(connection, resultSet, preparedStatement);
             } catch (Exception e){
                 e.printStackTrace();
             }
@@ -204,6 +225,8 @@ public class ServerDAOImpl implements ServerDAO{
 
     public Boolean updateServerWithLocationAndFlag(@NotNull Integer serverId,
                                                    @NotNull Integer location_id, @NotNull Boolean is_default) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
         try {
             connection = connectionProvider.openConnection();
 
@@ -217,7 +240,7 @@ public class ServerDAOImpl implements ServerDAO{
             e.printStackTrace();
         } finally {
             try {
-                closeConnections();
+                DBConnection.closeConnections(connection, null, preparedStatement);
             } catch (Exception e){
                 e.printStackTrace();
             }
@@ -226,6 +249,8 @@ public class ServerDAOImpl implements ServerDAO{
     }
 
     public Boolean updateServerWithFlag(@NotNull Integer serverId, @NotNull Boolean is_default) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
         try {
             connection = connectionProvider.openConnection();
 
@@ -238,28 +263,11 @@ public class ServerDAOImpl implements ServerDAO{
             e.printStackTrace();
         } finally {
             try {
-                closeConnections();
+                DBConnection.closeConnections(connection, null, preparedStatement);
             } catch (Exception e){
                 e.printStackTrace();
             }
         }
         return null;
-    }
-
-    private void closeConnections()throws Exception{
-        if (resultSet != null) try {
-            resultSet.close();
-            resultSet = null;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        if (preparedStatement != null) try {
-            preparedStatement.close();
-            preparedStatement = null;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        connection.close();
-        connection = null;
     }
 }

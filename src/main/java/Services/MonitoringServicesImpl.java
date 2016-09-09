@@ -141,6 +141,17 @@ public class MonitoringServicesImpl implements MonitoringServices{
         return location;
     }
 
+    public LocationDTO getLocationByServer(String serverName) throws Exception {
+        // Checks if input is valid
+        if (!valid(serverName)) throw new InvalidOrEmptyInputException("Input is either null or <= 0");
+
+        // Reads server
+        ServerDTO server = serverDAO.readServerByName(serverName);
+        if (server == null) throw new NoServerException("Server doesn't exist");
+
+        return serverDAO.readLocationIdByServerId(server.getServer_id());
+    }
+
     public ServerDTO getServer(Integer server_id) throws Exception {
         // Checks if input is valid
         if (!valid(server_id)) throw new InvalidOrEmptyInputException("Input is either null or <= 0");
@@ -246,7 +257,7 @@ public class MonitoringServicesImpl implements MonitoringServices{
 
         ServerDTO defaultServer = serverDAO.readDefaultServerWithinLocation(location_id);
         if(defaultServer == null)
-            throw new NoServerException("There is no default server for this location");
+            throw new NoServerException("No default server");
 
         return defaultServer;
     }

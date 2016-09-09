@@ -2,6 +2,7 @@ package dao;
 
 import com.sun.istack.internal.NotNull;
 import db.ConnectionProvider;
+import db.DBConnection;
 import entity.LocationDTO;
 import util.DBResultMapper;
 
@@ -14,15 +15,14 @@ import java.util.List;
 public class LocationDAOImpl implements LocationDAO {
 
     private ConnectionProvider connectionProvider;
-    private Connection connection;
-    private PreparedStatement preparedStatement;
-    private ResultSet resultSet;
 
     public LocationDAOImpl(@NotNull ConnectionProvider connectionProvider) {
         this.connectionProvider = connectionProvider;
     }
 
     public Integer createLocation(@NotNull LocationDTO locationDTO) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
         try {
             connection = connectionProvider.openConnection();
 
@@ -35,7 +35,7 @@ public class LocationDAOImpl implements LocationDAO {
             e.printStackTrace();
         } finally {
             try {
-                closeConnections();
+                DBConnection.closeConnections(connection, null, preparedStatement);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -44,11 +44,12 @@ public class LocationDAOImpl implements LocationDAO {
     }
 
     public List<LocationDTO> readLocations() {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
         try {
             connection = connectionProvider.openConnection();
-
             preparedStatement = connection.prepareStatement(LocationDAO.READ_LOCATIONS);
-
             resultSet = preparedStatement.executeQuery();
             DBResultMapper<LocationDTO> location = DBResultMapper.instance();
             return location.toList(resultSet, LocationDTO.class);
@@ -56,7 +57,7 @@ public class LocationDAOImpl implements LocationDAO {
             e.printStackTrace();
         } finally {
             try {
-                closeConnections();
+                DBConnection.closeConnections(connection, resultSet, preparedStatement);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -65,6 +66,9 @@ public class LocationDAOImpl implements LocationDAO {
     }
 
     public LocationDTO readLocationById(@NotNull Integer id) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
         try {
             connection = connectionProvider.openConnection();
 
@@ -78,7 +82,7 @@ public class LocationDAOImpl implements LocationDAO {
             e.printStackTrace();
         } finally {
             try {
-                closeConnections();
+                DBConnection.closeConnections(connection, resultSet, preparedStatement);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -87,6 +91,9 @@ public class LocationDAOImpl implements LocationDAO {
     }
 
     public LocationDTO readLocationByName(String locationName) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
         try {
             connection = connectionProvider.openConnection();
 
@@ -100,29 +107,11 @@ public class LocationDAOImpl implements LocationDAO {
             e.printStackTrace();
         } finally {
             try {
-                closeConnections();
+                DBConnection.closeConnections(connection, resultSet, preparedStatement);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
         return null;
     }
-
-    private void closeConnections() throws Exception {
-        if (resultSet != null) try {
-            resultSet.close();
-            resultSet = null;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        if (preparedStatement != null) try {
-            preparedStatement.close();
-            preparedStatement = null;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        connection.close();
-        connection = null;
-    }
-
 }

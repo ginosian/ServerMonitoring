@@ -36,7 +36,6 @@ public class Provider {
             DBConnection connectionProvider = new DBConnection();
             connectionProvider.setupConnection();
 
-
 //            DBTables dbProvider = new DBTables(connectionProvider);
 //            dbProvider.createDB(Util.getPropertyValue("database_name"));
 //            dbProvider.createLocationDBTable();
@@ -52,7 +51,6 @@ public class Provider {
                     new ServerDAOImpl(connectionProvider),
                     new MonitorServerDAOImpl(connectionProvider));
             services = monitoringServices;
-
 
 //            for (int i = 0; i < 4; i++) {
 //                services.createLocation("Location" + (i + 1), "Address" + (i + 1));

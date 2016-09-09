@@ -5,6 +5,8 @@ import listener.DBConnectionListener;
 import util.Util;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
@@ -70,12 +72,26 @@ public class DBConnection implements ConnectionProvider, DBConnectionListener {
                 setupConnection();
             }
             Connection connection = dataSource.getConnection();
-            printDataSourceInfo();
+//            printDataSourceInfo();
             return connection;
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static void closeConnections(Connection connection, ResultSet resultSet, PreparedStatement preparedStatement) throws Exception {
+        if (resultSet != null) try {
+            resultSet.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (preparedStatement != null) try {
+            preparedStatement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        connection.close();
     }
 
     private void printDataSourceInfo() {

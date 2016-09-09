@@ -2,6 +2,7 @@ package dao;
 
 import com.sun.istack.internal.NotNull;
 import db.ConnectionProvider;
+import db.DBConnection;
 import entity.MonitorDTO;
 import util.DBResultMapper;
 
@@ -17,15 +18,14 @@ import java.util.List;
 public class MonitorDAOImpl implements MonitorDAO{
 
     private ConnectionProvider connectionProvider;
-    private Connection connection;
-    private PreparedStatement preparedStatement;
-    private ResultSet resultSet;
 
     public MonitorDAOImpl(@NotNull ConnectionProvider connectionProvider) {
         this.connectionProvider = connectionProvider;
     }
 
     public Integer createMonitor(@NotNull MonitorDTO monitorDTO) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
         try {
             connection = connectionProvider.openConnection();
 
@@ -38,7 +38,7 @@ public class MonitorDAOImpl implements MonitorDAO{
             e.printStackTrace();
         } finally {
             try {
-                closeConnections();
+                DBConnection.closeConnections(connection, null, preparedStatement);
             } catch (Exception e){
                 e.printStackTrace();
             }
@@ -47,6 +47,9 @@ public class MonitorDAOImpl implements MonitorDAO{
     }
 
     public List<MonitorDTO> readMonitors() {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
         try {
             connection = connectionProvider.openConnection();
 
@@ -59,7 +62,7 @@ public class MonitorDAOImpl implements MonitorDAO{
             e.printStackTrace();
         } finally {
             try {
-                closeConnections();
+                DBConnection.closeConnections(connection, resultSet, preparedStatement);
             } catch (Exception e){
                 e.printStackTrace();
             }
@@ -68,6 +71,9 @@ public class MonitorDAOImpl implements MonitorDAO{
     }
 
     public MonitorDTO readMonitorById(@NotNull Integer id) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
         try {
             connection = connectionProvider.openConnection();
 
@@ -81,7 +87,7 @@ public class MonitorDAOImpl implements MonitorDAO{
             e.printStackTrace();
         } finally {
             try {
-                closeConnections();
+                DBConnection.closeConnections(connection, resultSet, preparedStatement);
             } catch (Exception e){
                 e.printStackTrace();
             }
@@ -90,6 +96,9 @@ public class MonitorDAOImpl implements MonitorDAO{
     }
 
     public MonitorDTO readMonitorByName(String monitorName) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
         try {
             connection = connectionProvider.openConnection();
 
@@ -103,7 +112,7 @@ public class MonitorDAOImpl implements MonitorDAO{
             e.printStackTrace();
         } finally {
             try {
-                closeConnections();
+                DBConnection.closeConnections(connection, resultSet, preparedStatement);
             } catch (Exception e){
                 e.printStackTrace();
             }
@@ -112,6 +121,8 @@ public class MonitorDAOImpl implements MonitorDAO{
     }
 
     public Boolean updateMonitorCheckFrequency(@NotNull Integer monitorId, @NotNull Integer monitorCheckFrequency) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
         try {
             connection = connectionProvider.openConnection();
 
@@ -124,7 +135,7 @@ public class MonitorDAOImpl implements MonitorDAO{
             e.printStackTrace();
         } finally {
             try {
-                closeConnections();
+                DBConnection.closeConnections(connection, null, preparedStatement);
             } catch (Exception e){
                 e.printStackTrace();
             }
@@ -132,20 +143,4 @@ public class MonitorDAOImpl implements MonitorDAO{
         return null;
     }
 
-    private void closeConnections()throws Exception{
-        if (resultSet != null) try {
-            resultSet.close();
-            resultSet = null;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        if (preparedStatement != null) try {
-            preparedStatement.close();
-            preparedStatement = null;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        connection.close();
-        connection = null;
-    }
 }

@@ -17,6 +17,7 @@ public interface MonitoringServices {
 
     LocationDTO getLocation(Integer location_id) throws Exception;
     LocationDTO getLocation(String location_name) throws Exception;
+    LocationDTO getLocationByServer(String serverName) throws Exception;
 
     ServerDTO getServer(Integer server_id) throws Exception;
     ServerDTO getServer(String server_name) throws Exception;

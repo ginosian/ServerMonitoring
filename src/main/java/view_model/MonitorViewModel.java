@@ -4,6 +4,8 @@ import controller.Provider;
 import entity.LocationDTO;
 import entity.MonitorDTO;
 import entity.ServerDTO;
+import exception.ObjectExistException;
+import util.Util;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -26,7 +28,7 @@ public class MonitorViewModel {
     }
 
 
-    public MonitorViewHolder updatePageWithData(HttpServletRequest request)throws Exception{
+    public MonitorViewHolder updatePageWithData(HttpServletRequest request, boolean showMessage)throws Exception{
         monitorViewHolder.clearCards();
         List<MonitorDTO> monitors = Provider.instance().services().getAllMonitors();
         List<LocationDTO> locations = Provider.instance().services().getAllNotMonitoredLocations();
@@ -66,7 +68,38 @@ public class MonitorViewModel {
             }
         }else {monitorViewHolder.addLocation("No location");}
 
+        if(!showMessage) {
+            monitorViewHolder.setMonitor_exist_error_message("");
+        }
+
         return monitorViewHolder;
+    }
+
+    public MonitorViewHolder addNewMonitor(HttpServletRequest request){
+        String newMonitor = request.getParameter("newMonitorName");
+        String chosenLocation = request.getParameter("chosen_location");
+        if(isValid(newMonitor) && isValid(chosenLocation)) {
+            try {
+                LocationDTO location = Provider.instance().services().getLocation(chosenLocation);
+                Provider.instance().services().createMonitor(newMonitor, Util.rand(8, 20), location.getLocation_id());
+                return updatePageWithData(request, false);
+            } catch (ObjectExistException e) {
+                monitorViewHolder.setMonitor_exist_error_message(e.getMessage());
+                e.printStackTrace();
+                try {
+                    return updatePageWithData(request, true);
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+    private boolean isValid(String value){
+        return value != null && !value.isEmpty();
     }
 
 

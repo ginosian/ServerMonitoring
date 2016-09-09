@@ -51,6 +51,24 @@
             width: 100%;
             background-color: #78909C;
         }
+        #monitored {
+            font-size: 24px;
+            text-align: center;
+            vertical-align: middle;
+            table-layout: fixed;
+            width: 100%;
+            height: 3%;
+            background-color: #F57F17;
+        }
+        #notMonitored {
+            font-size: 24px;
+            text-align: center;
+            vertical-align: middle;
+            table-layout: fixed;
+            width: 100%;
+            height: 3%;
+            background-color: #F57F17;
+        }
 
         #locationNameN {
             table-layout: fixed;
@@ -230,6 +248,8 @@
 
         #locationInputsColumn {
             height: 5%;
+            text-align: left;
+            vertical-align: middle;
         }
 
         #locationErrorPanel {
@@ -316,7 +336,9 @@
         <tbody>
 
         <c:set var="count" value="0" scope="page" />
-        debugger;
+        <tr>
+            <td id="monitored" colspan="4">MONITORED LOCATIONS</td>
+        </tr>
         <c:forEach items="${data.getMonitoredLocationsCards()}" var="card">
             <tr>
                 <td id="locationName" colspan="4">${card.getLocationName()}</td>
@@ -324,13 +346,19 @@
             <tr>
                 <td id="densityCheck" colspan="3">Time left for next density check</td>
                 <td id="densityCheckValue" colspan="1">
-                    <div id="${count}" data-timer="${card.getDefaultServerDensityValue()}"></div>
+                    <div Style="vertical-align: middle;
+                                font-size: 22px;
+                                text-align: left;
+                                width: 30%;
+                                background-color: #b0bec5;"
+                         id="${count}" data-timer="${card.getDefaultServerDensityValue()}"></div>
                 </td>
             </tr>
             <tr>
-                <td id="defaultServer">Default server</td>
-                <td>
-                    <div server-name="${card.getDefaultServerName()}">${card.getDefaultServerName()}</div>
+                <td id="defaultServer" colspan="1">Default server</td>
+                <td id="defaultServerValue" colspan="1">
+                    <div
+                         server-name="${card.getDefaultServerName()}">${card.getDefaultServerName()}</div>
                 </td>
                 <td id="currentDensity">Current density</td>
                 <td id="currentDensityValue" current-density = ${card.getDefaultServerDensityValue()}>${card.getDefaultServerDensityValue()}</td>
@@ -348,17 +376,18 @@
 
             <c:set var="count" value="${count + 1}" scope="page"/>
         </c:forEach>
+        <tr>
+            <td id="notMonitored" colspan="4">NOT MONITORED LOCATIONS</td>
+        </tr>
         <c:forEach items="${data.getNotMonitoredLocationsCards()}" var="card">
-            <tr>
-                <td id="locationNameN" colspan="4">${card.getLocationName()}</td>
+            <tr id="locationNameN">
+                <td  colspan="4">${card.getLocationName()}</td>
             </tr>
-            <tr>
-                <td id="defaultServerN">Default server</td>
-                <td>
-                    <div id="defaultServerValueN">"${card.getDefaultServerName()}"></div>
-                </td>
-                <td id="currentDensityN">Current density</td>
-                <td id="currentDensityValueN">${card.getDefaultServerDensityValue()}</td>
+            <tr id="defaultServerN">
+                <td colspan="1">Default server</td>
+                <td id="defaultServerValueN" colspan="1">${card.getDefaultServerName()}</td>
+                <td id="currentDensityN" colspan="1">Current density</td>
+                <td id="currentDensityValueN" colspan="1">${card.getDefaultServerDensityValue()}</td>
             </tr>
             <tr>
                 <td id="allServersN" colspan="4">All servers</td>
@@ -441,6 +470,7 @@
         }
         function reset() {
             var xhttp = new XMLHttpRequest();
+            debugger;
             xhttp.onreadystatechange = function() {
 //                alert("readyState: " + this.readyState + " status: " + this.status + " " +
 //                        this.statusText);
@@ -448,7 +478,6 @@
                 if (this.readyState == 4 && this.status == 200) {
                     var json = JSON.parse(this.responseText);
 
-                    debugger;
 
                     serverNameTD.innerHTML = json.serverName;
                     currentDensityValueTd.innerHTML = json.density;
@@ -459,7 +488,9 @@
             };
             xhttp.open("PUT", "locations", true);
             isFrozen = true;
-            xhttp.send();
+            xhttp.send("currentServer=" + serverNameTD.innerHTML);
+
+
 
 
             paint("red");

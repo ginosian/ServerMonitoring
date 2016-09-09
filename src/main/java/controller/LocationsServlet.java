@@ -1,5 +1,7 @@
 package controller;
 
+import exception.NoServerException;
+import util.Util;
 import view_model.LocationViewModel;
 
 import javax.servlet.ServletException;
@@ -9,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Martha on 9/3/2016.
@@ -40,15 +42,15 @@ public class LocationsServlet extends HttpServlet implements DS {
     @Override
     protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            List<LocationViewModel.DensityModel> densityList = LocationViewModel.model().updatedDefaultServers();
-            String json = Provider.instance().gson.toJson(densityList);
-            LocationViewModel.DensityModel densityModel = densityList.get(0);
+            Map<String, String> paramMap = Util.mapFromRequestStream(request);
+            String serverName = paramMap.get("currentServer");
+            if(serverName == null || serverName.isEmpty())throw new NoServerException("Ajax request has no parameter with name currentServer");
+            LocationViewModel.DensityModel densityModel = LocationViewModel.model().updateDefaultServer(serverName);
             PrintWriter printWriter = response.getWriter();
             printWriter.print(Provider.instance().gson.toJson(densityModel));
         } catch (Exception e){
             e.printStackTrace();
         }
-
     }
 
 
