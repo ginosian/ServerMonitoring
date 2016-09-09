@@ -55,7 +55,7 @@ public class DBConnection implements ConnectionProvider, DBConnectionListener {
             dataSource.setMinPoolSize(5);
             dataSource.setInitialPoolSize(5);
             dataSource.setAcquireIncrement(5);
-            dataSource.setMaxPoolSize(20);
+            dataSource.setMaxPoolSize(50);
             dataSource.setNumHelperThreads(5);
             dataSource.setMaxStatements(180);
         } catch (Exception e) {
@@ -80,17 +80,17 @@ public class DBConnection implements ConnectionProvider, DBConnectionListener {
 
     private void printDataSourceInfo() {
         try {
-//            System.out.println("Connection was opened " + countOpenedConnection + "times");
-//            System.out.println("NumUnclosedOrphanedConnections " + dataSource.getNumUnclosedOrphanedConnections());
-//            System.out.println("NumConnections " + dataSource.getNumConnections());
-//            System.out.println("NumBusyConnections " + dataSource.getNumBusyConnections());
-//            System.out.println("NumIdleConnections " + dataSource.getNumIdleConnections());
-//            System.out.println("ThreadPoolNumActiveThreads " + dataSource.getThreadPoolNumActiveThreads());
-//            System.out.println("ThreadPoolNumTasksPending " + dataSource.getThreadPoolNumTasksPending());
-//            System.out.println("NumUserPools " + dataSource.getNumUserPools());
-//            System.out.println();
-//            System.out.println();
-//            System.out.println();
+            System.out.println("Connection was opened " + countOpenedConnection + "times");
+            System.out.println("NumUnclosedOrphanedConnections " + dataSource.getNumUnclosedOrphanedConnections());
+            System.out.println("NumConnections " + dataSource.getNumConnections());
+            System.out.println("NumBusyConnections " + dataSource.getNumBusyConnections());
+            System.out.println("NumIdleConnections " + dataSource.getNumIdleConnections());
+            System.out.println("ThreadPoolNumActiveThreads " + dataSource.getThreadPoolNumActiveThreads());
+            System.out.println("ThreadPoolNumTasksPending " + dataSource.getThreadPoolNumTasksPending());
+            System.out.println("NumUserPools " + dataSource.getNumUserPools());
+            System.out.println();
+            System.out.println();
+            System.out.println();
         } catch (Exception e) {
             e.printStackTrace();
         }

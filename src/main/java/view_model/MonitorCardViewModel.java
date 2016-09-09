@@ -9,20 +9,17 @@ public class MonitorCardViewModel {
     private String locationName;
     private String defaultServerName;
     private int defaultServerDensityValue;
-    private int defaultServerCurrentCountdown;
     private String[] notMonitoredLocationsNames;
 
     public void updateData(String monitorName,
                                 String locationName,
                                 String defaultServerName,
                                 int defaultServerDensityValue,
-                                int defaultServerCurrentCountdown,
                                 String[] notMonitoredLocationsNames) {
         this.monitorName = monitorName;
         this.locationName = locationName;
         this.defaultServerName = defaultServerName;
         this.defaultServerDensityValue = defaultServerDensityValue;
-        this.defaultServerCurrentCountdown = defaultServerCurrentCountdown;
         this.notMonitoredLocationsNames = notMonitoredLocationsNames;
     }
 
@@ -66,11 +63,4 @@ public class MonitorCardViewModel {
         this.notMonitoredLocationsNames = notMonitoredLocationsNames;
     }
 
-    public int getDefaultServerCurrentCountdown() {
-        return defaultServerCurrentCountdown;
-    }
-
-    public void setDefaultServerCurrentCountdown(int defaultServerCurrentCountdown) {
-        this.defaultServerCurrentCountdown = defaultServerCurrentCountdown;
-    }
 }

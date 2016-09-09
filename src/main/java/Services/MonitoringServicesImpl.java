@@ -9,6 +9,7 @@ import entity.MonitorDTO;
 import entity.ServerDTO;
 import exception.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -327,26 +328,28 @@ public class MonitoringServicesImpl implements MonitoringServices{
 
     public List<LocationDTO> getAllNotMonitoredLocations() throws Exception {
         List<LocationDTO> locations = getAllLocations();
-        for (int i = 0; i < locations.size(); i++) {
-            LocationDTO location = locations.get(i);
-            int locationId = location.getLocation_id();
-            if(isLocationMonitored(locationId)){
-                locations.remove(location);
-            }
-        }
-        return locations;
-    }
-
-    public List<LocationDTO> getAllMonitoredLocations() throws Exception {
-        List<LocationDTO> locations = getAllLocations();
+        List<LocationDTO> notMonitoredlocations = new ArrayList<LocationDTO>();
         for (int i = 0; i < locations.size(); i++) {
             LocationDTO location = locations.get(i);
             int locationId = location.getLocation_id();
             if(!isLocationMonitored(locationId)){
-                locations.remove(location);
+                notMonitoredlocations.add(location);
             }
         }
-        return locations;
+        return notMonitoredlocations;
+    }
+
+    public List<LocationDTO> getAllMonitoredLocations() throws Exception {
+        List<LocationDTO> locations = getAllLocations();
+        List<LocationDTO> monitoredlocations = new ArrayList<LocationDTO>();
+        for (int i = 0; i < locations.size(); i++) {
+            LocationDTO location = locations.get(i);
+            int locationId = location.getLocation_id();
+            if(isLocationMonitored(locationId)){
+                monitoredlocations.add(location);
+            }
+        }
+        return monitoredlocations;
     }
 
     public List<ServerDTO> getAllServersWithinLocation(Integer location_id) throws Exception {
